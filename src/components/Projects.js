@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 const Carousel = () => {
   const slides = [
-    { image: '/Synkerr.jpeg', text: "Social Media Website for collaboration",link:"https://github.com/alphaplayerofdooms/Synkerr_Homepage"},
-    { image: '/E_Summit-NITK.png', text: "E-Summit NITK 2024",link:"https://github.com/Esummit-organization/ESIC-Website/tree/esic/nikhil" },
+    { image: '`${process.env.PUBLIC_URL}/Synkerr.jpeg`, text: "Social Media Website for collaboration",link:"https://github.com/alphaplayerofdooms/Synkerr_Homepage"},
+    { image: `${process.env.PUBLIC_URL}/Synkerr.jpeg`, text: "E-Summit NITK 2024",link:"https://github.com/Esummit-organization/ESIC-Website/tree/esic/nikhil" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Carousel = () => {
   const slides = [
-    { image: '`${process.env.PUBLIC_URL}/Synkerr.jpeg`, text: "Social Media Website for collaboration",link:"https://github.com/alphaplayerofdooms/Synkerr_Homepage"},
+    { image: `${process.env.PUBLIC_URL}/Synkerr.jpeg`, text: "Social Media Website for collaboration",link:"https://github.com/alphaplayerofdooms/Synkerr_Homepage"},
     { image: `${process.env.PUBLIC_URL}/Synkerr.jpeg`, text: "E-Summit NITK 2024",link:"https://github.com/Esummit-organization/ESIC-Website/tree/esic/nikhil" },
   ];
 

@@ -6,6 +6,10 @@ node_modules
 .pnp.js
 @core-ui
 
+# production
+/build
+
+
 # testing
 /coverage
 

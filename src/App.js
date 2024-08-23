@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import Skills from './components/Skills';
@@ -27,12 +27,12 @@ function App() {
               <Projects />
             </div>
           } />
-          <Route path='/Contact' element={
-            <div className='Contact'>
-                <NavBar/>
-                <Contact/>
+          <Route path="/Contact" element={
+            <div className="Contact">
+              <NavBar />
+              <Contact />
             </div>
-          }  />
+          } />
         </Routes>
       </div>
     </Router>

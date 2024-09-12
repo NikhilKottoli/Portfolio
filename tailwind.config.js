@@ -11,9 +11,13 @@ module.exports = {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
         },
+        shine: {
+          '100%': { transform: 'translateX(100%)' },
+        }
       },
       animation: {
         jiggle: 'jiggle 0.6s ease-in-out infinite 2s',
+        shine: 'shine 1s',
       },
     }
   },

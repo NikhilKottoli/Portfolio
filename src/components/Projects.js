@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Carousel = () => {
   const slides = [
@@ -20,7 +21,7 @@ const Carousel = () => {
     <div className="mt-20 w-screen">
       <div className="relative flex justify-center py-20">
         <img
-          className="h-[400px] w-[400px] object-cover"
+          className="md:h-[500px] md:w-[500px] w-[400px] h-[300px] object-cover"
           src={slides[currentIndex].image}
           alt={`Slide ${currentIndex + 1}`}
         />
@@ -28,22 +29,23 @@ const Carousel = () => {
             <a target="_blank" href={slides[currentIndex].link} rel="noreferrer">
                 <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" className="w-12 h-12" />
             </a>
-            
         </span>
         <p className="absolute bottom-[0] text-white text-center bg-black bg-opacity-50 p-2">
           {slides[currentIndex].text}
         </p>
         <button
-          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+          className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500
+          text-white p-2 rounded-full"
           onClick={handlePrev}
         >
-          &lt;
+          Previous
         </button>
         <button
-          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+          className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-gradient-to-r from-blue-500 via-sky-500 to-indigo-500
+          text-white py-2 px-3 rounded-full"
           onClick={handleNext}
         >
-          &gt;
+          Next
         </button>
       </div>
     </div>

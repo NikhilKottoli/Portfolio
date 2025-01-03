@@ -17,7 +17,7 @@ const Carousel = () => {
   };
 
   return (
-    <div className="mt-20 w-screen">
+    <div className="w-screen">
       <div className="relative flex justify-center py-20">
         <img
           className="md:h-[500px] md:w-[500px] w-[400px] h-[300px] object-cover"

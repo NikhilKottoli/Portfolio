@@ -5,31 +5,31 @@ import HeroSection from './components/HeroSection';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Experience from './components/Experience';
 
 function App() {
   return (
     <Router>
       <div className="App bg-[#000000] w-full h-full overflow-y-auto">
+      <NavBar />
         <Routes>
           <Route
             path="/"
             element={
               <div className="About">
-                <NavBar />
                 <HeroSection />
                 <Skills />
+                <Experience />
               </div>
             }
           />
           <Route path="/Projects" element={
             <div className="Projects">
-              <NavBar />
               <Projects />
             </div>
           } />
           <Route path="/Contact" element={
             <div className="Contact">
-              <NavBar />
               <Contact />
             </div>
           } />

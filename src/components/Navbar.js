@@ -38,7 +38,7 @@ const NavBar = () => {
   `;
 
   return (
-    <nav className="sticky top-0 z-50 w-full py-6 bg-gradient-to-r from-gray-900 to-black">
+    <nav className="top-0 w-full py-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ul className="flex justify-center space-x-6 sm:space-x-10">
           <li>

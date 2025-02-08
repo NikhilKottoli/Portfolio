@@ -21,12 +21,12 @@ const MainSkillCard = ({ title, imageSrc, imageAlt, index }) => (
     initial={{ opacity: 0, scale: 0.9 }}
     animate={{ opacity: 1, scale: 1 }}
     transition={{ duration: 0.5, delay: index * 0.2 }}
-    className="relative group"
+    className="relative group w-64 h-64"
   >
     <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
-    <div className="relative flex flex-col items-center justify-center w-full h-48 px-4 py-5 rounded-3xl bg-gradient-to-br from-gray-900 via-black to-gray-900 transition-all duration-500 group-hover:from-gray-800 group-hover:to-gray-900">
+    <div className="relative flex flex-col items-center justify-center w-full h-full px-4 py-5 rounded-3xl bg-gradient-to-br from-gray-900 via-black to-gray-900 transition-all duration-500 group-hover:from-gray-800 group-hover:to-gray-900">
       <motion.div 
-        className="w-20 h-20 mb-4 flex items-center justify-center"
+        className="w-24 h-24 mb-4 flex items-center justify-center"
         whileHover={{ scale: 1.1, rotate: 5 }}
         transition={{ type: "spring", stiffness: 300 }}
       >

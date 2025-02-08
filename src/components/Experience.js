@@ -9,10 +9,10 @@ const Experience = () => {
       company: "IRIS - NITK's Administrative System",
       date: "November 2024 - Present",
       description: [
-        "Contributed to the development and maintenance of NITK's official administrative system",
-        "Implemented responsive web interfaces using React and Tailwind CSS",
-        "Collaborated with senior developers to optimize system performance",
-        "Worked on integrating new features for student and faculty portals"
+        "IRIS is the official student-led ERP system of NITK, with 15K+ active users.",
+        "Contributed to the development of the Research and Development module by gathering requirements and implementing features to meet user needs and enhance functionality",
+        "Worked extensively with MySQL and ActiveRecord ORM for efficient database management and query optimization",
+        "Refactored and optimized existing codebase, leveraging RuboCop and RSpec for code quality and testing"
       ],
       type: "Work",
       image: `${process.env.PUBLIC_URL}/iris.png`
@@ -33,7 +33,7 @@ const Experience = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-black p-8">
+    <div className="min-h-screen">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}

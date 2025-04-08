@@ -9,7 +9,7 @@ const Contact = () => {
           title="GitHub" 
           imgSrc="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
           imgAlt="GitHub Logo"
-          link="https://github.com/alphaplayerofdooms"
+          link="https://github.com/NikhilKottoli"
         />
         <ContactCard 
           title="LinkedIn" 
@@ -21,7 +21,7 @@ const Contact = () => {
           title="CodeChef" 
           imgSrc="https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/logo.svg" 
           imgAlt="CodeChef Logo"
-          link={"https://www.codechef.com/users/ligma_84"}
+          link={"https://www.codechef.com/users/nikhil_k0tt0li"}
         />
       </div>
     </div>

@@ -40,7 +40,7 @@ const HeroSection = () => {
       <h1 className="text-[#FFFFFF] text-7xl font-bold font-raleway z-10">Hey, my name is</h1>
       <h1 className="text-[#FFFFFF] text-7xl font-bold font-raleway z-10">Nikhil Kottoli</h1>
       <div className="gap-4 z-10">
-        <p className="text-[#9C9C9C] text-2xl">I build cool stuff on the web and love making things look good</p>
+        <p className="text-[#9C9C9C] text-2xl">I build cool stuff on the Web</p>
         <p className="text-[#9C9C9C] text-2xl">An engineering student at NITK surathkal</p>
       </div>
 

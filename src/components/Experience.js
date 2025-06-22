@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Calendar, Building2, GraduationCap } from 'lucide-react';
+import { ChevronRight, Calendar, Building2, GraduationCap, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Experience = () => {
@@ -8,6 +8,7 @@ const Experience = () => {
       title: "Web Developer",
       company: "IRIS - NITK's Administrative System",
       date: "November 2024 - Present",
+      location: "NITK Surathkal",
       description: [
         "IRIS is the official student-led ERP system of NITK, with 15K+ active users.",
         "Contributed to the development of the Research and Development module by gathering requirements and implementing features to meet user needs and enhance functionality",
@@ -15,12 +16,14 @@ const Experience = () => {
         "Refactored and optimized existing codebase, leveraging RuboCop and RSpec for code quality and testing"
       ],
       type: "Work",
-      image: `${process.env.PUBLIC_URL}/iris.png`
+      image: `${process.env.PUBLIC_URL}/iris.png`,
+      skills: ["Ruby on Rails", "MySQL", "ActiveRecord", "RSpec"]
     },
     {
-      title: "Executive member",
+      title: "Executive Member",
       company: "IEEE NITK Student Branch",
       date: "October 2024 - Present",
+      location: "NITK Surathkal",
       description: [
         "Organized workshops and seminars on various technical topics",
         "Conducted coding competitions and hackathons for students",
@@ -28,89 +31,181 @@ const Experience = () => {
         "Collaborated with other student branches for joint events"
       ],
       type: "Volunteer",
-      image: `${process.env.PUBLIC_URL}/ieee-nitk.png`
+      image: `${process.env.PUBLIC_URL}/ieee-nitk.png`,
+      skills: ["Leadership", "Event Management", "Mentoring", "Technical Writing"]
     }
   ];
 
   return (
-    <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        {/* Floating orbs */}
+        <motion.div
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -100, 0],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-[#3b82f6]/20 to-[#8b5cf6]/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, -150, 0],
+            y: [0, 100, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute top-1/2 right-20 w-96 h-96 bg-gradient-to-r from-[#06b6d4]/20 to-[#3b82f6]/20 rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, 80, 0],
+            y: [0, -80, 0],
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+          className="absolute bottom-20 left-1/3 w-64 h-64 bg-gradient-to-r from-[#8b5cf6]/20 to-[#ec4899]/20 rounded-full blur-3xl"
+        />
+        
+      </div>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-16">
+        {/* Header Section */}
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="text-center mb-16"
         >
-          <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-4">
-            Experience
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Professional Experience
           </h1>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full" />
+          <p className="text-lg text-[#cbd5e1] max-w-2xl mx-auto">
+            My journey in technology and leadership roles
+          </p>
+          <div className="mt-6 w-20 h-1 bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] mx-auto rounded-full" />
         </motion.div>
 
-        <div className="space-y-12">
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#3b82f6] via-[#8b5cf6] to-[#3b82f6] opacity-60" />
+          
           {experiences.map((exp, index) => (
-            <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.2 }}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.3 }}
               key={index}
-              className="group relative bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-8 hover:from-slate-700 hover:to-slate-800 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl border border-slate-700/50"
+              className={`relative flex items-center mb-16 ${
+                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+              }`}
             >
-              <div className="absolute -left-4 top-10 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg">
-                {exp.type === "Work" ? (
-                  <Building2 className="w-4 h-4 text-white" />
-                ) : (
-                  <GraduationCap className="w-4 h-4 text-white" />
-                )}
-              </div>
-
-              <div className="ml-6">
-                <div className="flex flex-col md:flex-row md:items-center gap-6 mb-6">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <h2 className="text-3xl font-bold text-white group-hover:text-blue-400 transition-colors">
+              {/* Timeline dot */}
+              <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gradient-to-r from-[#3b82f6] to-[#8b5cf6] rounded-full border-4 border-[#1e293b] shadow-lg z-10" />
+              
+              {/* Content card - Glassy effect */}
+              <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${
+                index % 2 === 0 ? 'md:mr-8' : 'md:ml-8'
+              }`}>
+                <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-8 shadow-2xl hover:bg-white/30 transition-all duration-300 hover:border-white/30 hover:shadow-3xl">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className={`p-2 rounded-lg backdrop-blur-sm ${
+                          exp.type === 'Work' ? 'bg-[#3b82f6]/20 border border-[#3b82f6]/30' : 'bg-[#22c55e]/20 border border-[#22c55e]/30'
+                        }`}>
+                          {exp.type === 'Work' ? (
+                            <Building2 className={`w-5 h-5 ${
+                              exp.type === 'Work' ? 'text-[#60a5fa]' : 'text-[#4ade80]'
+                            }`} />
+                          ) : (
+                            <GraduationCap className="w-5 h-5 text-[#4ade80]" />
+                          )}
+                        </div>
+                        <span className={`px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm ${
+                          exp.type === 'Work' 
+                            ? 'bg-[#3b82f6]/20 text-[#93c5fd] border border-[#3b82f6]/30' 
+                            : 'bg-[#22c55e]/20 text-[#86efac] border border-[#22c55e]/30'
+                        }`}>
+                          {exp.type}
+                        </span>
+                      </div>
+                      
+                      <h3 className="text-2xl font-bold text-white mb-2">
                         {exp.title}
-                      </h2>
-                      <ChevronRight className="w-6 h-6 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h3>
+                      
+                      <p className="text-lg font-semibold text-[#60a5fa] mb-3">
+                        {exp.company}
+                      </p>
+                      
+                      <div className="flex flex-col sm:flex-row gap-4 text-[#cbd5e1] mb-4">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          <span className="text-sm text-[#C0C0C0]">{exp.date}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <MapPin className="w-4 h-4" />
+                          <span className="text-sm text-[#C0C0C0]">{exp.location}</span>
+                        </div>
+                      </div>
                     </div>
-
-                    <div className="flex items-center gap-2 text-blue-400 mb-3">
-                      <Building2 className="w-5 h-5" />
-                      <p className="text-xl text-white">{exp.company}</p>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-gray-400">
-                      <Calendar className="w-5 h-5" />
-                      <p className="text-lg text-white">{exp.date}</p>
+                    
+                    {/* Company logo */}
+                    <div className="w-16 h-16 rounded-lg overflow-hidden backdrop-blur-sm bg-white/10 border border-white/20 ml-4">
+                      <img 
+                        src={exp.image} 
+                        alt={exp.company}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
 
-                  <div className="w-full md:w-64 aspect-w-4 aspect-h-3 rounded-lg overflow-hidden text-white">
-                    <img 
-                      src={exp.image} 
-                      alt={exp.company}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                    />
+                  {/* Description */}
+                  <div className="space-y-3 mb-6">
+                    {exp.description.map((item, i) => (
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.1 * i }}
+                        key={i}
+                        className="flex items-start gap-3"
+                      >
+                        <div className="w-1.5 h-1.5 bg-[#60a5fa] rounded-full mt-2 flex-shrink-0" />
+                        <p className="text-[#e2e8f0] leading-relaxed">{item}</p>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap gap-2">
+                    {exp.skills.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 backdrop-blur-sm bg-white/10 text-[#e2e8f0] text-sm rounded-full border border-white/20 hover:bg-white/20 transition-colors"
+                      >
+                        {skill}
+                      </span>
+                    ))}
                   </div>
                 </div>
-
-                <ul className="space-y-3">
-                  {exp.description.map((item, i) => (
-                    <motion.li 
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 + (i * 0.1) }}
-                      key={i} 
-                      className="text-gray-300 flex items-start text-lg group-hover:text-gray-200"
-                    >
-                      <span className="text-blue-400 mr-3 font-bold">•</span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
               </div>
             </motion.div>
           ))}
         </div>
+    
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Experience from './components/Experience';
-import Certifications from './components/Certifications';
+import Achievements from './components/Achievements';
 
 function App() {
   return (
@@ -20,8 +20,7 @@ function App() {
               <div className="About">
                 <HeroSection />
                 <Skills />
-                <Experience />
-                <Certifications />
+                <Achievements />
               </div>
             }
           />
@@ -33,6 +32,11 @@ function App() {
           <Route path="/Contact" element={
             <div className="Contact">
               <Contact />
+            </div>
+          } />
+          <Route path="/Experience" element={
+            <div className="Experience">
+              <Experience />
             </div>
           } />
         </Routes>

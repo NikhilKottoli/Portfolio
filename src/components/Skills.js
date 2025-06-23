@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code, Palette, Zap, Trophy, Star, Wrench, BarChart3 } from "lucide-react";
+import { Code, Palette, Zap, Trophy, Star, Wrench } from "lucide-react";
 
 const SKILLS_DATA = {
   // Page Content

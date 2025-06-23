@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChevronRight, Calendar, Building2, GraduationCap, MapPin } from 'lucide-react';
+import { Calendar, Building2, GraduationCap, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Experience = () => {

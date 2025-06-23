@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trophy, X, Calendar, Users, Code, Zap, Award, Shield, Star, ExternalLink } from 'lucide-react';
+import { Trophy, X, Calendar, Code, Award, Shield, Star, ExternalLink } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // ============================
@@ -32,6 +32,16 @@ const ACHIEVEMENTS_DATA = {
       image: `${process.env.PUBLIC_URL}/Postman.png`,
       description: "Certification in API testing and automation using Postman. Demonstrated proficiency in creating and managing API tests, collections, and automated testing workflows.",
       date: "API testing and automation using Postman",
+      icon: "trophy",
+      type: "certification"
+    },
+    {
+      id: 5,
+      name: "C++ basics certification codechef",
+      issuer: "CodeChef",
+      image: `${process.env.PUBLIC_URL}/codechef_cpp.png`,
+      description: "Certification in C++ programming fundamentals. Covered basic syntax, data structures, algorithms, and problem-solving techniques using C++.",
+      date: "C++ programming fundamentals",
       icon: "trophy",
       type: "certification"
     }

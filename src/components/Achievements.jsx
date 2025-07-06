@@ -17,7 +17,7 @@ const ACHIEVEMENTS_DATA = {
       position: "3rd Place",
       date: "June 2025",
       image: `${process.env.PUBLIC_URL}/Polkadot.webp`,
-      description: "Built RiskWise - an AI-powered risk assessment platform using Python, React/Next.js, Azure AI Agent Service, and Semantic Kernel. The solution showcased end-to-end AI integration for enterprise risk management.",
+      description: "Polkaflow is a visual blockchain workflow builder that empowers users to design, generate, and deploy smart contracts for the Polkadot ecosystem with ease. By leveraging PolkaVM, AssetHub, and both AI-driven and manual logic code generation, Polkaflow makes blockchain development accessible for everyone—from no-code users to advanced developers.",
       category: "Web3",
       link: "https://dorahacks.io/buidl/26737",
       type: "hackathon"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ExternalLink, Code, Github, X, Filter } from "lucide-react";
+import { ExternalLink, Code, Github, X } from "lucide-react";
 
 const projects = [
     {
@@ -27,6 +27,14 @@ const projects = [
     description: "A modern social media platform focused on professional collaboration and networking. Includes real-time messaging, project sharing, and team formation features.",
     link: "https://github.com/NikhilKottoli/Synkerr_Homepage",
     tech: ["React", "Node.js", "MongoDB", "Express"]
+  },
+  {
+    image: `${process.env.PUBLIC_URL}/DDS.png`,
+    title: "Matrix Multiplier",
+    text: "Digital Circuit Design",
+    description: "This project addresses the need for efficient matrix operations by developing a tool that exclusively uses combinational and sequential circuits to perform multiplication, transposition, and determinant calculations. This solution is grounded in digital systems and implements most used matrix operations in as little hardware as possible.",
+    link: "https://github.com/NikhilKottoli/S2-T15",
+    tech: ["verilog","digital design","logisim"],
   }
 ];
 
@@ -177,7 +185,7 @@ const ProjectCard = ({ project, index, onCardClick }) => {
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm] = useState("");
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import React from 'react';
 import { motion } from 'framer-motion';
 
 const NavBar = () => {
@@ -10,6 +9,7 @@ const NavBar = () => {
     { name: 'About', path: '/' },
     { name: 'Experience', path: '/Experience' },
     { name: 'Projects', path: '/Projects' },
+    { name: 'Open Source', path: '/OpenSource' },
     { name: 'Contact', path: '/Contact' }
   ];
 

@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Experience from './components/Experience';
 import Achievements from './components/Achievements';
+import OpenSource from './components/OpenSource';
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
           <Route path="/Projects" element={
             <div className="Projects">
               <Projects />
+            </div>
+          } />
+          <Route path="/OpenSource" element={
+            <div className="OpenSource">
+              <OpenSource />
             </div>
           } />
           <Route path="/Contact" element={

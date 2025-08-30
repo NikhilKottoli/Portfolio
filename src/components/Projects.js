@@ -8,7 +8,7 @@ const projects = [
     text: "A visual blockchain workflow builder",
     description: "Polkaflow is a visual blockchain workflow builder that empowers users to design, generate, and deploy smart contracts for the Polkadot ecosystem with ease.",
     link: "https://github.com/NikhilKottoli/Polkadot",
-    tech: ["React", "Node.js", "Express","Solidity","Generative AI"],
+    tech: ["React","Express","Solidity"],
     deployment: "https://684f67f55264e77559942f2f--polkaflownikhil.netlify.app/"
   },
   {
@@ -17,7 +17,7 @@ const projects = [
     text: "All purpose Interview platform",
     description: "A comprehensive interview platform designed to streamline the technical interview process. Features real-time code collaboration, multiple programming language support.",
     link:"https://github.com/IEEE-NITK/Codemasters",
-    tech: ["React", "PostgreSQL", "Express","redis"],
+    tech: ["React","PostgreSQL","Express","redis"],
     deployment: "https://codemasters-swart.vercel.app/"
   },
   { 
@@ -26,7 +26,7 @@ const projects = [
     text: "Social Media Website for collaboration",
     description: "A modern social media platform focused on professional collaboration and networking. Includes real-time messaging, project sharing, and team formation features.",
     link: "https://github.com/NikhilKottoli/Synkerr_Homepage",
-    tech: ["React", "Node.js", "MongoDB", "Express"]
+    tech: ["React","MongoDB","Express"]
   },
   {
     image: `${process.env.PUBLIC_URL}/DDS.png`,
@@ -34,7 +34,7 @@ const projects = [
     text: "Digital Circuit Design",
     description: "This project addresses the need for efficient matrix operations by developing a tool that exclusively uses combinational and sequential circuits to perform multiplication, transposition, and determinant calculations. This solution is grounded in digital systems and implements most used matrix operations in as little hardware as possible.",
     link: "https://github.com/NikhilKottoli/S2-T15",
-    tech: ["verilog","digital design","logisim"],
+    tech: ["verilog"],
   }
 ];
 
@@ -60,7 +60,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
         onClick={onClose}
       ></div>
       
-      <div className="relative bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div className="relative bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 bg-gray-800 rounded-full text-white hover:bg-gray-700 transition-colors"

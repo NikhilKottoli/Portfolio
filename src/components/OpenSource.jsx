@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Github, ExternalLink, GitMerge, Check } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Github, GitMerge, Check } from 'lucide-react';
 
 // Your actual merged pull request
 const mergedContributions = [

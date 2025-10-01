@@ -1,13 +1,13 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './components/Navbar';
-import HeroSection from './components/HeroSection';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Experience from './components/Experience';
-import Achievements from './components/Achievements';
-import OpenSource from './components/OpenSource';
+import NavBar from './pages/Navbar';
+import HeroSection from './pages/HeroSection';
+import Skills from './pages/Skills';
+import Achievements from './pages/Achievements';
+import Projects from './pages/Projects';
+import OpenSource from './pages/OpenSource';
+import Contact from './pages/Contact';
+import Experience from './pages/Experience';
 
 function App() {
   return (

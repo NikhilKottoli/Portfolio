@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ExternalLink, Code, Github, X } from "lucide-react";
+import { title } from "motion/react-client";
 
 const projects = [
+    {
+      image: `${process.env.PUBLIC_URL}/ImpactChain.png`,
+      title: "ImpactChain",
+      text: "social impact platform that combines social media, campaign management, and data monetization to create verified, blockchain-backed social good initiatives",
+      description: "ImpactChain is a social impact platform that combines social media, campaign management, and data monetization to create verified, blockchain-backed social good initiatives. It empowers users to create and support impactful campaigns while ensuring transparency and accountability through blockchain technology.",
+      link: "https://github.com/NikhilKottoli/ImpactChain",
+      tech: ["React","Solidity","Express"],
+    },
     {
     image: `${process.env.PUBLIC_URL}/Polkaflow.png`,
     title: "Polkaflow",

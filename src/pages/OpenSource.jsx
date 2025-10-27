@@ -1,22 +1,38 @@
 import { useState, useEffect } from 'react';
 import { Github, GitMerge, Check } from 'lucide-react';
 
-// Your actual merged pull request
+// 1. Your data is now grouped by organization
 const mergedContributions = [
   {
-    title: "Ruby On Rails",
-    repository: "rails/rails",
-    prNumber: "55581",
-    description: "Documentation Correction for Rails Release 8.0",
-    status: "Merged",
-    url: "https://github.com/rails/rails/pull/55581",
-    repositoryUrl: "https://github.com/rails/rails",
-    orgLogo: "https://avatars.githubusercontent.com/u/4223?s=200&v=4", // Rails organization logo
-    lines: "+1 -1"
-  }
+    orgName: "Ruby On Rails",
+    orgLogo: "https://avatars.githubusercontent.com/u/4223?s=200&v=4",
+    orgUrl: "https://github.com/rails",
+    prs: [
+      {
+        repository: "rails/rails",
+        prNumber: "55581",
+        description: "Documentation Correction for Rails Release 8.0",
+        status: "Merged",
+        url: "https://github.com/rails/rails/pull/55581",
+        lines: "+1 -1"
+      },
+      {
+        repository: "rails/cssbundling-rails",
+        prNumber: "182",
+        description: "Documentation Fix for css bundler",
+        status: "Merged",
+        url: "https://github.com/rails/cssbundling-rails/pull/182",
+        lines: "+8 -2"
+      }
+      // Add more PRs for 'Ruby On Rails' here
+    ]
+  },
+  // Add more organizations here
 ];
 
-const ContributionCard = ({ contribution, index }) => {
+
+// 2. The card is now an "Org" card that lists PRs
+const OrgContributionCard = ({ contributionGroup, index }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   
@@ -33,63 +49,82 @@ const ContributionCard = ({ contribution, index }) => {
       className={`transform transition-all duration-700 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
     >
       <div 
-        className={`bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-gray-700 overflow-hidden shadow-lg transition-all duration-300 h-full ${isHovered ? 'scale-105 shadow-xl border-green-500/50' : ''}`}
+        className={`bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl border border-gray-700 overflow-hidden shadow-lg transition-all duration-300 h-full flex flex-col ${isHovered ? 'scale-105 shadow-xl border-green-500/50' : ''}`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Organization Logo Header */}
         <div className="relative h-32 bg-gradient-to-br from-gray-800 to-gray-700 flex items-center justify-center">
           <img 
-            src={contribution.orgLogo} 
-            alt={`${contribution.repository} logo`}
+            src={contributionGroup.orgLogo} 
+            alt={`${contributionGroup.orgName} logo`}
             className="w-16 h-16 rounded-lg shadow-lg"
           />
-          <div className="absolute top-3 right-3">
-            <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full flex items-center gap-1">
-              <Check size={10} />
-              {contribution.status}
-            </span>
-          </div>
+          {/* Link to the organization page */}
+          <a 
+            href={contributionGroup.orgUrl}
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="absolute top-3 right-3 inline-flex items-center justify-center bg-gray-700 text-white p-2 rounded-full hover:bg-gray-600 transition-colors"
+            title={`View ${contributionGroup.orgName} on GitHub`}
+          >
+            <Github size={16} />
+          </a>
         </div>
         
-        <div className="p-6">
-          {/* Title and Repository */}
+        <div className="p-6 flex-1 flex flex-col">
+          {/* Organization Title */}
           <div className="mb-4">
-            <h3 className="text-lg font-bold text-white mb-1">{contribution.title}</h3>
-            <span className="text-sm text-gray-400">{contribution.repository}</span>
-          </div>
-          
-          {/* Description */}
-          <p className="text-gray-300 mb-4 text-sm leading-relaxed line-clamp-2">{contribution.description}</p>
-          
-          {/* Changes indicator */}
-          <div className="mb-6">
-            <span className="inline-flex items-center px-2 py-1 bg-gray-800/50 text-green-400 rounded text-xs border border-gray-600">
-              <GitMerge size={12} className="mr-1" />
-              {contribution.lines}
+            <h3 className="text-xl font-bold text-white mb-1">{contributionGroup.orgName}</h3>
+            <span className="text-sm text-gray-400">
+              {contributionGroup.prs.length} Merged Contribution(s)
             </span>
           </div>
           
-          {/* Action Buttons */}
-          <div className="flex gap-3">
-            <a 
-              href={contribution.url}
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex-1 inline-flex items-center justify-center bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
-            >
-              <GitMerge size={16} className="mr-1" />
-              View PR
-            </a>
-            
-            <a 
-              href={contribution.repositoryUrl}
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="inline-flex items-center justify-center bg-gray-700 text-white py-2 px-3 rounded-lg hover:bg-gray-600 transition-colors"
-            >
-              <Github size={16} />
-            </a>
+          {/* List of PRs */}
+          <div className="flex-1 space-y-4">
+            {contributionGroup.prs.map((pr) => (
+              <div 
+                key={pr.prNumber} 
+                className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 transition-all hover:border-gray-600"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <a 
+                      href={pr.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-white hover:text-green-400"
+                    >
+                      {pr.repository} #{pr.prNumber}
+                    </a>
+                    <p className="text-gray-300 text-sm leading-snug line-clamp-2 mt-1">
+                      {pr.description}
+                    </p>
+                  </div>
+                  <span className="text-xs bg-green-600 text-white px-2 py-1 rounded-full flex items-center gap-1 flex-shrink-0 ml-2">
+                    <Check size={10} />
+                    {pr.status}
+                  </span>
+                </div>
+
+                <div className="flex justify-between items-center mt-3">
+                  <span className="inline-flex items-center px-2 py-1 bg-gray-700 text-green-400 rounded text-xs border border-gray-600">
+                    <GitMerge size={12} className="mr-1" />
+                    {pr.lines}
+                  </span>
+                  <a 
+                    href={pr.url}
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center justify-center bg-green-600 text-white py-1.5 px-3 rounded-lg hover:bg-green-700 transition-colors text-xs font-medium"
+                  >
+                    <GitMerge size={14} className="mr-1" />
+                    View PR
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -97,6 +132,7 @@ const ContributionCard = ({ contribution, index }) => {
   );
 };
 
+// 3. The main component maps the new card and passes the new prop
 const OpenSource = () => {
   const [isPageLoaded, setIsPageLoaded] = useState(false);
   
@@ -121,10 +157,10 @@ const OpenSource = () => {
         
         {/* Contributions Grid - 2 per row */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {mergedContributions.map((contribution, index) => (
-            <ContributionCard 
-              key={index} 
-              contribution={contribution} 
+          {mergedContributions.map((contributionGroup, index) => (
+            <OrgContributionCard 
+              key={contributionGroup.orgName} 
+              contributionGroup={contributionGroup} 
               index={index} 
             />
           ))}

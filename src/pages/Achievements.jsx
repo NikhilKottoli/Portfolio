@@ -31,10 +31,17 @@ const ACHIEVEMENTS_DATA = {
       issuer: "Postman",
       image: `${process.env.PUBLIC_URL}/Postman.png`,
       description: "Certification in API testing and automation using Postman. Demonstrated proficiency in creating and managing API tests, collections, and automated testing workflows.",
-      date: "API testing and automation using Postman",
       icon: "trophy",
       type: "certification"
     },
+    {
+      id: 6,
+      name: "IPv6 Fundamentals Course",
+      issuer: "APNIC",
+      image: `${process.env.PUBLIC_URL}/IPv6.png`,
+      description: "Completed comprehensive training on IPv6 networking fundamentals. Gained knowledge on IPv6 addressing, subnetting, and transition mechanisms from IPv4 to IPv6.",
+      type: "certification"
+    }
     {
       id: 5,
       name: "C++ basics certification codechef",
@@ -44,7 +51,7 @@ const ACHIEVEMENTS_DATA = {
       date: "C++ programming fundamentals",
       icon: "trophy",
       type: "certification"
-    }
+    },
   ]
 };
 

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ExternalLink, Code, Github, X } from "lucide-react";
-import { title } from "motion/react-client";
+import { image, title } from "motion/react-client";
 
 const projects = [
+    {
+      image: `${process.env.PUBLIC_URL}/Agora.png`,
+      title: "Agora",
+      text: "A parachain-ready computation marketplace where parachains can outsource API fetches, data processing, or heavier compute to a network of staked workers",
+      description: "Agora is a parachain-ready computation marketplace where parachains can outsource API fetches, data processing, or heavier compute to a network of staked workers. Results are verified on-chain using a commit-reveal protocol, and cross-chain workflows run natively over XCM.",
+      link: "https://github.com/suyash101101/Agora",
+      tech: ["Rust","Substrate","React"],
+    },
     {
       image: `${process.env.PUBLIC_URL}/ImpactChain.png`,
       title: "ImpactChain",
@@ -26,7 +34,7 @@ const projects = [
     text: "All purpose Interview platform",
     description: "A comprehensive interview platform designed to streamline the technical interview process. Features real-time code collaboration, multiple programming language support.",
     link:"https://github.com/IEEE-NITK/Codemasters",
-    tech: ["React","PostgreSQL","Express","redis"],
+    tech: ["React","Express","redis"],
     deployment: "https://codemasters-swart.vercel.app/"
   },
   { 

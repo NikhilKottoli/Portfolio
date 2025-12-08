@@ -12,9 +12,23 @@ const ACHIEVEMENTS_DATA = {
   hackathonWins: [
     {
       id: 1,
+      name: "Build Resilient Apps with Polkadot Cloud",
+      organizer: "Polkadot",
+      position: "1st Place",
+      prize: "3000 USD",
+      date: "December 2025",
+      image: `${process.env.PUBLIC_URL}/Agora.png`,
+      description: "A parachain-ready computation marketplace where parachains can outsource API fetches, data processing, or heavier compute to a network of staked workers. Results are verified on-chain using a commit-reveal protocol, and cross-chain workflows run natively over XCM.",
+      category: "Web3",
+      link: "https://devpost.com/software/agora-bkfo60",
+      type: "hackathon"
+    },
+    {
+      id: 2,
       name: "Polkadot AssetHub 2025",
       organizer: "Polkadot",
       position: "3rd Place",
+      prize: "250 USD",
       date: "June 2025",
       image: `${process.env.PUBLIC_URL}/Polkadot.webp`,
       description: "Polkaflow is a visual blockchain workflow builder that empowers users to design, generate, and deploy smart contracts for the Polkadot ecosystem with ease. By leveraging PolkaVM, AssetHub, and both AI-driven and manual logic code generation, Polkaflow makes blockchain development accessible for everyone—from no-code users to advanced developers.",
@@ -40,8 +54,8 @@ const ACHIEVEMENTS_DATA = {
       issuer: "APNIC",
       image: `${process.env.PUBLIC_URL}/IPv6.png`,
       description: "Completed comprehensive training on IPv6 networking fundamentals. Gained knowledge on IPv6 addressing, subnetting, and transition mechanisms from IPv4 to IPv6.",
-      type: "certification"
-    }
+      type: "certification",
+    },
     {
       id: 5,
       name: "C++ basics certification codechef",
@@ -101,8 +115,8 @@ const HackathonCard = ({ hackathon, index, onClick }) => {
               <p className="text-[#3b82f6] font-semibold text-sm truncate">{hackathon.organizer}</p>
             </div>
           </div>
-          <span className={`px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getCategoryColor(hackathon.category)} text-white whitespace-nowrap`}>
-            {hackathon.category}
+          <span className="px-2 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-yellow-400 to-yellow-600 text-black whitespace-nowrap">
+            {hackathon.prize}
           </span>
         </div>
 
@@ -115,7 +129,7 @@ const HackathonCard = ({ hackathon, index, onClick }) => {
             </div>
             <div className="flex items-center gap-1">
               <Calendar className="w-4 h-4" />
-              <span>{hackathon.date}</span>
+              <span className='text-white'>{hackathon.date}</span>
             </div>
           </div>
         </div>

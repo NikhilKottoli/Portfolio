@@ -47,7 +47,7 @@ const HeroSection = () => {
                     transition={{ delay: 0.4, duration: 0.8 }}
                     className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 font-light"
                 >
-                    Building digital experiences that fuse <span className="text-white font-medium border-b border-white/20 pb-0.5">performance</span> with <span className="text-white font-medium border-b border-white/20 pb-0.5">minimalism</span>.
+                    An Engineering Student at<span className="text-white font-medium border-b border-white/20 pb-0.5" > NITK Surathkal</span>.
                 </motion.p>
 
                 <motion.div

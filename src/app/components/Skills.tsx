@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Palette, Server, Terminal } from "lucide-react";
+import { Palette, Server, Terminal, Box } from "lucide-react";
 
 const Skills = () => {
     const skillCategories = [
@@ -10,37 +10,37 @@ const Skills = () => {
             title: "Frontend",
             icon: Palette,
             skills: [
-                { name: "React", level: 90 },
-                { name: "Next.js", level: 85 },
-                { name: "Tailwind", level: 95 },
-                { name: "TypeScript", level: 80 }
+                { name: "React", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                { name: "Tailwind", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
+                { name: "TypeScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" }
             ]
         },
         {
             title: "Backend",
             icon: Server,
             skills: [
-                { name: "Node.js", level: 85 },
-                { name: "Ruby on Rails", level: 80 },
-                { name: "PostgreSQL", level: 75 },
-                { name: "Docker", level: 70 }
+                { name: "Node.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                { name: "Ruby on Rails", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-plain-wordmark.svg" },
+                { name: "PostgreSQL", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                { name: "Docker", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" }
             ]
         },
         {
             title: "Core",
             icon: Terminal,
             skills: [
-                { name: "C++", level: 90 },
-                { name: "JavaScript", level: 95 },
-                { name: "Solidity", level: 70 },
-                { name: "System Design", level: 75 }
+                { name: "C++", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
+                { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+                { name: "Solidity", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg" },
+                { name: "System Design", icon: Box } // Fallback for System Design
             ]
         }
     ];
 
     return (
         <section className="relative py-32 bg-black overflow-hidden" id="skills">
-            {/* Minimalist background accent (removes colored blobs) */}
+            {/* Minimalist background accent */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[100px]" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[100px]" />
 
@@ -67,7 +67,7 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-black border border-white/10 p-8 rounded-sm hover:border-white/30 transition-colors duration-300"
+                            className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-sm hover:border-white/30 transition-colors duration-300"
                         >
                             <div className="flex items-center gap-4 mb-8">
                                 <div className="p-2 border border-white/10 rounded-sm">
@@ -76,22 +76,25 @@ const Skills = () => {
                                 <h3 className="text-xl font-bold text-white tracking-wide">{category.title}</h3>
                             </div>
 
-                            <div className="space-y-6">
+                            <div className="grid grid-cols-2 gap-4">
                                 {category.skills.map((skill) => (
-                                    <div key={skill.name}>
-                                        <div className="flex justify-between mb-2">
-                                            <span className="text-gray-400 text-sm font-medium tracking-wide">{skill.name}</span>
-                                            {/* Removed percentage text for cleaner look, visual bar is enough */}
+                                    <div
+                                        key={skill.name}
+                                        className="flex flex-col items-center justify-center p-4 border border-white/5 rounded-sm hover:bg-white/5 transition-colors duration-300 group"
+                                    >
+                                        <div className="h-12 w-12 mb-3 flex items-center justify-center relative">
+                                            {skill.logo ? (
+                                                <img
+                                                    src={skill.logo}
+                                                    alt={`${skill.name} logo`}
+                                                    className="max-h-full max-w-full transition-all duration-300 bg-white/5"
+                                                    loading="lazy"
+                                                />
+                                            ) : skill.icon ? (
+                                                <skill.icon className="w-8 h-8 text-gray-400 group-hover:text-white transition-colors" />
+                                            ) : null}
                                         </div>
-                                        <div className="h-1 w-full bg-white/10 rounded-full overflow-hidden">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                whileInView={{ width: `${skill.level}%` }}
-                                                viewport={{ once: true }}
-                                                transition={{ duration: 1, delay: 0.2 }}
-                                                className="h-full bg-white rounded-full"
-                                            />
-                                        </div>
+                                        <span className="text-gray-400 text-xs font-medium tracking-wide group-hover:text-white transition-colors">{skill.name}</span>
                                     </div>
                                 ))}
                             </div>

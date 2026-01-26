@@ -2,18 +2,32 @@
 
 import React from 'react';
 import { Calendar, MapPin } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const Experience = () => {
+    const [selectedExperience, setSelectedExperience] = React.useState<typeof experiences[0] | null>(null);
+
     const experiences = [
         {
-            title: "Web Developer",
+            title: "Web Lead",
             company: "IRIS - NITK's Administrative System",
             date: "November 2024 - Present",
             location: "NITK Surathkal",
             description: "Contributing to the official student-led ERP system of NITK. Building the R&D module and optimizing database queries with Ruby on Rails.",
             image: "/iris.png",
-            tags: ["Ruby on Rails", "MySQL", "ActiveRecord"]
+            tags: ["Ruby on Rails", "MySQL", "ActiveRecord"],
+            detailedTimeline: [
+                {
+                    date: "Dec 2025",
+                    role: "Web Lead",
+                    description: "Led the migration of legacy modules to the new architecture, improving system response time by 40%."
+                },
+                {
+                    date: "Nov 2024",
+                    role: "Web Developer",
+                    description: "Selected as one of the few freshers to join the team. Started with bug fixes and minor feature additions."
+                }
+            ]
         },
         {
             title: "Executive Member",
@@ -22,7 +36,14 @@ const Experience = () => {
             location: "NITK Surathkal",
             description: "Organizing technical workshops and hackathons. Mentoring junior members and leading initiatives to foster a coding culture.",
             image: "/ieee-nitk.png",
-            tags: ["Leadership", "Management", "Mentoring"]
+            tags: ["Leadership", "Management", "Mentoring"],
+            detailedTimeline: [
+                {
+                    date: "Oct 2024",
+                    role: "Executive Member",
+                    description: "Inducted into the core committee to drive technical events."
+                }
+            ]
         }
     ];
 
@@ -44,7 +65,11 @@ const Experience = () => {
                 {/* Minimalist Timeline */}
                 <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[1px] before:bg-white/10">
                     {experiences.map((exp, index) => (
-                        <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div
+                            key={index}
+                            className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group cursor-pointer"
+                            onClick={() => setSelectedExperience(exp)}
+                        >
                             {/* Minimal Dot */}
                             <div className="flex items-center justify-center w-3 h-3 bg-black border border-white/50 rounded-full shrink-0 md:order-1 md:group-odd:-translate-x-[5px] md:group-even:translate-x-[5px] relative z-10 group-hover:bg-white transition-colors duration-300" />
 
@@ -88,6 +113,78 @@ const Experience = () => {
                     ))}
                 </div>
             </div>
+
+            {/* Detailed Modal */}
+            <AnimatePresence>
+                {selectedExperience && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedExperience(null)}
+                        className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-sm"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                            className="bg-black border border-white/10 p-8 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto relative glass-panel"
+                        >
+                            <button
+                                onClick={() => setSelectedExperience(null)}
+                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                            </button>
+
+                            <div className="mb-8">
+                                <div className="flex items-start gap-6 mb-6">
+                                    {selectedExperience.image && (
+                                        <div className="h-20 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-white/5">
+                                            {/* Ideally use Next.js Image here, using standard img for now to match style */}
+                                            <img
+                                                src={selectedExperience.image}
+                                                alt={selectedExperience.company}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    )}
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-white mb-2">{selectedExperience.title}</h3>
+                                        <h4 className="text-lg text-blue-400 mb-2">{selectedExperience.company}</h4>
+                                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                                            <div className="flex items-center gap-1">
+                                                <Calendar className="w-4 h-4" />
+                                                <span>{selectedExperience.date}</span>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <MapPin className="w-4 h-4" />
+                                                <span>{selectedExperience.location}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p className="text-gray-400 leading-relaxed mb-8 border-b border-white/10 pb-8">
+                                    {selectedExperience.description}
+                                </p>
+
+                                <div className="space-y-6">
+                                    <h4 className="text-sm uppercase tracking-wider text-gray-500 font-bold mb-4">Journey Timeline</h4>
+                                    {selectedExperience.detailedTimeline?.map((item, i) => (
+                                        <div key={i} className="relative pl-8 border-l border-white/10 last:border-0 pb-6 last:pb-0">
+                                            <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-black" />
+                                            <span className="text-xs font-mono text-blue-400 mb-1 block">{item.date}</span>
+                                            <h5 className="text-white font-bold mb-2 text-lg">{item.role}</h5>
+                                            <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

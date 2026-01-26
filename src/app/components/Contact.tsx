@@ -50,9 +50,6 @@ const Contact = () => {
                     <p className="flex items-center justify-center gap-2 text-gray-500 text-sm tracking-widest uppercase">
                         nikhilkottoli2005@gmail.com
                     </p>
-                    <footer className="mt-8 text-center text-gray-700 text-xs uppercase tracking-widest">
-                        © {new Date().getFullYear()} Nikhil Kottoli
-                    </footer>
                 </div>
             </div>
         </section>

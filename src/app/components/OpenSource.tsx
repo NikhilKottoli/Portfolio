@@ -17,7 +17,7 @@ const OpenSource = () => {
                     title: "Documentation Correction for Rails Release 8.0",
                     status: "Merged",
                     link: "https://github.com/rails/rails/pull/55581",
-                    date: "Oct 2024"
+                    date: "Oct 2025"
                 },
                 {
                     repo: "rails/cssbundling-rails",
@@ -25,7 +25,7 @@ const OpenSource = () => {
                     title: "Documentation Fix for css bundler",
                     status: "Merged",
                     link: "https://github.com/rails/cssbundling-rails/pull/182",
-                    date: "Nov 2024"
+                    date: "Nov 2025"
                 }
             ]
         }

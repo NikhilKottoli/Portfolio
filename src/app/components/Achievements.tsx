@@ -16,6 +16,15 @@ const Achievements = () => {
             link: "https://devpost.com/software/agora-bkfo60"
         },
         {
+            title: "NEARCON Innovation Sandbox",
+            organizer: "NEAR AI",
+            position: "NOVA SDK winner",
+            prize: "$1000",
+            desc: "Private RAG, a vectorless, e2e encrypted, fully client side RAG using NEAR AI's TEE and NOVA's secure file storage",
+            image: "/PrivateRag.png",
+            link: "https://devspot.app/projects/1094"
+        },
+        {
             title: "Polkadot AssetHub 2025",
             organizer: "Polkadot",
             position: "3rd Place",

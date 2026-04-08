@@ -6,6 +6,13 @@ import { Github, ArrowUpRight } from "lucide-react";
 
 const PROJECTS_DATA = [
     {
+        image: '/PrivateRag.png',
+        title: "Private RAG",
+        description: "A vectorless, fully client-side RAG leveraging TEE and secure file storage.",
+        tech: ["React", "NEAR AI TEE", "NOVA SDK"],
+        link: "https://devspot.app/projects/1094"
+    },
+    {
         image: `/Agora.png`,
         title: "Agora",
         description: "A parachain-ready computation marketplace for Polkadot.",

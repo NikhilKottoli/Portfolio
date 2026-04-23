@@ -15,17 +15,22 @@ const Experience = () => {
             location: "NITK Surathkal",
             description: "Contributing to the official student-led ERP system of NITK. Building the R&D module and optimizing database queries with Ruby on Rails.",
             image: "/iris.png",
-            tags: ["Ruby on Rails", "MySQL", "ActiveRecord"],
+            tags: ["Ruby on Rails", "MySQL", "Nginx"],
             detailedTimeline: [
+                {
+                    date: "April 2026",
+                    role: "Head Of Maintainance",
+                    description: "Oversees code quality and system upkeep by reviewing developer contributions, managing upgrades (Ruby, Rails, gems), and ensuring the platform remains stable and up to date. Regurly perform code audits and security checks to maintain the integrity of the system."
+                },
                 {
                     date: "Dec 2025",
                     role: "Web Lead",
-                    description: "Led the migration of legacy modules to the new architecture, improving system response time by 40%."
+                    description: "Managed a team of 8, Breaking down requirements into issues and sprints, and ensuring timely delivery of features."
                 },
                 {
                     date: "Nov 2024",
                     role: "Web Developer",
-                    description: "Selected as one of the few freshers to join the team. Started with bug fixes and minor feature additions."
+                    description: "Ruby on rails developer, worked on R&D module, implmeneted features like otp login."
                 }
             ]
         },

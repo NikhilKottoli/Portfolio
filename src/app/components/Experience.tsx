@@ -9,11 +9,11 @@ const Experience = () => {
 
     const experiences = [
         {
-            title: "Web Lead",
+            title: "Head Of Maintainance",
             company: "IRIS - NITK's Administrative System",
             date: "November 2024 - Present",
             location: "NITK Surathkal",
-            description: "Contributing to the official student-led ERP system of NITK. Building the R&D module and optimizing database queries with Ruby on Rails.",
+            description: "Contributing to the official student-led ERP system of NITK with 23k+ users.",
             image: "/iris.png",
             tags: ["Ruby on Rails", "MySQL", "Nginx"],
             detailedTimeline: [

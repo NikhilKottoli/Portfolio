@@ -8,6 +8,32 @@ const Experience = () => {
     const [selectedExperience, setSelectedExperience] = React.useState<typeof experiences[0] | null>(null);
 
     const experiences = [
+                {
+            title: "SDE Intern",
+            company: "Microsoft",
+            date: "May 2026 - Jul 2026",
+            location: "Hyderabad, India",
+            description: "Worked on cloud-scale security infrastructure for browser extensions in the MAI Extensions Security team.",
+            image: "/microsoft.png",
+            tags: ["C#", "Azure", "Distributed Systems", "MCP", "Security"],
+            detailedTimeline: [
+                {
+                    date: "Jul 2026",
+                    role: "SDE Intern",
+                    description: "Designed and deployed a cloud-scale malware-hunting platform, reducing scan time for a catalog of 30K+ browser extensions from 6 hours to 2–5 minutes."
+                },
+                {
+                    date: "Jun 2026",
+                    role: "SDE Intern",
+                    description: "Architected a shard-based distributed execution system with consistent-hash affinity routing and node-local SSD caching, achieving approximately 90% efficiency across elastic worker pools."
+                },
+                {
+                    date: "May 2026",
+                    role: "SDE Intern",
+                    description: "Built MCP-powered tooling to enable agentic workflows for security researchers, improving automation for malware analysis and investigation."
+                }
+            ]
+        },
         {
             title: "Head Of Maintainance",
             company: "IRIS - NITK's Administrative System",

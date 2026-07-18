@@ -18,7 +18,7 @@ const Experience = () => {
             tags: ["C#", "Azure", "Distributed Systems", "MCP", "Security"],
             detailedTimeline: [
                 {
-                    date: "Jul 2026",
+                    date: "May2026 - Jul 2026",
                     role: "SDE Intern",
                     description: "Designed and deployed a cloud-scale malware-hunting platform, reducing scan time for a catalog of browser extensions from 6 hours to 2-5 minutes."
                 }

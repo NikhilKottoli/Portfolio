@@ -7,6 +7,23 @@ import { GitMerge, ExternalLink, GitPullRequest, ChevronDown, CheckCircle2 } fro
 const OpenSource = () => {
     const contributions = [
         {
+            orgName: "FreeBSD",
+            logo: "FreeBSD.png",
+            description: "FreeBSD is an operating system used to power modern servers, desktops, and embedded platforms.",
+            totalLinesChanged: 45,
+            prs: [
+                {
+                    repo: "freebsd/freebsd",
+                    number: "rG506e3e30a43c",
+                    title: "Align PRR implementation with RFC 9937",
+                    status: "Merged",
+                    link: "https://reviews.freebsd.org/D56535",
+                    date: "Jan 2025",
+                    linesChanged: 45,
+                }
+            ]
+        },
+        {
             orgName: "Ruby On Rails",
             logo: "https://avatars.githubusercontent.com/u/4223?s=200&v=4",
             description: "Web application framework that includes everything needed to create database-backed web applications.",

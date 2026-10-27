@@ -14,7 +14,7 @@ const Experience = () => {
             date: "May 2026 - Jul 2026",
             location: "Hyderabad, India",
             description: "Worked on cloud-scale security infrastructure for browser extensions in the MAI Extensions Security team.",
-            image: "/microsoft.png",
+            image: "/experience/microsoft.png",
             tags: ["C#", "Azure", "Distributed Systems", "MCP", "Security"],
             detailedTimeline: [
                 {
@@ -30,7 +30,7 @@ const Experience = () => {
             date: "November 2024 - Present",
             location: "NITK Surathkal",
             description: "Contributing to the official student-led ERP system of NITK with 23k+ users.",
-            image: "/iris.png",
+            image: "/experience/iris.png",
             tags: ["Ruby on Rails", "MySQL", "Nginx"],
             detailedTimeline: [
                 {
@@ -56,7 +56,7 @@ const Experience = () => {
             date: "October 2024 - Present",
             location: "NITK Surathkal",
             description: "Organizing technical workshops and hackathons. Mentoring junior members and leading initiatives to foster a coding culture.",
-            image: "/ieee-nitk.png",
+            image: "/experience/ieee-nitk.png",
             tags: ["Leadership", "Management", "Mentoring"],
             detailedTimeline: [
                 {

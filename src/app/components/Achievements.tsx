@@ -12,7 +12,7 @@ const Achievements = () => {
             position: "1st Place",
             prize: "$3000",
             desc: "Built 'Agora', a decentralized computation marketplace for the Polkadot ecosystem.",
-            image: "/Agora.png",
+            image: "/projects/Agora.png",
             link: "https://devpost.com/software/agora-bkfo60"
         },
         {
@@ -21,7 +21,7 @@ const Achievements = () => {
             position: "NOVA SDK winner",
             prize: "$1000",
             desc: "Private RAG, a vectorless, e2e encrypted, fully client side RAG using NEAR AI's TEE and NOVA's secure file storage",
-            image: "/PrivateRag.png",
+            image: "/projects/PrivateRag.png",
             link: "https://devspot.app/projects/1094"
         },
         {
@@ -30,7 +30,7 @@ const Achievements = () => {
             position: "3rd Place",
             prize: "$250",
             desc: "Created 'Polkaflow', a no-code visual workflow builder for smart contracts.",
-            image: "/Polkadot.webp",
+            image: "/awards/Polkadot.webp",
             link: "https://dorahacks.io/buidl/26737"
         }
     ];

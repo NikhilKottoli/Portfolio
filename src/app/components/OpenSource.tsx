@@ -8,7 +8,7 @@ const OpenSource = () => {
     const contributions = [
         {
             orgName: "FreeBSD",
-            logo: "FreeBSD.png",
+            logo: "/experience/FreeBSD.png",
             description: "FreeBSD is an operating system used to power modern servers, desktops, and embedded platforms.",
             totalLinesChanged: 45,
             prs: [

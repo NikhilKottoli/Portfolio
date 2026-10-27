@@ -6,28 +6,28 @@ import { Github, ArrowUpRight } from "lucide-react";
 
 const PROJECTS_DATA = [
     {
-        image: '/PrivateRag.png',
+        image: '/projects/PrivateRag.png',
         title: "Private RAG",
         description: "A vectorless, fully client-side RAG leveraging TEE and secure file storage.",
         tech: ["React", "NEAR AI TEE", "NOVA SDK"],
         link: "https://devspot.app/projects/1094"
     },
     {
-        image: `/Agora.png`,
+        image: `/projects/Agora.png`,
         title: "Agora",
         description: "A parachain-ready computation marketplace for Polkadot.",
         tech: ["Rust", "Substrate", "React"],
         link: "https://github.com/suyash101101/Agora",
     },
     {
-        image: `/ImpactChain.png`,
+        image: `/projects/ImpactChain.png`,
         title: "ImpactChain",
         description: "Blockchain-backed social good initiatives platform.",
         tech: ["React", "Solidity", "Express"],
         link: "https://github.com/NikhilKottoli/ImpactChain",
     },
     {
-        image: `/Polkaflow.png`,
+        image: `/projects/Polkaflow.png`,
         title: "Polkaflow",
         description: "Visual blockchain workflow builder for smart contracts.",
         tech: ["React", "Express", "Solidity"],
@@ -35,7 +35,7 @@ const PROJECTS_DATA = [
         deployment: "https://684f67f55264e77559942f2f--polkaflownikhil.netlify.app/"
     },
     {
-        image: `/codemaster.png`,
+        image: `/projects/codemaster.png`,
         title: "CodeMaster",
         description: "Real-time interview platform with code collaboration.",
         tech: ["React", "Express", "redis"],
@@ -43,14 +43,14 @@ const PROJECTS_DATA = [
         deployment: "https://codemasters-swart.vercel.app/"
     },
     {
-        image: `/Synkerr.jpeg`,
+        image: `/projects/Synkerr.jpeg`,
         title: "Synkerr",
         description: "Social platform for professional collaboration.",
         link: "https://github.com/NikhilKottoli/Synkerr_Homepage",
         tech: ["React", "MongoDB", "Express"]
     },
     {
-        image: `/DDS.png`,
+        image: `/projects/DDS.png`,
         title: "Matrix Multiplier",
         description: "Hardware-efficient matrix operations using digital logic.",
         link: "https://github.com/NikhilKottoli/S2-T15",

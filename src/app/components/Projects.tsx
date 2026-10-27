@@ -54,8 +54,7 @@ const PROJECTS_DATA = [
         title: "Hamfest India 2026",
         description: "Official event platform for India's premier gathering of amateur radio enthusiasts at NITK Surathkal.",
         tech: ["Next.js", "React", "Tailwind CSS"],
-        link: "https://hfi2026.nitk.ac.in/",
-        deployment: "https://hfi2026.nitk.ac.in/"
+        link: "https://hfi2026.nitk.ac.in/"
     },
     {
         image: `/projects/DDS.png`,

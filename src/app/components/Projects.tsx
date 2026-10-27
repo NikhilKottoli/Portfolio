@@ -50,6 +50,14 @@ const PROJECTS_DATA = [
         tech: ["React", "MongoDB", "Express"]
     },
     {
+        image: `/projects/hamfest.png`,
+        title: "Hamfest India 2026",
+        description: "Official event platform for India's premier gathering of amateur radio enthusiasts at NITK Surathkal.",
+        tech: ["Next.js", "React", "Tailwind CSS"],
+        link: "https://hfi2026.nitk.ac.in/",
+        deployment: "https://hfi2026.nitk.ac.in/"
+    },
+    {
         image: `/projects/DDS.png`,
         title: "Matrix Multiplier",
         description: "Hardware-efficient matrix operations using digital logic.",
@@ -77,9 +85,11 @@ const ProjectCard = ({ project, index }) => (
             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
 
             <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
-                    <Github className="w-4 h-4" />
-                </a>
+                {project.link && (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
+                        {project.link.includes("github.com") ? <Github className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
+                    </a>
+                )}
                 {project.deployment && (
                     <a href={project.deployment} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
                         <ArrowUpRight className="w-4 h-4" />

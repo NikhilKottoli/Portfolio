@@ -90,7 +90,7 @@ const ProjectCard = ({ project, index }) => (
                         {project.link.includes("github.com") ? <Github className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
                     </a>
                 )}
-                {project.deployment && (
+                {project.deployment && project.deployment !== project.link && (
                     <a href={project.deployment} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
                         <ArrowUpRight className="w-4 h-4" />
                     </a>

@@ -4,6 +4,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trophy, ExternalLink, X } from 'lucide-react';
 import SectionHeading from './SectionHeading';
+import KnightMark from './KnightMark';
 
 const Achievements = () => {
     const achievements = [
@@ -71,9 +72,10 @@ const Achievements = () => {
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="Trophies"
+                    eyebrow="Relics & Trophies"
                     title="Honors & Awards"
                     description="Recognition earned at hackathons and builder programs across the ecosystem."
+                    icon={Trophy}
                     className="mb-12 sm:mb-16 lg:mb-20"
                 />
 
@@ -163,6 +165,8 @@ const Achievements = () => {
                             >
                                 <X className="h-4 w-4" />
                             </button>
+
+                            <KnightMark className="pointer-events-none absolute -right-6 top-16 z-10 h-28 w-28 text-pale/[0.04] sm:top-20" />
 
                             <div className="relative h-44 w-full overflow-hidden border-b border-pale/10 bg-deep sm:h-52">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}

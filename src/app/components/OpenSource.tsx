@@ -96,9 +96,10 @@ const OpenSource = () => {
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <SectionHeading
                     align="center"
-                    eyebrow="Contributions"
+                    eyebrow="Lore & Contributions"
                     title="Open Source"
                     description="Contributing to the ecosystem that powers the modern web."
+                    icon={GitMerge}
                     className="mb-12 sm:mb-16 lg:mb-20"
                 />
 

@@ -2,8 +2,9 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { Code2, Layers, Database, Wrench, Table2, Network } from 'lucide-react';
+import { Code2, Layers, Database, Wrench, Table2, Network, Flame } from 'lucide-react';
 import SectionHeading from './SectionHeading';
+import Charm from './Charm';
 
 const DEVICON = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons';
 const SIMPLEICONS = 'https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons';
@@ -124,12 +125,13 @@ const Skills = () => {
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="The Arsenal"
+                    eyebrow="The Wanderer's Arsenal"
                     title="Technical Arsenal"
                     description="The languages, frameworks, data stores, and tools I use to design and ship software."
+                    icon={Flame}
                     className="mb-12 sm:mb-16 lg:mb-20"
                     action={
-                        <div className="flex items-center gap-3 self-start border border-pale/10 bg-pale/[0.02] px-4 py-2.5 lg:self-auto">
+                        <div className="hk-plaque flex items-center gap-3 self-start px-4 py-2.5 lg:self-auto">
                             <span className="relative flex h-1.5 w-1.5">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-soul/40 opacity-75" />
                                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-soul/80" />
@@ -158,11 +160,12 @@ const Skills = () => {
 
                                 <div className="relative mb-6 flex items-start justify-between gap-4">
                                     <div className="flex items-center gap-3.5">
-                                        <div className="relative flex h-10 w-10 shrink-0 items-center justify-center">
-                                            <span className="absolute inset-0 rotate-45 border border-gold/25 transition-colors duration-500 group-hover/card:border-gold/60" />
-                                            <span className="absolute inset-[7px] rotate-45 border border-pale/[0.06]" />
-                                            <CategoryIcon className="relative h-4 w-4 text-gold/80" />
-                                        </div>
+                                        <Charm
+                                            icon={CategoryIcon}
+                                            size="md"
+                                            tone="gold"
+                                            className="transition-colors duration-500 group-hover/card:shadow-[0_0_24px_-10px_rgba(214,181,109,0.6)]"
+                                        />
                                         <div>
                                             <h3 className="font-display text-base font-semibold tracking-wide text-pale sm:text-lg">
                                                 {category.title}

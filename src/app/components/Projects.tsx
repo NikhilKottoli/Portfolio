@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { Github, ArrowUpRight, Trophy } from 'lucide-react';
+import { Github, ArrowUpRight, Trophy, Gem } from 'lucide-react';
 import SectionHeading from './SectionHeading';
 
 type Project = {
@@ -186,11 +186,12 @@ const Projects = () => {
 
             <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="Chronicles"
+                    eyebrow="Relics & Chronicles"
                     title="Featured Work"
+                    icon={Gem}
                     className="mb-12 sm:mb-16 lg:mb-20"
                     action={
-                        <div className="flex items-center gap-3 self-start border border-pale/10 bg-pale/[0.02] px-4 py-2.5 lg:self-auto">
+                        <div className="hk-plaque flex items-center gap-3 self-start px-4 py-2.5 lg:self-auto">
                             <span className="h-1.5 w-1.5 rotate-45 bg-gold/70" />
                             <span className="font-display text-[8px] uppercase tracking-[0.28em] text-mist/65">
                                 {PROJECTS_DATA.length} projects

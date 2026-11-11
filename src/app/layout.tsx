@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import React from 'react';
 import './globals.css';
 import NavBar from './components/Navbar';
+import WorldBackdrop from './components/WorldBackdrop';
+import SiteFooter from './components/SiteFooter';
 
 export const metadata: Metadata = {
     title: 'Nikhil Kottoli — Portfolio',
@@ -15,9 +18,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className="min-h-screen w-full bg-void text-pale antialiased">
-                <div className="App relative min-h-screen w-full">
+                <WorldBackdrop />
+                <div className="App relative z-10 min-h-screen w-full">
                     <NavBar />
-                    {children}
+                    <div className="relative">{children}</div>
+                    <SiteFooter />
                 </div>
             </body>
         </html>

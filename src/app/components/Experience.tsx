@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Calendar, MapPin, X } from 'lucide-react';
+import { Calendar, Compass, MapPin, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import SectionHeading from './SectionHeading';
 
@@ -100,9 +100,10 @@ const Experience = () => {
 
             <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="The Path"
+                    eyebrow="The Pilgrim's Path"
                     title="Experience & Education"
                     description="Roles and communities that shaped how I build and lead."
+                    icon={Compass}
                     className="mb-12 sm:mb-16 lg:mb-20"
                 />
 
@@ -114,7 +115,7 @@ const Experience = () => {
                             className="group relative cursor-pointer pl-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:pl-0"
                             onClick={() => setSelectedExperience(exp)}
                         >
-                            <div className="absolute left-0 top-7 z-10 h-2.5 w-2.5 rotate-45 border border-gold/60 bg-void transition-all duration-300 group-hover:border-soul group-hover:bg-soul/20 group-hover:shadow-[0_0_18px_rgba(154,219,232,0.55)] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
+                            <div className="absolute left-0 top-7 z-10 h-2.5 w-2.5 rotate-45 border border-gold/60 bg-void shadow-[0_0_0_5px_rgba(3,6,10,0.9)] transition-all duration-300 group-hover:border-soul group-hover:bg-soul/20 group-hover:shadow-[0_0_0_5px_rgba(3,6,10,0.9),0_0_18px_rgba(185,242,255,0.55)] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
 
                             <motion.div
                                 initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}

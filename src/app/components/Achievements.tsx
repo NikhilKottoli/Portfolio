@@ -46,22 +46,39 @@ const Achievements = () => {
 
     const [selectedAchievement, setSelectedAchievement] = React.useState<typeof achievements[0] | null>(null);
 
+    React.useEffect(() => {
+        if (!selectedAchievement) return;
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setSelectedAchievement(null);
+        };
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [selectedAchievement]);
+
     return (
-        <section className="relative py-32 bg-black" id="achievements">
-            <div className="max-w-7xl mx-auto px-6">
+        <section className="relative bg-black py-20 sm:py-24 lg:py-32" id="achievements">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20"
+                    className="mb-12 sm:mb-16 lg:mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
                         Honors & Awards
                     </h2>
                     <div className="h-1 w-20 bg-white/20" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {achievements.map((item, idx) => (
                         <motion.div
                             key={idx}
@@ -74,13 +91,13 @@ const Achievements = () => {
                         >
                             <div className="relative h-48 overflow-hidden bg-white/5">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100" />
+                                <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover opacity-80 filter grayscale transition-transform duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100" />
                                 <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/80 border border-white/20 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2">
                                     <Trophy className="w-3 h-3 text-white" /> {item.position}
                                 </div>
                             </div>
 
-                            <div className="p-6 relative z-20">
+                            <div className="relative z-20 p-5 sm:p-6">
                                 <h3 className="text-lg font-bold text-white mb-2 leading-tight">
                                     {item.title}
                                 </h3>
@@ -114,14 +131,17 @@ const Achievements = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedAchievement(null)}
-                        className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-sm"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-3 backdrop-blur-sm sm:px-4"
                     >
                         <motion.div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label={selectedAchievement.title}
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-black border border-white/10 p-8 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto relative glass-panel"
+                            className="glass-panel relative max-h-[85dvh] w-full max-w-2xl overflow-y-auto rounded-xl border border-white/10 bg-black p-5 sm:rounded-2xl sm:p-8"
                         >
                             <button
                                 onClick={() => setSelectedAchievement(null)}
@@ -131,19 +151,19 @@ const Achievements = () => {
                             </button>
 
                             <div className="mb-8">
-                                <div className="flex flex-col md:flex-row items-start gap-6 mb-6">
+                                <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
                                     {selectedAchievement.image && (
-                                        <div className="w-full md:w-48 h-32 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-white/5">
+                                        <div className="h-36 w-full shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:h-32 sm:w-48">
                                             <img
                                                 src={selectedAchievement.image}
                                                 alt={selectedAchievement.title}
-                                                className="w-full h-full object-cover"
+                                                className="h-full w-full object-cover"
                                             />
                                         </div>
                                     )}
                                     <div>
-                                        <h3 className="text-2xl font-bold text-white mb-2">{selectedAchievement.title}</h3>
-                                        <h4 className="text-lg text-blue-400 mb-2">{selectedAchievement.organizer}</h4>
+                                        <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">{selectedAchievement.title}</h3>
+                                        <h4 className="mb-2 text-base text-blue-400 sm:text-lg">{selectedAchievement.organizer}</h4>
                                         <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
                                             <div className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded border border-white/10">
                                                 <Trophy className="w-4 h-4 text-yellow-500" />

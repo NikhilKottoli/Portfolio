@@ -82,12 +82,14 @@ const ProjectCard = ({ project, index }) => (
         className="group relative bg-black border border-white/10 hover:border-white/30 transition-all duration-500"
     >
         {/* Image Container - Grayscale by default, color on hover */}
-        <div className="relative h-64 overflow-hidden bg-white/5">
+        <div className="relative h-52 overflow-hidden bg-white/5 sm:h-64">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0 opacity-80 group-hover:opacity-100"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover opacity-80 filter grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100"
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
 
@@ -98,7 +100,7 @@ const ProjectCard = ({ project, index }) => (
                 </div>
             )}
 
-            <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+            <div className="absolute right-4 top-4 z-20 flex translate-y-0 gap-2 opacity-100 transition-opacity duration-300 sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100">
                 {project.link && (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
                         {project.link.includes("github.com") ? <Github className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
@@ -113,7 +115,7 @@ const ProjectCard = ({ project, index }) => (
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-5 sm:p-6">
             <h3 className="text-xl font-bold text-white mb-3">
                 {project.title}
             </h3>
@@ -139,21 +141,21 @@ const ProjectCard = ({ project, index }) => (
 
 const Projects = () => {
     return (
-        <section className="relative py-32 bg-black overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <section className="relative overflow-hidden bg-black py-20 sm:py-24 lg:py-32">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="mb-10 sm:mb-16"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
                         Featured Work
                     </h2>
                     <div className="h-1 w-20 bg-white/20" />
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
                     {PROJECTS_DATA.map((project, idx) => (
                         <ProjectCard key={idx} project={project} index={idx} />
                     ))}

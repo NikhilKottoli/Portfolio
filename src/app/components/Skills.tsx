@@ -39,27 +39,27 @@ const Skills = () => {
     ];
 
     return (
-        <section className="relative py-32 bg-black overflow-hidden" id="skills">
+        <section className="relative overflow-hidden bg-black py-20 sm:py-24 lg:py-32" id="skills">
             {/* Minimalist background accent */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[100px]" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/[0.02] rounded-full blur-[100px]" />
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20"
+                    className="mb-12 sm:mb-16 lg:mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
                         Technical Arsenal
                     </h2>
-                    <p className="text-gray-500 max-w-xl text-lg border-l-2 border-white/20 pl-6">
+                    <p className="max-w-xl border-l-2 border-white/20 pl-4 text-base text-gray-500 sm:pl-6 sm:text-lg">
                         A curated set of technologies utilized to architect scalable, high-performance systems.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
                     {skillCategories.map((category, idx) => (
                         <motion.div
                             key={category.title}
@@ -67,9 +67,9 @@ const Skills = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-sm hover:border-white/30 transition-colors duration-300"
+                            className="rounded-sm border border-white/10 bg-white/5 p-5 backdrop-blur-md transition-colors duration-300 hover:border-white/30 sm:p-6 lg:p-8"
                         >
-                            <div className="flex items-center gap-4 mb-8">
+                            <div className="mb-6 flex items-center gap-3 sm:mb-8 sm:gap-4">
                                 <div className="p-2 border border-white/10 rounded-sm">
                                     <category.icon className="w-5 h-5 text-gray-300" />
                                 </div>
@@ -87,8 +87,9 @@ const Skills = () => {
                                                 <img
                                                     src={skill.logo}
                                                     alt={`${skill.name} logo`}
-                                                    className="max-h-full max-w-full transition-all duration-300 bg-white/5"
+                                                    className="max-h-full max-w-full bg-white/5 p-1 transition-all duration-300"
                                                     loading="lazy"
+                                                    decoding="async"
                                                 />
                                             ) : skill.icon ? (
                                                 <skill.icon className="w-8 h-8 text-gray-400 group-hover:text-white transition-colors" />

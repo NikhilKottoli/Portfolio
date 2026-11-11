@@ -16,6 +16,10 @@ const LetterGlitch = ({
     const grid = useRef({ columns: 0, rows: 0 });
     const context = useRef(null);
     const lastGlitchTime = useRef(Date.now());
+    const running = useRef(false);
+    const isVisible = useRef(true);
+    const pageVisible = useRef(true);
+    const colorCache = useRef(new Map());
 
     const lettersAndSymbols = Array.from(characters);
 
@@ -32,19 +36,36 @@ const LetterGlitch = ({
     };
 
     const hexToRgb = hex => {
-        const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex = hex.replace(shorthandRegex, (m, r, g, b) => {
-            return r + r + g + g + b + b;
-        });
+        if (colorCache.current.has(hex)) {
+            return colorCache.current.get(hex);
+        }
 
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result
-            ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
+        let result = null;
+        const normalized = hex.replace(
+            /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
+            (m, r, g, b) => r + r + g + g + b + b
+        );
+
+        const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
+        if (match) {
+            result = {
+                r: parseInt(match[1], 16),
+                g: parseInt(match[2], 16),
+                b: parseInt(match[3], 16)
+            };
+        } else {
+            const rgbMatch = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i.exec(hex);
+            if (rgbMatch) {
+                result = {
+                    r: parseInt(rgbMatch[1], 10),
+                    g: parseInt(rgbMatch[2], 10),
+                    b: parseInt(rgbMatch[3], 10)
+                };
             }
-            : null;
+        }
+
+        colorCache.current.set(hex, result);
+        return result;
     };
 
     const interpolateColor = (start, end, factor) => {
@@ -79,7 +100,7 @@ const LetterGlitch = ({
         const parent = canvas.parentElement;
         if (!parent) return;
 
-        const dpr = window.devicePixelRatio || 1;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         const rect = parent.getBoundingClientRect();
 
         canvas.width = rect.width * dpr;
@@ -157,6 +178,8 @@ const LetterGlitch = ({
     };
 
     const animate = () => {
+        if (!running.current) return;
+
         const now = Date.now();
         if (now - lastGlitchTime.current >= glitchSpeed) {
             updateLetters();
@@ -174,27 +197,73 @@ const LetterGlitch = ({
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+        const container = canvas.parentElement;
 
         context.current = canvas.getContext('2d');
         resizeCanvas();
-        animate();
+
+        const startAnimation = () => {
+            if (running.current) return;
+            running.current = true;
+            lastGlitchTime.current = Date.now();
+            animate();
+        };
+
+        const stopAnimation = () => {
+            running.current = false;
+            cancelAnimationFrame(animationRef.current);
+        };
+
+        const handleVisibility = () => {
+            pageVisible.current = !document.hidden;
+            if (pageVisible.current && isVisible.current) {
+                startAnimation();
+            } else {
+                stopAnimation();
+            }
+        };
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                isVisible.current = entry.isIntersecting;
+                if (entry.isIntersecting && pageVisible.current) {
+                    startAnimation();
+                } else {
+                    stopAnimation();
+                }
+            },
+            { threshold: 0.05 }
+        );
+
+        if (container) {
+            observer.observe(container);
+        }
+
+        document.addEventListener('visibilitychange', handleVisibility);
 
         let resizeTimeout;
 
         const handleResize = () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                cancelAnimationFrame(animationRef.current);
+                stopAnimation();
                 resizeCanvas();
-                animate();
+                if (isVisible.current && pageVisible.current) {
+                    startAnimation();
+                }
             }, 100);
         };
 
         window.addEventListener('resize', handleResize);
 
+        startAnimation();
+
         return () => {
-            cancelAnimationFrame(animationRef.current);
+            stopAnimation();
+            observer.disconnect();
+            document.removeEventListener('visibilitychange', handleVisibility);
             window.removeEventListener('resize', handleResize);
+            clearTimeout(resizeTimeout);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [glitchSpeed, smooth]);

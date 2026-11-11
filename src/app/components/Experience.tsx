@@ -7,6 +7,23 @@ import { motion, AnimatePresence } from 'motion/react';
 const Experience = () => {
     const [selectedExperience, setSelectedExperience] = React.useState<typeof experiences[0] | null>(null);
 
+    React.useEffect(() => {
+        if (!selectedExperience) return;
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') setSelectedExperience(null);
+        };
+
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [selectedExperience]);
+
     const experiences = [
                 {
             title: "SDE Intern",
@@ -69,56 +86,56 @@ const Experience = () => {
     ];
 
     return (
-        <section className="relative py-32 bg-black" id="experience">
-            <div className="max-w-5xl mx-auto px-6">
+        <section className="relative overflow-hidden bg-black py-20 sm:py-24 lg:py-32" id="experience">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20"
+                    className="mb-12 sm:mb-16 lg:mb-20"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                        Experience & Education
+                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
+                        Experience &amp; Education
                     </h2>
                     <div className="h-1 w-20 bg-white/20" />
                 </motion.div>
 
                 {/* Minimalist Timeline */}
-                <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-[1px] before:bg-white/10">
+                <div className="relative space-y-6 before:absolute before:left-[5px] before:top-0 before:h-full before:w-px before:bg-white/10 sm:space-y-8 lg:before:left-1/2 lg:before:-translate-x-1/2">
                     {experiences.map((exp, index) => (
                         <div
                             key={index}
-                            className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group cursor-pointer"
+                            className="group relative cursor-pointer pl-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:pl-0"
                             onClick={() => setSelectedExperience(exp)}
                         >
                             {/* Minimal Dot */}
-                            <div className="flex items-center justify-center w-3 h-3 bg-black border border-white/50 rounded-full shrink-0 md:order-1 md:group-odd:-translate-x-[5px] md:group-even:translate-x-[5px] relative z-10 group-hover:bg-white transition-colors duration-300" />
+                            <div className="absolute left-0 top-7 z-10 h-3 w-3 shrink-0 rounded-full border border-white/50 bg-black transition-colors duration-300 group-hover:bg-white lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
 
                             {/* Card content */}
                             <motion.div
                                 initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.2 }}
-                                className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] pl-8 md:px-0"
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                className={`w-full min-w-0 lg:row-start-1 ${index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1'}`}
                             >
-                                <div className={`glass-panel p-8 md:text-left ${index % 2 === 0 ? '' : 'md:text-right'} hover:border-white/30 transition-all duration-300`}>
-                                    <h3 className="font-bold text-xl text-white mb-1">{exp.title}</h3>
-                                    <h4 className="font-medium text-gray-400 mb-4">{exp.company}</h4>
+                                <div className={`glass-panel border border-white/10 p-5 transition-all duration-300 hover:border-white/30 sm:p-6 lg:p-8 ${index % 2 === 0 ? '' : 'lg:text-right'}`}>
+                                    <h3 className="mb-1 text-lg font-bold text-white sm:text-xl">{exp.title}</h3>
+                                    <h4 className="mb-3 font-medium text-gray-400 sm:mb-4">{exp.company}</h4>
 
-                                    <p className="text-gray-500 text-sm leading-relaxed mb-6">
+                                    <p className="mb-5 text-sm leading-relaxed text-gray-500 sm:mb-6">
                                         {exp.description}
                                     </p>
 
-                                    <div className={`flex flex-wrap gap-2 mb-6 ${index % 2 !== 0 ? 'md:justify-end' : ''}`}>
+                                    <div className={`mb-5 flex flex-wrap gap-2 sm:mb-6 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
                                         {exp.tags.map(tag => (
-                                            <span key={tag} className="px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-sm bg-white/5 text-gray-400 border border-white/10">
+                                            <span key={tag} className="rounded-sm border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-400 sm:px-3">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
 
-                                    <div className={`flex items-center gap-6 text-xs text-gray-600 border-t border-white/5 pt-4 ${index % 2 !== 0 ? 'md:justify-end' : ''}`}>
+                                    <div className={`flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/5 pt-4 text-xs text-gray-600 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
                                         <div className="flex items-center gap-2">
                                             <Calendar className="w-3 h-3" />
                                             <span>{exp.date}</span>
@@ -143,14 +160,17 @@ const Experience = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedExperience(null)}
-                        className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-sm"
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-3 backdrop-blur-sm sm:px-4"
                     >
                         <motion.div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label={`${selectedExperience.title} at ${selectedExperience.company}`}
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
-                            className="bg-black border border-white/10 p-8 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto relative glass-panel"
+                            className="glass-panel relative max-h-[85dvh] w-full max-w-2xl overflow-y-auto rounded-xl border border-white/10 bg-black p-5 sm:rounded-2xl sm:p-8"
                         >
                             <button
                                 onClick={() => setSelectedExperience(null)}
@@ -160,21 +180,21 @@ const Experience = () => {
                             </button>
 
                             <div className="mb-8">
-                                <div className="flex items-start gap-6 mb-6">
+                                <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
                                     {selectedExperience.image && (
-                                        <div className="h-20 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-white/5">
+                                        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5">
                                             {/* Ideally use Next.js Image here, using standard img for now to match style */}
                                             <img
                                                 src={selectedExperience.image}
                                                 alt={selectedExperience.company}
-                                                className="w-full h-full object-cover"
+                                                className="h-full w-full object-cover"
                                             />
                                         </div>
                                     )}
                                     <div>
-                                        <h3 className="text-2xl font-bold text-white mb-2">{selectedExperience.title}</h3>
-                                        <h4 className="text-lg text-blue-400 mb-2">{selectedExperience.company}</h4>
-                                        <div className="flex items-center gap-4 text-sm text-gray-500">
+                                        <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">{selectedExperience.title}</h3>
+                                        <h4 className="mb-2 text-base text-blue-400 sm:text-lg">{selectedExperience.company}</h4>
+                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500">
                                             <div className="flex items-center gap-1">
                                                 <Calendar className="w-4 h-4" />
                                                 <span>{selectedExperience.date}</span>
@@ -186,7 +206,7 @@ const Experience = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <p className="text-gray-400 leading-relaxed mb-8 border-b border-white/10 pb-8">
+                                <p className="mb-8 border-b border-white/10 pb-8 leading-relaxed text-gray-400">
                                     {selectedExperience.description}
                                 </p>
 

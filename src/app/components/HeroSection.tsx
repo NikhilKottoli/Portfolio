@@ -7,7 +7,7 @@ import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 
 const HeroSection = () => {
     return (
-        <div className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+        <div className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-black py-24">
             {/* Background Glitch Effect */}
             <div className="absolute inset-0 z-0 opacity-20">
                 <LetterGlitch
@@ -19,15 +19,15 @@ const HeroSection = () => {
             </div>
 
             {/* Content */}
-            <div className="z-10 text-center px-4 max-w-5xl">
+            <div className="z-10 max-w-5xl px-4 text-center sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="mb-8 inline-block"
+                    className="mb-6 inline-block sm:mb-8"
                 >
                     {/* Simple monochrome pill */}
-                    <span className="px-5 py-2 rounded-full border border-white/20 bg-black/50 backdrop-blur-md text-sm text-gray-300 font-medium tracking-[0.2em] uppercase">
+                    <span className="rounded-full border border-white/20 bg-black/50 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-gray-300 backdrop-blur-md sm:px-5 sm:text-sm">
                         Software Developer
                     </span>
                 </motion.div>
@@ -36,7 +36,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2, duration: 0.8 }}
-                    className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter leading-tight"
+                    className="mb-6 text-5xl font-black leading-tight tracking-tighter text-white sm:mb-8 sm:text-6xl md:text-8xl"
                 >
                     NIKHIL <span className="text-gray-500">KOTTOLI</span>
                 </motion.h1>
@@ -45,7 +45,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-12 font-light"
+                    className="mx-auto mb-8 max-w-2xl text-base font-light text-gray-400 sm:mb-12 sm:text-xl md:text-2xl"
                 >
                     An Engineering Student at<span className="text-white font-medium border-b border-white/20 pb-0.5" > NITK Surathkal</span>.
                 </motion.p>
@@ -54,7 +54,7 @@ const HeroSection = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.8 }}
-                    className="flex gap-8 justify-center"
+                    className="flex justify-center gap-6 sm:gap-8"
                 >
                     {/* Monochrome social links */}
                     <a href="https://github.com/NikhilKottoli" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors transform hover:scale-110">
@@ -74,7 +74,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-10 z-10"
+                className="absolute bottom-6 z-10 sm:bottom-10"
             >
                 <motion.div
                     animate={{ y: [0, 10, 0] }}

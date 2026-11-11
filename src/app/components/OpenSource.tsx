@@ -84,22 +84,22 @@ const OpenSource = () => {
     };
 
     return (
-        <section className="relative py-32 bg-black overflow-hidden" id="opensource">
+        <section className="relative overflow-hidden bg-black py-20 sm:py-24 lg:py-32" id="opensource">
             {/* Background Gradients */}
             <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-[#FF00FF]/10 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-[#00FFFF]/10 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-20 text-center"
+                    className="mb-12 text-center sm:mb-16 lg:mb-20"
                 >
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight">
+                    <h2 className="mb-4 text-3xl font-black tracking-tight text-white sm:mb-6 sm:text-4xl md:text-6xl">
                         OPEN SOURCE
                     </h2>
-                    <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                    <p className="mx-auto max-w-2xl text-base text-gray-400 sm:text-lg">
                         Contributing to the ecosystem that powers the modern web.
                     </p>
                 </motion.div>
@@ -127,26 +127,48 @@ const OpenSource = () => {
                                     {/* ── Clickable header row ── */}
                                     <button
                                         onClick={() => toggle(org.orgName)}
-                                        className="w-full flex items-center gap-6 p-6 md:p-8 text-left"
+                                        className="flex w-full items-center gap-4 p-4 text-left sm:gap-6 sm:p-6 md:p-8"
                                     >
                                         {/* Logo */}
                                         <div className="relative shrink-0">
-                                            <div className="absolute inset-0 bg-white/20 rounded-full blur-md" />
+                                            <div className="absolute inset-0 rounded-full bg-white/20 blur-md" />
                                             <img
                                                 src={org.logo}
                                                 alt={org.orgName}
-                                                className="relative w-14 h-14 rounded-full border border-white/10 object-cover"
+                                                loading="lazy"
+                                                decoding="async"
+                                                className="relative h-12 w-12 rounded-full border border-white/10 object-cover sm:h-14 sm:w-14"
                                             />
                                         </div>
 
                                         {/* Name + description */}
-                                        <div className="flex-1 min-w-0">
-                                            <h3 className="text-2xl font-bold text-white mb-1">{org.orgName}</h3>
-                                            <p className="text-gray-400 text-sm leading-relaxed line-clamp-1">{org.description}</p>
+                                        <div className="min-w-0 flex-1">
+                                            <h3 className="mb-1 text-xl font-bold text-white sm:text-2xl">{org.orgName}</h3>
+                                            <p className="line-clamp-1 hidden text-sm leading-relaxed text-gray-400 sm:block">{org.description}</p>
+
+                                            {/* Compact stats for mobile */}
+                                            <div className="mt-2 flex flex-wrap items-center gap-2 md:hidden">
+                                                {mergedCount > 0 && (
+                                                    <div className="flex items-center gap-1 rounded-full border border-[#00FF00]/20 bg-[#00FF00]/10 px-2 py-1 font-mono text-[10px] text-[#00FF00]">
+                                                        <CheckCircle2 className="h-3 w-3" />
+                                                        {mergedCount} merged
+                                                    </div>
+                                                )}
+                                                {openCount > 0 && (
+                                                    <div className="flex items-center gap-1 rounded-full border border-[#FACC15]/20 bg-[#FACC15]/10 px-2 py-1 font-mono text-[10px] text-[#FACC15]">
+                                                        <GitPullRequest className="h-3 w-3" />
+                                                        {openCount} open
+                                                    </div>
+                                                )}
+                                                <div className="flex items-center gap-1 rounded-full border border-[#00FFFF]/20 bg-[#00FFFF]/10 px-2 py-1 font-mono text-[10px] text-[#00FFFF]">
+                                                    <GitMerge className="h-3 w-3" />
+                                                    {org.totalLinesChanged} lines
+                                                </div>
+                                            </div>
                                         </div>
 
                                         {/* Stats pills */}
-                                        <div className="hidden sm:flex items-center gap-3 shrink-0">
+                                        <div className="hidden shrink-0 items-center gap-3 md:flex">
                                             {mergedCount > 0 && (
                                                 <div className="flex items-center gap-1.5 text-xs font-mono text-[#00FF00] bg-[#00FF00]/10 border border-[#00FF00]/20 px-3 py-1.5 rounded-full">
                                                     <CheckCircle2 className="w-3 h-3" />
@@ -186,20 +208,20 @@ const OpenSource = () => {
                                                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                                                 className="overflow-hidden"
                                             >
-                                                <div className="border-t border-white/10 px-6 md:px-8 pb-6 pt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                <div className="grid grid-cols-1 gap-4 border-t border-white/10 px-4 pb-4 pt-4 sm:px-6 sm:pb-6 sm:pt-5 md:grid-cols-2 md:px-8">
                                                     {org.prs.map((pr) => (
                                                         <a
                                                             key={pr.number}
                                                             href={pr.link}
                                                             target="_blank"
                                                             rel="noopener noreferrer"
-                                                            className="group/pr flex flex-col p-5 rounded-lg bg-black/40 border border-white/5 hover:border-white/20 hover:bg-white/5 transition-all duration-300 relative overflow-hidden"
+                                                            className="group/pr relative flex flex-col overflow-hidden rounded-lg border border-white/5 bg-black/40 p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/5 sm:p-5"
                                                         >
                                                             <div className="absolute top-0 right-0 p-3 opacity-0 group-hover/pr:opacity-100 transition-opacity duration-300">
                                                                 <ExternalLink className="w-4 h-4 text-white" />
                                                             </div>
 
-                                                            <div className="flex items-center gap-3 mb-3">
+                                                            <div className="mb-3 flex flex-wrap items-center gap-2 sm:gap-3">
                                                                 <div className="flex items-center gap-2 text-xs font-mono text-[#00FFFF] bg-[#00FFFF]/10 px-2 py-1 rounded">
                                                                     <GitMerge className="w-3 h-3" />
                                                                     {pr.repo}#{pr.number}
@@ -218,7 +240,7 @@ const OpenSource = () => {
                                                                 )}
                                                             </div>
 
-                                                            <h4 className="text-lg font-medium text-gray-200 group-hover/pr:text-white mb-2 line-clamp-2">
+                                                            <h4 className="mb-2 line-clamp-2 text-base font-medium text-gray-200 group-hover/pr:text-white sm:text-lg">
                                                                 {pr.title}
                                                             </h4>
 

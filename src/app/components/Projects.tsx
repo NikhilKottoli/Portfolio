@@ -2,9 +2,17 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { Github, ArrowUpRight } from "lucide-react";
+import { Github, ArrowUpRight, Trophy } from "lucide-react";
 
 const PROJECTS_DATA = [
+    {
+        image: '/projects/RupeeRail.png',
+        title: "RupeeRail",
+        description: "ETH Global 2026 Mumbai Winner (Finalist, ARC Track) - Cross-border payments on Ethereum using stablecoins and account abstraction.",
+        tech: ["Solidity", "React", "Account Abstraction", "ERC-4337"],
+        link: "https://github.com/NikhilKottoli/RupeeRail",
+        award: "ETH Global Mumbai 2026 Winner"
+    },
     {
         image: '/projects/PrivateRag.png',
         title: "Private RAG",
@@ -83,6 +91,13 @@ const ProjectCard = ({ project, index }) => (
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
 
+            {project.award && (
+                <div className="absolute top-4 left-4 z-20 flex items-center gap-1 bg-yellow-500/20 border border-yellow-500/50 text-yellow-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
+                    <Trophy className="w-3 h-3" />
+                    <span>Winner</span>
+                </div>
+            )}
+
             <div className="absolute top-4 right-4 z-20 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
                 {project.link && (
                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-black/80 backdrop-blur-md border border-white/20 text-white hover:bg-white hover:text-black transition-all">
@@ -105,6 +120,12 @@ const ProjectCard = ({ project, index }) => (
             <p className="text-gray-500 text-sm mb-6 line-clamp-2 leading-relaxed">
                 {project.description}
             </p>
+            {project.award && (
+                <p className="text-yellow-400 text-xs font-medium mb-4 flex items-center gap-1">
+                    <Trophy className="w-3 h-3" />
+                    {project.award}
+                </p>
+            )}
             <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                     <span key={tech} className="px-2 py-1 text-[10px] uppercase tracking-wider font-medium text-gray-400 border border-white/10">

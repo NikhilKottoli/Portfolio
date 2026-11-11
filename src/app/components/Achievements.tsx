@@ -7,6 +7,15 @@ import { Trophy, ExternalLink } from 'lucide-react';
 const Achievements = () => {
     const achievements = [
         {
+            title: "ETH Global Mumbai 2026",
+            organizer: "ETH Global",
+            position: "Finalist (ARC Track)",
+            prize: "$7,000 USDC",
+            desc: "RupeeRail - Cross-border payments on Ethereum using stablecoins and account abstraction (ERC-4337).",
+            image: "/projects/RupeeRail-architecture.png",
+            link: "https://github.com/NikhilKottoli/RupeeRail"
+        },
+        {
             title: "Build Resilient Apps with Polkadot Cloud",
             organizer: "Polkadot",
             position: "1st Place",

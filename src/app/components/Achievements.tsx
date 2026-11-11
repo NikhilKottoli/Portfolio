@@ -2,45 +2,46 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Trophy, ExternalLink } from 'lucide-react';
+import { Trophy, ExternalLink, X } from 'lucide-react';
+import SectionHeading from './SectionHeading';
 
 const Achievements = () => {
     const achievements = [
         {
-            title: "ETH Global Mumbai 2026",
-            organizer: "ETH Global",
-            position: "Finalist · Arc Track",
-            prize: "$7,000 USDC",
+            title: 'ETH Global Mumbai 2026',
+            organizer: 'ETH Global',
+            position: 'Finalist · Arc Track',
+            prize: '$7,000 USDC',
             desc: "RupeeRail - Cross-border payments on Ethereum using stablecoins and account abstraction. Won Arc's Best Mobile Web Consumer Agent track.",
-            image: "/projects/RupeeRail-ethglobal.png",
-            link: "https://github.com/NikhilKottoli/RupeeRail"
+            image: '/projects/RupeeRail-ethglobal.png',
+            link: 'https://github.com/NikhilKottoli/RupeeRail'
         },
         {
-            title: "Build Resilient Apps with Polkadot Cloud",
-            organizer: "Polkadot",
-            position: "1st Place",
-            prize: "$3000",
+            title: 'Build Resilient Apps with Polkadot Cloud',
+            organizer: 'Polkadot',
+            position: '1st Place',
+            prize: '$3000',
             desc: "Built 'Agora', a decentralized computation marketplace for the Polkadot ecosystem.",
-            image: "/projects/Agora.png",
-            link: "https://devpost.com/software/agora-bkfo60"
+            image: '/projects/Agora.png',
+            link: 'https://devpost.com/software/agora-bkfo60'
         },
         {
-            title: "NEARCON Innovation Sandbox",
-            organizer: "NEAR AI",
-            position: "NOVA SDK winner",
-            prize: "$1000",
+            title: 'NEARCON Innovation Sandbox',
+            organizer: 'NEAR AI',
+            position: 'NOVA SDK winner',
+            prize: '$1000',
             desc: "Private RAG, a vectorless, e2e encrypted, fully client side RAG using NEAR AI's TEE and NOVA's secure file storage",
-            image: "/projects/PrivateRag.png",
-            link: "https://devspot.app/projects/1094"
+            image: '/projects/PrivateRag.png',
+            link: 'https://devspot.app/projects/1094'
         },
         {
-            title: "Polkadot AssetHub 2025",
-            organizer: "Polkadot",
-            position: "3rd Place",
-            prize: "$250",
+            title: 'Polkadot AssetHub 2025',
+            organizer: 'Polkadot',
+            position: '3rd Place',
+            prize: '$250',
             desc: "Created 'Polkaflow', a no-code visual workflow builder for smart contracts.",
-            image: "/awards/Polkadot.webp",
-            link: "https://dorahacks.io/buidl/26737"
+            image: '/awards/Polkadot.webp',
+            link: 'https://dorahacks.io/buidl/26737'
         }
     ];
 
@@ -64,47 +65,58 @@ const Achievements = () => {
     }, [selectedAchievement]);
 
     return (
-        <section className="relative bg-black py-20 sm:py-24 lg:py-32" id="achievements">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-12 sm:mb-16 lg:mb-20"
-                >
-                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
-                        Honors & Awards
-                    </h2>
-                    <div className="h-1 w-20 bg-white/20" />
-                </motion.div>
+        <section className="relative overflow-hidden py-24 sm:py-28 lg:py-36" id="achievements">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pale/10 to-transparent" />
+            <div className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-gold/[0.035] blur-[140px]" />
 
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+                <SectionHeading
+                    eyebrow="Trophies"
+                    title="Honors & Awards"
+                    description="Recognition earned at hackathons and builder programs across the ecosystem."
+                    className="mb-12 sm:mb-16 lg:mb-20"
+                />
+
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
                     {achievements.map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
+                        <motion.article
+                            key={item.title}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.1 }}
+                            transition={{ delay: idx * 0.08 }}
                             onClick={() => setSelectedAchievement(item)}
-                            className="group relative border border-white/10 bg-black hover:border-white/30 transition-all duration-300 cursor-pointer"
+                            className="hk-panel hk-frame group relative cursor-pointer overflow-hidden"
                         >
-                            <div className="relative h-48 overflow-hidden bg-white/5">
+                            <div className="relative h-48 overflow-hidden bg-deep sm:h-56">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src={item.image} alt={item.title} loading="lazy" decoding="async" className="h-full w-full object-cover opacity-80 filter grayscale transition-transform duration-500 group-hover:scale-105 group-hover:grayscale-0 group-hover:opacity-100" />
-                                <div className="absolute top-4 right-4 z-20 px-3 py-1 bg-black/80 border border-white/20 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-                                    <Trophy className="w-3 h-3 text-white" /> {item.position}
+                                <img
+                                    src={item.image}
+                                    alt={item.title}
+                                    loading="lazy"
+                                    decoding="async"
+                                    className="h-full w-full object-cover opacity-75 saturate-[0.65] transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-95 group-hover:saturate-100"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
+                                <span className="absolute left-4 top-4 font-display text-[10px] tracking-[0.3em] text-pale/55">
+                                    {String(idx + 1).padStart(2, '0')}
+                                </span>
+                                <div className="absolute right-4 top-4 flex items-center gap-2 border border-gold/35 bg-void/80 px-3 py-1.5 backdrop-blur-sm">
+                                    <Trophy className="h-3 w-3 text-gold" />
+                                    <span className="font-display text-[8px] uppercase tracking-[0.2em] text-gold/90">
+                                        {item.position}
+                                    </span>
                                 </div>
                             </div>
 
-                            <div className="relative z-20 p-5 sm:p-6">
-                                <h3 className="text-lg font-bold text-white mb-2 leading-tight">
+                            <div className="relative p-5 sm:p-6">
+                                <h3 className="font-display text-lg font-semibold leading-snug tracking-wide text-pale sm:text-xl">
                                     {item.title}
                                 </h3>
-                                <div className="text-xs font-medium text-gray-500 mb-4 uppercase tracking-wider">
-                                    {item.organizer} • {item.prize} Prize
-                                </div>
-                                <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+                                <p className="mt-2.5 font-display text-[8px] uppercase tracking-[0.24em] text-gold/60">
+                                    {item.organizer} · {item.prize} prize
+                                </p>
+                                <p className="mt-4 line-clamp-3 font-body text-[15px] leading-relaxed text-mist/65">
                                     {item.desc}
                                 </p>
 
@@ -113,12 +125,12 @@ const Achievements = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-gray-300 transition-colors"
+                                    className="mt-6 inline-flex items-center gap-2 font-display text-[8px] uppercase tracking-[0.26em] text-soul/65 transition-colors duration-300 hover:text-soul"
                                 >
-                                    View Project <ExternalLink className="w-3 h-3" />
+                                    View Project <ExternalLink className="h-3 w-3" />
                                 </a>
                             </div>
-                        </motion.div>
+                        </motion.article>
                     ))}
                 </div>
             </div>
@@ -131,67 +143,72 @@ const Achievements = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedAchievement(null)}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-3 backdrop-blur-sm sm:px-4"
+                        className="fixed inset-0 z-[70] flex items-center justify-center bg-void/85 px-3 backdrop-blur-md sm:px-4"
                     >
                         <motion.div
                             role="dialog"
                             aria-modal="true"
                             aria-label={selectedAchievement.title}
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
+                            initial={{ scale: 0.94, opacity: 0, y: 12 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.94, opacity: 0, y: 12 }}
+                            transition={{ duration: 0.28, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
-                            className="glass-panel relative max-h-[85dvh] w-full max-w-2xl overflow-y-auto rounded-xl border border-white/10 bg-black p-5 sm:rounded-2xl sm:p-8"
+                            className="hk-panel hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto"
                         >
                             <button
                                 onClick={() => setSelectedAchievement(null)}
-                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                                aria-label="Close"
+                                className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center border border-pale/12 bg-void/70 text-mist/70 backdrop-blur-sm transition-colors hover:border-gold/40 hover:text-pale"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <X className="h-4 w-4" />
                             </button>
 
-                            <div className="mb-8">
-                                <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
-                                    {selectedAchievement.image && (
-                                        <div className="h-36 w-full shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:h-32 sm:w-48">
-                                            <img
-                                                src={selectedAchievement.image}
-                                                alt={selectedAchievement.title}
-                                                className="h-full w-full object-cover"
-                                            />
-                                        </div>
-                                    )}
-                                    <div>
-                                        <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">{selectedAchievement.title}</h3>
-                                        <h4 className="mb-2 text-base text-blue-400 sm:text-lg">{selectedAchievement.organizer}</h4>
-                                        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
-                                            <div className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded border border-white/10">
-                                                <Trophy className="w-4 h-4 text-yellow-500" />
-                                                <span className="text-white font-medium">{selectedAchievement.position}</span>
-                                            </div>
-                                            {selectedAchievement.prize && (
-                                                <div className="flex items-center gap-1 bg-white/5 px-2 py-1 rounded border border-white/10">
-                                                    <span className="text-green-400 font-bold">{selectedAchievement.prize} Prize</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
+                            <div className="relative h-44 w-full overflow-hidden border-b border-pale/10 bg-deep sm:h-52">
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                    src={selectedAchievement.image}
+                                    alt={selectedAchievement.title}
+                                    className="h-full w-full object-cover opacity-85"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-void via-void/35 to-transparent" />
+                                <div className="absolute bottom-4 left-5 flex items-center gap-2 border border-gold/35 bg-void/80 px-3 py-1.5 backdrop-blur-sm sm:left-8">
+                                    <Trophy className="h-3 w-3 text-gold" />
+                                    <span className="font-display text-[8px] uppercase tracking-[0.2em] text-gold/90">
+                                        {selectedAchievement.position}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="p-5 sm:p-8">
+                                <p className="font-display text-[8px] uppercase tracking-[0.32em] text-soul/60">
+                                    {selectedAchievement.organizer}
+                                </p>
+                                <h3 className="mt-3 max-w-lg font-display text-xl font-semibold leading-snug tracking-wide text-pale sm:text-2xl">
+                                    {selectedAchievement.title}
+                                </h3>
+
+                                <div className="mt-5 flex flex-wrap items-center gap-2">
+                                    <span className="hk-chip px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.22em] text-mist/70">
+                                        {selectedAchievement.position}
+                                    </span>
+                                    <span className="border border-gold/25 bg-gold/[0.06] px-3 py-1.5 font-display text-[8px] uppercase tracking-[0.22em] text-gold/80">
+                                        {selectedAchievement.prize} Prize
+                                    </span>
                                 </div>
 
-                                <p className="text-gray-300 leading-relaxed mb-8">
+                                <p className="mt-6 border-t border-pale/10 pt-6 font-body text-base leading-relaxed text-mist/75">
                                     {selectedAchievement.desc}
                                 </p>
 
-                                {selectedAchievement.link && (
-                                    <a
-                                        href={selectedAchievement.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-bold uppercase tracking-widest hover:bg-gray-200 transition-colors rounded-lg"
-                                    >
-                                        View Project <ExternalLink className="w-4 h-4" />
-                                    </a>
-                                )}
+                                <a
+                                    href={selectedAchievement.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hk-btn mt-7 inline-flex items-center gap-2.5 px-6 py-3 font-display text-[9px] uppercase tracking-[0.26em] text-pale"
+                                >
+                                    View Project <ExternalLink className="h-3.5 w-3.5" />
+                                </a>
                             </div>
                         </motion.div>
                     </motion.div>

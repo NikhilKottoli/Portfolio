@@ -3,8 +3,8 @@ import './globals.css';
 import NavBar from './components/Navbar';
 
 export const metadata: Metadata = {
-    title: 'Portfolio',
-    description: 'My Portfolio',
+    title: 'Nikhil Kottoli — Portfolio',
+    description: 'Software developer. NITK Surathkal.',
 };
 
 export default function RootLayout({
@@ -14,8 +14,8 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="bg-[#000000] w-full h-full text-black">
-                <div className="App bg-[#000000] w-full min-h-screen">
+            <body className="min-h-screen w-full bg-void text-pale antialiased">
+                <div className="App relative min-h-screen w-full">
                     <NavBar />
                     {children}
                 </div>

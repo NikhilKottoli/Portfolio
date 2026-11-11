@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Calendar, MapPin } from 'lucide-react';
+import { Calendar, MapPin, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import SectionHeading from './SectionHeading';
 
 const Experience = () => {
     const [selectedExperience, setSelectedExperience] = React.useState<typeof experiences[0] | null>(null);
@@ -25,125 +26,149 @@ const Experience = () => {
     }, [selectedExperience]);
 
     const experiences = [
-                {
-            title: "SDE Intern",
-            company: "Microsoft",
-            date: "May 2026 - Jul 2026",
-            location: "Hyderabad, India",
-            description: "Worked on cloud-scale security infrastructure for browser extensions in the MAI Extensions Security team.",
-            image: "/experience/microsoft.png",
-            tags: ["C#", "Azure", "Distributed Systems", "MCP", "Security"],
+        {
+            title: 'SDE Intern',
+            company: 'Microsoft',
+            date: 'May 2026 - Jul 2026',
+            location: 'Hyderabad, India',
+            description:
+                'Worked on cloud-scale security infrastructure for browser extensions in the MAI Extensions Security team.',
+            image: '/experience/microsoft.png',
+            tags: ['C#', 'Azure', 'Distributed Systems', 'MCP', 'Security'],
             detailedTimeline: [
                 {
-                    date: "May2026 - Jul 2026",
-                    role: "SDE Intern",
-                    description: "Designed and deployed a cloud-scale malware-hunting platform, reducing scan time for a catalog of browser extensions from 6 hours to 2-5 minutes."
+                    date: 'May2026 - Jul 2026',
+                    role: 'SDE Intern',
+                    description:
+                        'Designed and deployed a cloud-scale malware-hunting platform, reducing scan time for a catalog of browser extensions from 6 hours to 2-5 minutes.'
                 }
             ]
         },
         {
-            title: "Head Of Maintainance",
+            title: 'Head Of Maintainance',
             company: "IRIS - NITK's Administrative System",
-            date: "November 2024 - Present",
-            location: "NITK Surathkal",
-            description: "Contributing to the official student-led ERP system of NITK with 23k+ users.",
-            image: "/experience/iris.png",
-            tags: ["Ruby on Rails", "MySQL", "Nginx"],
+            date: 'November 2024 - Present',
+            location: 'NITK Surathkal',
+            description:
+                'Contributing to the official student-led ERP system of NITK with 23k+ users.',
+            image: '/experience/iris.png',
+            tags: ['Ruby on Rails', 'MySQL', 'Nginx'],
             detailedTimeline: [
                 {
-                    date: "April 2026",
-                    role: "Head Of Maintainance",
-                    description: "Oversees code quality and system upkeep by reviewing developer contributions, managing upgrades (Ruby, Rails, gems), and ensuring the platform remains stable and up to date. Regurly perform code audits and security checks to maintain the integrity of the system."
+                    date: 'April 2026',
+                    role: 'Head Of Maintainance',
+                    description:
+                        'Oversees code quality and system upkeep by reviewing developer contributions, managing upgrades (Ruby, Rails, gems), and ensuring the platform remains stable and up to date. Regurly perform code audits and security checks to maintain the integrity of the system.'
                 },
                 {
-                    date: "Dec 2025",
-                    role: "Web Lead",
-                    description: "Managed a team of 8, Breaking down requirements into issues and sprints, and ensuring timely delivery of features."
+                    date: 'Dec 2025',
+                    role: 'Web Lead',
+                    description:
+                        'Managed a team of 8, Breaking down requirements into issues and sprints, and ensuring timely delivery of features.'
                 },
                 {
-                    date: "Nov 2024",
-                    role: "Web Developer",
-                    description: "Ruby on rails developer, worked on R&D module, implmeneted features like otp login."
+                    date: 'Nov 2024',
+                    role: 'Web Developer',
+                    description:
+                        'Ruby on rails developer, worked on R&D module, implmeneted features like otp login.'
                 }
             ]
         },
         {
-            title: "Executive Member",
-            company: "IEEE NITK Student Branch",
-            date: "October 2024 - Present",
-            location: "NITK Surathkal",
-            description: "Organizing technical workshops and hackathons. Mentoring junior members and leading initiatives to foster a coding culture.",
-            image: "/experience/ieee-nitk.png",
-            tags: ["Leadership", "Management", "Mentoring"],
+            title: 'Executive Member',
+            company: 'IEEE NITK Student Branch',
+            date: 'October 2024 - Present',
+            location: 'NITK Surathkal',
+            description:
+                'Organizing technical workshops and hackathons. Mentoring junior members and leading initiatives to foster a coding culture.',
+            image: '/experience/ieee-nitk.png',
+            tags: ['Leadership', 'Management', 'Mentoring'],
             detailedTimeline: [
                 {
-                    date: "Oct 2024",
-                    role: "Executive Member",
-                    description: "Inducted into the core committee to drive technical events."
+                    date: 'Oct 2024',
+                    role: 'Executive Member',
+                    description: 'Inducted into the core committee to drive technical events.'
                 }
             ]
         }
     ];
 
     return (
-        <section className="relative overflow-hidden bg-black py-20 sm:py-24 lg:py-32" id="experience">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-12 sm:mb-16 lg:mb-20"
-                >
-                    <h2 className="mb-4 text-3xl font-bold text-white sm:mb-6 sm:text-4xl md:text-5xl">
-                        Experience &amp; Education
-                    </h2>
-                    <div className="h-1 w-20 bg-white/20" />
-                </motion.div>
+        <section className="relative overflow-hidden py-24 sm:py-28 lg:py-36" id="experience">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pale/10 to-transparent" />
+            <div className="pointer-events-none absolute left-1/2 top-1/4 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-soul/[0.035] blur-[140px]" />
 
-                {/* Minimalist Timeline */}
-                <div className="relative space-y-6 before:absolute before:left-[5px] before:top-0 before:h-full before:w-px before:bg-white/10 sm:space-y-8 lg:before:left-1/2 lg:before:-translate-x-1/2">
+            <div className="relative z-10 mx-auto max-w-5xl px-4 sm:px-6">
+                <SectionHeading
+                    eyebrow="The Path"
+                    title="Experience & Education"
+                    description="Roles and communities that shaped how I build and lead."
+                    className="mb-12 sm:mb-16 lg:mb-20"
+                />
+
+                {/* Timeline */}
+                <div className="relative space-y-6 before:absolute before:left-[5px] before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-transparent before:via-gold/25 before:to-transparent sm:space-y-8 lg:before:left-1/2 lg:before:-translate-x-1/2">
                     {experiences.map((exp, index) => (
                         <div
-                            key={index}
+                            key={exp.title}
                             className="group relative cursor-pointer pl-8 lg:grid lg:grid-cols-2 lg:gap-16 lg:pl-0"
                             onClick={() => setSelectedExperience(exp)}
                         >
-                            {/* Minimal Dot */}
-                            <div className="absolute left-0 top-7 z-10 h-3 w-3 shrink-0 rounded-full border border-white/50 bg-black transition-colors duration-300 group-hover:bg-white lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
+                            <div className="absolute left-0 top-7 z-10 h-2.5 w-2.5 rotate-45 border border-gold/60 bg-void transition-all duration-300 group-hover:border-soul group-hover:bg-soul/20 group-hover:shadow-[0_0_18px_rgba(154,219,232,0.55)] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
 
-                            {/* Card content */}
                             <motion.div
                                 initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`w-full min-w-0 lg:row-start-1 ${index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1'}`}
+                                transition={{ duration: 0.5, delay: index * 0.08 }}
+                                className={`w-full min-w-0 lg:row-start-1 ${
+                                    index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1'
+                                }`}
                             >
-                                <div className={`glass-panel border border-white/10 p-5 transition-all duration-300 hover:border-white/30 sm:p-6 lg:p-8 ${index % 2 === 0 ? '' : 'lg:text-right'}`}>
-                                    <h3 className="mb-1 text-lg font-bold text-white sm:text-xl">{exp.title}</h3>
-                                    <h4 className="mb-3 font-medium text-gray-400 sm:mb-4">{exp.company}</h4>
+                                <div
+                                    className={`hk-panel hk-frame p-5 transition-all duration-300 sm:p-6 lg:p-7 ${
+                                        index % 2 === 0 ? '' : 'lg:text-right'
+                                    }`}
+                                >
+                                    <div
+                                        className={`mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 font-display text-[8px] uppercase tracking-[0.24em] text-soul/55 ${
+                                            index % 2 !== 0 ? 'lg:justify-end' : ''
+                                        }`}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <Calendar className="h-3 w-3" />
+                                            {exp.date}
+                                        </span>
+                                        <span className="flex items-center gap-2 text-mist/40">
+                                            <MapPin className="h-3 w-3" />
+                                            {exp.location}
+                                        </span>
+                                    </div>
 
-                                    <p className="mb-5 text-sm leading-relaxed text-gray-500 sm:mb-6">
+                                    <h3 className="font-display text-lg font-semibold tracking-wide text-pale sm:text-xl">
+                                        {exp.title}
+                                    </h3>
+                                    <h4 className="mt-1.5 font-display text-[10px] uppercase tracking-[0.22em] text-gold/65">
+                                        {exp.company}
+                                    </h4>
+
+                                    <p className="mt-4 font-body text-[15px] leading-relaxed text-mist/65">
                                         {exp.description}
                                     </p>
 
-                                    <div className={`mb-5 flex flex-wrap gap-2 sm:mb-6 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
-                                        {exp.tags.map(tag => (
-                                            <span key={tag} className="rounded-sm border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gray-400 sm:px-3">
+                                    <div
+                                        className={`mt-5 flex flex-wrap gap-2 ${
+                                            index % 2 !== 0 ? 'lg:justify-end' : ''
+                                        }`}
+                                    >
+                                        {exp.tags.map((tag) => (
+                                            <span
+                                                key={tag}
+                                                className="hk-chip px-2.5 py-1 font-display text-[8px] uppercase tracking-[0.18em] text-mist/55"
+                                            >
                                                 {tag}
                                             </span>
                                         ))}
-                                    </div>
-
-                                    <div className={`flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-white/5 pt-4 text-xs text-gray-600 ${index % 2 !== 0 ? 'lg:justify-end' : ''}`}>
-                                        <div className="flex items-center gap-2">
-                                            <Calendar className="w-3 h-3" />
-                                            <span>{exp.date}</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <MapPin className="w-3 h-3" />
-                                            <span>{exp.location}</span>
-                                        </div>
                                     </div>
                                 </div>
                             </motion.div>
@@ -160,64 +185,83 @@ const Experience = () => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedExperience(null)}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-3 backdrop-blur-sm sm:px-4"
+                        className="fixed inset-0 z-[70] flex items-center justify-center bg-void/85 px-3 backdrop-blur-md sm:px-4"
                     >
                         <motion.div
                             role="dialog"
                             aria-modal="true"
                             aria-label={`${selectedExperience.title} at ${selectedExperience.company}`}
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
+                            initial={{ scale: 0.94, opacity: 0, y: 12 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.94, opacity: 0, y: 12 }}
+                            transition={{ duration: 0.28, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
-                            className="glass-panel relative max-h-[85dvh] w-full max-w-2xl overflow-y-auto rounded-xl border border-white/10 bg-black p-5 sm:rounded-2xl sm:p-8"
+                            className="hk-panel hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto p-5 sm:p-8"
                         >
                             <button
                                 onClick={() => setSelectedExperience(null)}
-                                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+                                aria-label="Close"
+                                className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center border border-pale/12 bg-void/70 text-mist/70 backdrop-blur-sm transition-colors hover:border-gold/40 hover:text-pale"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                <X className="h-4 w-4" />
                             </button>
 
-                            <div className="mb-8">
-                                <div className="mb-6 flex flex-col items-start gap-4 sm:flex-row sm:gap-6">
-                                    {selectedExperience.image && (
-                                        <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/5">
-                                            {/* Ideally use Next.js Image here, using standard img for now to match style */}
-                                            <img
-                                                src={selectedExperience.image}
-                                                alt={selectedExperience.company}
-                                                className="h-full w-full object-cover"
-                                            />
-                                        </div>
-                                    )}
-                                    <div>
-                                        <h3 className="mb-2 text-xl font-bold text-white sm:text-2xl">{selectedExperience.title}</h3>
-                                        <h4 className="mb-2 text-base text-blue-400 sm:text-lg">{selectedExperience.company}</h4>
-                                        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-500">
-                                            <div className="flex items-center gap-1">
-                                                <Calendar className="w-4 h-4" />
-                                                <span>{selectedExperience.date}</span>
-                                            </div>
-                                            <div className="flex items-center gap-1">
-                                                <MapPin className="w-4 h-4" />
-                                                <span>{selectedExperience.location}</span>
-                                            </div>
-                                        </div>
+                            <div className="flex flex-col gap-5 border-b border-pale/10 pb-6 pr-10 sm:flex-row sm:items-center sm:gap-6">
+                                {selectedExperience.image && (
+                                    <div className="relative h-20 w-20 shrink-0 overflow-hidden border border-pale/12 bg-deep">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={selectedExperience.image}
+                                            alt={selectedExperience.company}
+                                            className="h-full w-full object-cover opacity-85"
+                                        />
+                                        <span className="pointer-events-none absolute inset-0 border border-gold/10" />
+                                    </div>
+                                )}
+                                <div>
+                                    <h3 className="font-display text-xl font-semibold tracking-wide text-pale sm:text-2xl">
+                                        {selectedExperience.title}
+                                    </h3>
+                                    <h4 className="mt-1.5 font-display text-[10px] uppercase tracking-[0.24em] text-gold/70">
+                                        {selectedExperience.company}
+                                    </h4>
+                                    <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2 font-display text-[8px] uppercase tracking-[0.22em] text-mist/45">
+                                        <span className="flex items-center gap-2">
+                                            <Calendar className="h-3 w-3" />
+                                            {selectedExperience.date}
+                                        </span>
+                                        <span className="flex items-center gap-2">
+                                            <MapPin className="h-3 w-3" />
+                                            {selectedExperience.location}
+                                        </span>
                                     </div>
                                 </div>
-                                <p className="mb-8 border-b border-white/10 pb-8 leading-relaxed text-gray-400">
-                                    {selectedExperience.description}
-                                </p>
+                            </div>
 
-                                <div className="space-y-6">
-                                    <h4 className="text-sm uppercase tracking-wider text-gray-500 font-bold mb-4">Journey Timeline</h4>
+                            <p className="border-b border-pale/10 py-6 font-body text-base leading-relaxed text-mist/75">
+                                {selectedExperience.description}
+                            </p>
+
+                            <div className="pt-6">
+                                <h4 className="font-display text-[8px] uppercase tracking-[0.32em] text-soul/55">
+                                    Journey Timeline
+                                </h4>
+                                <div className="mt-5 space-y-6">
                                     {selectedExperience.detailedTimeline?.map((item, i) => (
-                                        <div key={i} className="relative pl-8 border-l border-white/10 last:border-0 pb-6 last:pb-0">
-                                            <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-blue-500 ring-4 ring-black" />
-                                            <span className="text-xs font-mono text-blue-400 mb-1 block">{item.date}</span>
-                                            <h5 className="text-white font-bold mb-2 text-lg">{item.role}</h5>
-                                            <p className="text-gray-400 text-sm leading-relaxed">{item.description}</p>
+                                        <div
+                                            key={i}
+                                            className="relative border-l border-pale/10 pb-6 pl-8 last:border-0 last:pb-0"
+                                        >
+                                            <div className="absolute left-[-4px] top-1 h-2 w-2 rotate-45 bg-soul/80 shadow-[0_0_12px_rgba(154,219,232,0.55)]" />
+                                            <span className="font-display text-[8px] uppercase tracking-[0.24em] text-soul/60">
+                                                {item.date}
+                                            </span>
+                                            <h5 className="mt-2 font-display text-base font-semibold tracking-wide text-pale">
+                                                {item.role}
+                                            </h5>
+                                            <p className="mt-2 font-body text-[15px] leading-relaxed text-mist/65">
+                                                {item.description}
+                                            </p>
                                         </div>
                                     ))}
                                 </div>

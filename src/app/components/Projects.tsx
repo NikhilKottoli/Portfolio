@@ -8,10 +8,10 @@ const PROJECTS_DATA = [
     {
         image: '/projects/RupeeRail.png',
         title: "RupeeRail",
-        description: "ETH Global 2026 Mumbai Winner (Finalist, ARC Track) - Cross-border payments on Ethereum using stablecoins and account abstraction.",
+        description: "ETH Global 2026 Mumbai Finalist, Arc Track (Best Mobile Web Consumer Agent) - Cross-border payments on Ethereum using stablecoins and account abstraction.",
         tech: ["Solidity", "React", "Account Abstraction", "ERC-4337"],
         link: "https://github.com/NikhilKottoli/RupeeRail",
-        award: "ETH Global Mumbai 2026 Winner"
+        award: "ETH Global Mumbai 2026 Finalist"
     },
     {
         image: '/projects/PrivateRag.png',
@@ -94,7 +94,7 @@ const ProjectCard = ({ project, index }) => (
             {project.award && (
                 <div className="absolute top-4 left-4 z-20 flex items-center gap-1 bg-yellow-500/20 border border-yellow-500/50 text-yellow-400 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
                     <Trophy className="w-3 h-3" />
-                    <span>Winner</span>
+                    <span>Finalist</span>
                 </div>
             )}
 

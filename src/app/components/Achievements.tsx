@@ -9,10 +9,10 @@ const Achievements = () => {
         {
             title: "ETH Global Mumbai 2026",
             organizer: "ETH Global",
-            position: "Finalist (ARC Track)",
+            position: "Finalist · Arc Track",
             prize: "$7,000 USDC",
-            desc: "RupeeRail - Cross-border payments on Ethereum using stablecoins and account abstraction (ERC-4337).",
-            image: "/projects/RupeeRail-architecture.png",
+            desc: "RupeeRail - Cross-border payments on Ethereum using stablecoins and account abstraction. Won Arc's Best Mobile Web Consumer Agent track.",
+            image: "/projects/RupeeRail-ethglobal.png",
             link: "https://github.com/NikhilKottoli/RupeeRail"
         },
         {

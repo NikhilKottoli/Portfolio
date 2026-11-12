@@ -118,16 +118,16 @@ const Experience = () => {
                             <div className="absolute left-0 top-7 z-10 h-2.5 w-2.5 rotate-45 border border-gold/60 bg-void shadow-[0_0_0_5px_rgba(3,6,10,0.9)] transition-all duration-300 group-hover:border-soul group-hover:bg-soul/20 group-hover:shadow-[0_0_0_5px_rgba(3,6,10,0.9),0_0_18px_rgba(185,242,255,0.55)] lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2" />
 
                             <motion.div
-                                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30 }}
-                                whileInView={{ opacity: 1, x: 0 }}
+                                initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30, scale: 0.98 }}
+                                whileInView={{ opacity: 1, x: 0, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: index * 0.08 }}
+                                transition={{ duration: 0.5, delay: index * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
                                 className={`w-full min-w-0 lg:row-start-1 ${
                                     index % 2 === 0 ? 'lg:col-start-2' : 'lg:col-start-1'
                                 }`}
                             >
                                 <div
-                                    className={`hk-panel hk-frame p-5 transition-all duration-300 sm:p-6 lg:p-7 ${
+                                    className={`hk-panel-raised hk-frame p-5 transition-all duration-300 sm:p-6 lg:p-7 ${
                                         index % 2 === 0 ? '' : 'lg:text-right'
                                     }`}
                                 >
@@ -197,7 +197,7 @@ const Experience = () => {
                             exit={{ scale: 0.94, opacity: 0, y: 12 }}
                             transition={{ duration: 0.28, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
-                            className="hk-panel hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto p-5 sm:p-8"
+                            className="hk-panel-raised hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto p-5 sm:p-8"
                         >
                             <button
                                 onClick={() => setSelectedExperience(null)}

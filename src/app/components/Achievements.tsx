@@ -83,21 +83,24 @@ const Achievements = () => {
                     {achievements.map((item, idx) => (
                         <motion.article
                             key={item.title}
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ delay: idx * 0.08 }}
+                            transition={{ delay: idx * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
                             onClick={() => setSelectedAchievement(item)}
-                            className="hk-panel hk-frame group relative cursor-pointer overflow-hidden"
+                            className="hk-panel-raised hk-frame group relative cursor-pointer overflow-hidden"
                         >
                             <div className="relative h-48 overflow-hidden bg-deep sm:h-56">
+                                {/* Depth glow */}
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-soul/[0.04] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
                                     src={item.image}
                                     alt={item.title}
                                     loading="lazy"
                                     decoding="async"
-                                    className="h-full w-full object-cover opacity-75 saturate-[0.65] transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-95 group-hover:saturate-100"
+                                    className="h-full w-full object-cover opacity-75 saturate-[0.65] transition-all duration-700 group-hover:scale-[1.03] group-hover:opacity-95 group-hover:saturate-100"
+                                    style={{ transformOrigin: 'center center' }}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
                                 <span className="absolute left-4 top-4 font-display text-[10px] tracking-[0.3em] text-pale/55">
@@ -156,7 +159,7 @@ const Achievements = () => {
                             exit={{ scale: 0.94, opacity: 0, y: 12 }}
                             transition={{ duration: 0.28, ease: 'easeOut' }}
                             onClick={(e) => e.stopPropagation()}
-                            className="hk-panel hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto"
+                            className="hk-panel-raised hk-frame relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto"
                         >
                             <button
                                 onClick={() => setSelectedAchievement(null)}

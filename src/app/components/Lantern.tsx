@@ -2,13 +2,14 @@ import React from 'react';
 
 type LanternProps = {
     className?: string;
+    style?: React.CSSProperties;
     sway?: boolean;
 };
 
 /** A hanging soul-lantern with a gilded cage and a soft cyan flame. */
-const Lantern = ({ className = '', sway = false }: LanternProps) => {
+const Lantern = ({ className = '', style, sway = false }: LanternProps) => {
     return (
-        <div className={`relative ${sway ? 'hk-sway' : ''} ${className}`} aria-hidden="true">
+        <div className={`relative ${sway ? 'hk-sway' : ''} ${className}`} aria-hidden="true" style={style}>
             <div className="absolute left-1/2 top-1/2 h-24 w-24 -translate-x-1/2 translate-y-2 rounded-full bg-soul/10 blur-2xl" />
             <svg viewBox="0 0 90 190" className="relative h-full w-full" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M45 0V56" stroke="#c8a96b" strokeOpacity="0.45" strokeWidth="1" />

@@ -88,22 +88,25 @@ const PROJECTS_DATA: Project[] = [
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => (
     <motion.article
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ delay: (index % 3) * 0.08 }}
-        className="hk-panel hk-frame group relative overflow-hidden"
+        transition={{ delay: (index % 3) * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
+        className="hk-panel-raised hk-frame group relative overflow-hidden"
     >
         <div className="relative h-52 overflow-hidden bg-deep sm:h-60">
+            {/* Depth glow behind image */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-soul/[0.04] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={project.image}
                 alt={project.title}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover opacity-70 saturate-[0.55] transition-all duration-700 group-hover:scale-[1.04] group-hover:opacity-95 group-hover:saturate-100"
+                className="h-full w-full object-cover opacity-70 saturate-[0.55] transition-all duration-700 group-hover:scale-[1.03] group-hover:opacity-95 group-hover:saturate-100"
+                style={{ transformOrigin: 'center center' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-void via-void/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-void via-void/25 to-transparent" />
 
             <div className="absolute left-4 top-4 z-20 flex items-center gap-2 border border-gold/35 bg-void/80 px-3 py-1.5 backdrop-blur-sm">
                 <span className="font-display text-[8px] uppercase tracking-[0.22em] text-gold/85">

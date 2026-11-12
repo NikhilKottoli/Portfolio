@@ -2,19 +2,21 @@ import React from 'react';
 
 type HallownestSkylineProps = {
     className?: string;
+    style?: React.CSSProperties;
 };
 
 /**
  * A distant skyline of ruined spires, arches, and lantern-lit towers.
  * Original vector scenery inspired by Hallownest's silhouette language.
  */
-const HallownestSkyline = ({ className = '' }: HallownestSkylineProps) => {
+const HallownestSkyline = ({ className = '', style }: HallownestSkylineProps) => {
     return (
         <svg
             viewBox="0 0 1440 420"
             preserveAspectRatio="xMidYMax slice"
             aria-hidden="true"
             className={className}
+            style={style}
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >

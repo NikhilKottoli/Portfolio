@@ -68,13 +68,15 @@ const Contact = () => {
                     className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4"
                 >
                     {socialLinks.map(({ label, href, icon: Icon, external }) => (
-                        <a
+                        <motion.a
                             key={label}
                             href={href}
                             target={external ? '_blank' : undefined}
                             rel={external ? 'noopener noreferrer' : undefined}
                             aria-label={label}
-                            className="group relative flex flex-col items-center gap-3 border border-pale/12 bg-pale/[0.015] px-4 py-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-gold/[0.04] hover:shadow-[0_0_34px_-18px_rgba(214,181,109,0.6)] sm:px-5 sm:py-6"
+                            whileHover={{ y: -4, scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className="group hk-panel-raised flex flex-col items-center gap-3 px-4 py-5 transition-all duration-300 sm:px-5 sm:py-6"
                         >
                             <span className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                             <Charm
@@ -86,7 +88,7 @@ const Contact = () => {
                             <span className="font-display text-[9px] uppercase tracking-[0.24em] text-mist/65 transition-colors duration-300 group-hover:text-pale">
                                 {label}
                             </span>
-                        </a>
+                        </motion.a>
                     ))}
                 </motion.div>
 

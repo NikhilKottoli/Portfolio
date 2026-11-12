@@ -51,6 +51,7 @@
     --animate-fog: fog 22s ease-in-out infinite;
     --animate-fog-slow: fogSlow 34s ease-in-out infinite;
     --animate-soul: soulPulse 4.5s ease-in-out infinite;
+    --animate-breathe: breathe 8s ease-in-out infinite;
 
     @keyframes float {
         0%, 100% { transform: translateY(0); }
@@ -86,6 +87,11 @@
     @keyframes soulPulse {
         0%, 100% { opacity: 0.55; transform: scale(0.94); }
         50% { opacity: 1; transform: scale(1.06); }
+    }
+
+    @keyframes breathe {
+        0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(0.4px, -0.3px, 0) scale(1.0006); }
     }
 }
 
@@ -166,7 +172,9 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.02em;
 }
 
-/* Hollow Knight inspired stone surfaces */
+/* ===== 3D DEPTH SYSTEM ===== */
+
+/* Deep stone panel - layered shadows for Z-depth */
 .hk-panel {
     position: relative;
     background:
@@ -174,21 +182,27 @@ h1, h2, h3, h4, h5, h6 {
         linear-gradient(158deg, rgba(242, 237, 221, 0.06) 0%, rgba(242, 237, 221, 0.014) 36%, rgba(3, 6, 10, 0.72) 100%);
     border: 1px solid rgba(242, 237, 221, 0.13);
     box-shadow:
-        inset 0 0 0 1px rgba(3, 6, 10, 0.45),
+        inset 0 0 0 1px rgba(3, 6, 10, 0.5),
         inset 0 1px 0 rgba(242, 237, 221, 0.06),
-        0 30px 70px -42px rgba(0, 0, 0, 0.98);
+        inset 0 -1px 0 rgba(3, 6, 10, 0.3),
+        0 30px 70px -42px rgba(0, 0, 0, 0.98),
+        0 12px 24px -16px rgba(0, 0, 0, 0.7);
     transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .hk-panel:hover {
     border-color: rgba(185, 242, 255, 0.3);
     box-shadow:
-        inset 0 0 0 1px rgba(3, 6, 10, 0.45),
+        inset 0 0 0 1px rgba(3, 6, 10, 0.5),
         inset 0 1px 0 rgba(242, 237, 221, 0.09),
-        0 30px 80px -42px rgba(0, 0, 0, 1),
-        0 0 52px -22px rgba(185, 242, 255, 0.4);
+        inset 0 -1px 0 rgba(3, 6, 10, 0.3),
+        0 40px 90px -48px rgba(0, 0, 0, 1),
+        0 16px 32px -20px rgba(0, 0, 0, 0.8),
+        0 0 60px -24px rgba(185, 242, 255, 0.4);
+    transform: translateY(-2px);
 }
 
+/* Panel with 3D frame corners */
 .hk-frame::before,
 .hk-frame::after {
     content: '';
@@ -206,6 +220,9 @@ h1, h2, h3, h4, h5, h6 {
     left: 7px;
     border-top: 1px solid;
     border-left: 1px solid;
+    box-shadow:
+        inset 1px 1px 0 rgba(214, 181, 109, 0.15),
+        -1px -1px 0 rgba(3, 6, 10, 0.5);
 }
 
 .hk-frame::after {
@@ -213,6 +230,9 @@ h1, h2, h3, h4, h5, h6 {
     right: 7px;
     border-bottom: 1px solid;
     border-right: 1px solid;
+    box-shadow:
+        inset -1px -1px 0 rgba(214, 181, 109, 0.15),
+        1px 1px 0 rgba(3, 6, 10, 0.5);
 }
 
 .hk-panel:hover.hk-frame::before,
@@ -220,24 +240,79 @@ h1, h2, h3, h4, h5, h6 {
     border-color: rgba(214, 181, 109, 0.85);
 }
 
+/* Deep recessed panel - looks carved into stone */
+.hk-panel-recessed {
+    position: relative;
+    background:
+        linear-gradient(158deg, rgba(3, 6, 10, 0.85) 0%, rgba(3, 6, 10, 0.6) 50%, rgba(3, 6, 10, 0.85) 100%);
+    border: 1px solid rgba(242, 237, 221, 0.08);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.6),
+        inset 0 -1px 1px rgba(242, 237, 221, 0.03),
+        inset 0 0 0 1px rgba(3, 6, 10, 0.5),
+        0 4px 12px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* Raised panel - floats above surface */
+.hk-panel-raised {
+    position: relative;
+    background:
+        radial-gradient(ellipse 60% 50% at 20% 0%, rgba(185, 242, 255, 0.07), transparent 55%),
+        linear-gradient(158deg, rgba(242, 237, 221, 0.08) 0%, rgba(242, 237, 221, 0.02) 40%, rgba(5, 10, 16, 0.8) 100%);
+    border: 1px solid rgba(242, 237, 221, 0.15);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.1),
+        inset 0 0 0 1px rgba(3, 6, 10, 0.3),
+        0 20px 50px -30px rgba(0, 0, 0, 0.95),
+        0 8px 20px -12px rgba(0, 0, 0, 0.6),
+        0 0 40px -18px rgba(185, 242, 255, 0.15);
+    transform: translateZ(0);
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hk-panel-raised:hover {
+    transform: translateY(-4px);
+    border-color: rgba(185, 242, 255, 0.35);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.12),
+        inset 0 0 0 1px rgba(3, 6, 10, 0.3),
+        0 32px 70px -40px rgba(0, 0, 0, 1),
+        0 12px 28px -16px rgba(0, 0, 0, 0.7),
+        0 0 60px -24px rgba(185, 242, 255, 0.35);
+}
+
+/* Chip/badge with depth */
 .hk-chip {
     background: rgba(242, 237, 221, 0.035);
     border: 1px solid rgba(242, 237, 221, 0.1);
-    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.03),
+        0 2px 6px -2px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .hk-chip:hover {
     background: rgba(185, 242, 255, 0.07);
     border-color: rgba(185, 242, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.05),
+        0 4px 12px -4px rgba(0, 0, 0, 0.6),
+        0 0 20px -8px rgba(185, 242, 255, 0.3);
 }
 
+/* Gold plaque with depth */
 .hk-plaque {
     background:
-        linear-gradient(180deg, rgba(214, 181, 109, 0.09), rgba(3, 6, 10, 0.34));
-    border: 1px solid rgba(214, 181, 109, 0.26);
-    box-shadow: inset 0 1px 0 rgba(242, 237, 221, 0.06);
+        linear-gradient(180deg, rgba(214, 181, 109, 0.11), rgba(3, 6, 10, 0.38));
+    border: 1px solid rgba(214, 181, 109, 0.28);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.08),
+        inset 0 -1px 0 rgba(3, 6, 10, 0.2),
+        0 4px 16px -6px rgba(0, 0, 0, 0.6);
 }
 
+/* Text glows */
 .hk-glow {
     text-shadow:
         0 0 26px rgba(185, 242, 255, 0.32),
@@ -250,9 +325,13 @@ h1, h2, h3, h4, h5, h6 {
         0 0 70px rgba(214, 181, 109, 0.12);
 }
 
+/* Button with 3D press */
 .hk-btn {
     background: rgba(242, 237, 221, 0.02);
     border: 1px solid rgba(242, 237, 221, 0.16);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.03),
+        0 2px 8px -2px rgba(0, 0, 0, 0.5);
     transition: all 0.35s ease;
 }
 
@@ -260,26 +339,33 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(214, 181, 109, 0.12);
     border-color: rgba(214, 181, 109, 0.6);
     color: #f8f2df;
-    box-shadow: 0 0 38px -12px rgba(214, 181, 109, 0.5);
+    transform: translateY(-1px);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.08),
+        0 6px 20px -6px rgba(0, 0, 0, 0.6),
+        0 0 40px -12px rgba(214, 181, 109, 0.5);
 }
 
+.hk-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.4),
+        0 1px 3px -1px rgba(0, 0, 0, 0.3);
+}
+
+/* Sway animation for hanging elements */
 .hk-sway {
     transform-origin: 50% 0;
     animation: var(--animate-sway);
 }
 
-.hk-fog {
-    animation: var(--animate-fog);
-}
+/* Fog animations */
+.hk-fog { animation: var(--animate-fog); }
+.hk-fog-slow { animation: var(--animate-fog-slow); }
+.hk-soul-pulse { animation: var(--animate-soul); }
+.hk-breathe { animation: var(--animate-breathe); }
 
-.hk-fog-slow {
-    animation: var(--animate-fog-slow);
-}
-
-.hk-soul-pulse {
-    animation: var(--animate-soul);
-}
-
+/* Rain effect */
 .hk-rain {
     background-image: repeating-linear-gradient(
         104deg,
@@ -296,39 +382,30 @@ h1, h2, h3, h4, h5, h6 {
     to { background-position: 40px 160px; }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 9px;
-}
-
-::-webkit-scrollbar-track {
-    background: #03060a;
-}
-
+/* Scrollbar */
+::-webkit-scrollbar { width: 9px; }
+::-webkit-scrollbar-track { background: #03060a; }
 ::-webkit-scrollbar-thumb {
     background: rgba(242, 237, 221, 0.16);
     border-radius: 999px;
     border: 2px solid #03060a;
 }
+::-webkit-scrollbar-thumb:hover { background: rgba(185, 242, 255, 0.42); }
 
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(185, 242, 255, 0.42);
-}
-
+/* Glass panel */
 .glass-panel {
     background: rgba(5, 10, 16, 0.84);
     backdrop-filter: blur(14px);
     border: 1px solid rgba(242, 237, 221, 0.13);
+    box-shadow:
+        inset 0 1px 0 rgba(242, 237, 221, 0.04),
+        0 8px 32px -12px rgba(0, 0, 0, 0.6);
 }
 
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;

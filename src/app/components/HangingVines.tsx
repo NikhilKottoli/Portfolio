@@ -3,15 +3,17 @@ import React from 'react';
 type HangingVinesProps = {
     side?: 'left' | 'right';
     className?: string;
+    style?: React.CSSProperties;
 };
 
 /** Hanging cave vines with faint soul buds. */
-const HangingVines = ({ side = 'left', className = '' }: HangingVinesProps) => {
+const HangingVines = ({ side = 'left', className = '', style }: HangingVinesProps) => {
     return (
         <svg
             viewBox="0 0 180 420"
             aria-hidden="true"
             className={`${className} ${side === 'right' ? '-scale-x-100' : ''}`}
+            style={style}
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
         >
@@ -32,7 +34,7 @@ const HangingVines = ({ side = 'left', className = '' }: HangingVinesProps) => {
                 <ellipse cx="78" cy="356" rx="7" ry="3" transform="rotate(26 78 356)" />
             </g>
 
-            <g fill="#9adbe8" fillOpacity="0.5">
+            <g fill="#b9f2ff" fillOpacity="0.5">
                 <circle cx="54" cy="76" r="1.5" />
                 <circle cx="71" cy="150" r="1.2" />
                 <circle cx="58" cy="238" r="1.4" />

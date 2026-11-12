@@ -150,13 +150,16 @@ const Skills = () => {
                         return (
                             <motion.div
                                 key={category.title}
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.08 }}
-                                className="hk-panel hk-frame group/card relative overflow-hidden p-5 sm:p-7"
+                                transition={{ delay: index * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
+                                className="hk-panel-raised hk-frame group/card relative overflow-hidden p-5 sm:p-7"
                             >
-                                <div className="pointer-events-none absolute -right-20 -top-24 h-52 w-52 rounded-full bg-soul/[0.06] opacity-0 blur-3xl transition-opacity duration-500 group-hover/card:opacity-100" />
+                                {/* Depth glow behind card */}
+                                <div className="pointer-events-none absolute -right-24 -top-28 h-56 w-56 rounded-full bg-soul/[0.05] opacity-0 blur-3xl transition-opacity duration-500 group-hover/card:opacity-100" />
+                                {/* Inner highlight */}
+                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-soul/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
 
                                 <div className="relative mb-6 flex items-start justify-between gap-4">
                                     <div className="flex items-center gap-3.5">

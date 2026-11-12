@@ -34,23 +34,27 @@ const SectionHeading = ({
             viewport={{ once: true }}
             className={`relative flex flex-col gap-6 ${centered ? 'items-center text-center' : 'lg:flex-row lg:items-end lg:justify-between'} ${className}`}
         >
-            {/* Faint mask pressed into the stone behind the heading */}
+            {/* Faint mask pressed into the stone behind the heading - 3D depth */}
             <KnightMark
-                className={`pointer-events-none absolute -top-10 hidden h-32 w-32 text-pale/[0.03] sm:block ${
-                    centered ? 'left-1/2 -translate-x-1/2' : 'right-0 lg:right-24'
-                }`}
+                className={`pointer-events-none absolute -top-12 hidden h-36 w-36 text-pale/[0.035] sm:block ${centered ? 'left-1/2 -translate-x-1/2' : 'right-0 lg:right-28'}`}
+                style={{ filter: 'blur(0.5px)' }}
             />
 
             <div className="relative max-w-2xl">
                 <div className={`flex items-center gap-3 ${centered ? 'justify-center' : ''}`}>
                     {icon ? (
-                        <Charm icon={icon} size="sm" tone="gold" />
+                        <div className="relative">
+                            <span className="absolute inset-0 rotate-45 border border-gold/20" />
+                            <Charm icon={icon} size="sm" tone="gold" />
+                        </div>
                     ) : (
-                        <span className="flex h-8 w-8 items-center justify-center border border-gold/25">
-                            <span className="h-1.5 w-1.5 rotate-45 border border-gold/60" />
+                        <span className="relative flex h-9 w-9 items-center justify-center">
+                            <span className="absolute inset-0 rotate-45 border border-gold/25" />
+                            <span className="absolute inset-[7px] rotate-45 border border-pale/[0.06]" />
+                            <span className="relative h-1.5 w-1.5 rotate-45 border border-gold/60" />
                         </span>
                     )}
-                    <p className="font-display text-[9px] uppercase tracking-[0.42em] text-soul/65 sm:text-[10px]">
+                    <p className="font-display text-[9px] uppercase tracking-[0.42em] text-soul/70 sm:text-[10px]">
                         {eyebrow}
                     </p>
                 </div>

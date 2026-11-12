@@ -1,5 +1,14 @@
 'use client';
 import { useRef, useEffect, CSSProperties } from 'react';
+import {
+    LETTER_CHAR_HEIGHT,
+    LETTER_CHAR_WIDTH,
+    LETTER_FONT_SIZE,
+    calculateGrid,
+    interpolateColor,
+    parseColor,
+    type Rgb,
+} from './letter-glitch-utils';
 
 const LetterGlitch = ({
     glitchColors = ['#FF00FF', '#00FFFF', '#00FF00'],
@@ -19,13 +28,9 @@ const LetterGlitch = ({
     const running = useRef(false);
     const isVisible = useRef(true);
     const pageVisible = useRef(true);
-    const colorCache = useRef(new Map());
+    const colorCache = useRef(new Map<string, Rgb | null>());
 
     const lettersAndSymbols = Array.from(characters);
-
-    const fontSize = 16;
-    const charWidth = 10;
-    const charHeight = 20;
 
     const getRandomChar = () => {
         return lettersAndSymbols[Math.floor(Math.random() * lettersAndSymbols.length)];
@@ -35,52 +40,16 @@ const LetterGlitch = ({
         return glitchColors[Math.floor(Math.random() * glitchColors.length)];
     };
 
-    const hexToRgb = hex => {
-        if (colorCache.current.has(hex)) {
-            return colorCache.current.get(hex);
+    // Parsing a colour is cheap but happens on every animation frame, so the
+    // result is memoised per colour string.
+    const hexToRgb = (color: string): Rgb | null => {
+        if (colorCache.current.has(color)) {
+            return colorCache.current.get(color) ?? null;
         }
 
-        let result = null;
-        const normalized = hex.replace(
-            /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-            (m, r, g, b) => r + r + g + g + b + b
-        );
-
-        const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(normalized);
-        if (match) {
-            result = {
-                r: parseInt(match[1], 16),
-                g: parseInt(match[2], 16),
-                b: parseInt(match[3], 16)
-            };
-        } else {
-            const rgbMatch = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/i.exec(hex);
-            if (rgbMatch) {
-                result = {
-                    r: parseInt(rgbMatch[1], 10),
-                    g: parseInt(rgbMatch[2], 10),
-                    b: parseInt(rgbMatch[3], 10)
-                };
-            }
-        }
-
-        colorCache.current.set(hex, result);
+        const result = parseColor(color);
+        colorCache.current.set(color, result);
         return result;
-    };
-
-    const interpolateColor = (start, end, factor) => {
-        const result = {
-            r: Math.round(start.r + (end.r - start.r) * factor),
-            g: Math.round(start.g + (end.g - start.g) * factor),
-            b: Math.round(start.b + (end.b - start.b) * factor)
-        };
-        return `rgb(${result.r}, ${result.g}, ${result.b})`;
-    };
-
-    const calculateGrid = (width, height) => {
-        const columns = Math.ceil(width / charWidth);
-        const rows = Math.ceil(height / charHeight);
-        return { columns, rows };
     };
 
     const initializeLetters = (columns, rows) => {
@@ -124,12 +93,12 @@ const LetterGlitch = ({
         const ctx = context.current;
         const { width, height } = canvasRef.current.getBoundingClientRect();
         ctx.clearRect(0, 0, width, height);
-        ctx.font = `${fontSize}px monospace`;
+        ctx.font = `${LETTER_FONT_SIZE}px monospace`;
         ctx.textBaseline = 'top';
 
         letters.current.forEach((letter, index) => {
-            const x = (index % grid.current.columns) * charWidth;
-            const y = Math.floor(index / grid.current.columns) * charHeight;
+            const x = (index % grid.current.columns) * LETTER_CHAR_WIDTH;
+            const y = Math.floor(index / grid.current.columns) * LETTER_CHAR_HEIGHT;
             ctx.fillStyle = letter.color;
             ctx.fillText(letter.char, x, y);
         });

@@ -112,11 +112,11 @@ const OpenSource = () => {
                         return (
                             <motion.div
                                 key={org.orgName}
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: index * 0.08 }}
-                                className="hk-panel hk-frame group"
+                                transition={{ delay: index * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
+                                className="hk-panel-raised hk-frame group"
                             >
                                 <button
                                     onClick={() => toggle(org.orgName)}
@@ -208,7 +208,7 @@ const OpenSource = () => {
                                                         href={pr.link}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="group/pr relative flex flex-col overflow-hidden border border-pale/10 bg-void/40 p-4 transition-all duration-300 hover:border-soul/30 hover:bg-soul/[0.035] sm:p-5"
+                                                        className="group/pr relative flex flex-col overflow-hidden hk-panel-recessed p-4 transition-all duration-300 hover:border-soul/30 hover:bg-soul/[0.035] sm:p-5"
                                                     >
                                                         <div className="absolute right-3 top-3 opacity-0 transition-opacity duration-300 group-hover/pr:opacity-100">
                                                             <ExternalLink className="h-4 w-4 text-soul/70" />

@@ -13,7 +13,7 @@ export type Badge = {
     /** Stable identifier. */
     id: string;
     /** Which sprite in `badgeSprites` to draw. */
-    sprite: 'microsoft' | 'ethglobal' | 'polkadot' | 'freebsd' | 'iris' | 'leadership' | 'tee' | 'rails';
+    sprite: 'microsoft' | 'microsoft32' | 'ethglobal' | 'polkadot' | 'freebsd' | 'iris' | 'leadership' | 'tee' | 'rails';
     /** Badge title. */
     name: string;
     /** Organisation, event or project the badge comes from. */
@@ -37,7 +37,7 @@ export type Badge = {
 export const badges: Badge[] = [
     {
         id: 'microsoft-internship',
-        sprite: 'microsoft',
+        sprite: 'microsoft32',
         name: 'Microsoft Internship',
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',

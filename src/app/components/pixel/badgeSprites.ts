@@ -33,6 +33,11 @@ export const badgePalette: BadgePalette = {
     V: '#00d4aa', // teal
     F: '#f05032', // FreeBSD red
     I: '#6b21a8', // IRIS purple
+    // Microsoft logo colors
+    MR: '#f25022', // Microsoft red
+    MG: '#7fba00', // Microsoft green
+    MB: '#00a4ef', // Microsoft blue
+    MY: '#ffb900', // Microsoft yellow
 };
 
 export type BadgeArt = {
@@ -40,7 +45,7 @@ export type BadgeArt = {
     title?: string;
 };
 
-/** Microsoft — four-pane window logo on blue badge. */
+/** Microsoft — four-pane window logo (16×16). */
 export const microsoftBadge: BadgeArt = {
     title: 'Blue badge with Microsoft four-pane window logo',
     rows: [
@@ -60,6 +65,46 @@ export const microsoftBadge: BadgeArt = {
         'KBBBBKKKKKKBBBBBK',
         '.KBBBBBBBBBBBBK.',
         '..KBBBBBBBBBBK..',
+    ],
+};
+
+/** Microsoft — four-pane window logo (32×32) with authentic colors. */
+export const microsoftBadge32: BadgeArt = {
+    title: 'Badge with Microsoft 4-pane window logo (authentic colors)',
+    rows: [
+        '................................',
+        '................................',
+        '....KKKKKKKKKKKKKKKKKKKKKKKK....',
+        '...KMRMRMRMRMRMRKKKKKMGKMGKMGKMG.',
+        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
+        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
+        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
+        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        '................................',
+        '................................',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        '................................',
+        '................................',
     ],
 };
 
@@ -226,6 +271,7 @@ export const railsBadge: BadgeArt = {
 
 export const badgeSprites = {
     microsoft: microsoftBadge,
+    microsoft32: microsoftBadge32,
     ethglobal: ethGlobalBadge,
     polkadot: polkadotBadge,
     freebsd: freebsdBadge,

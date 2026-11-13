@@ -59,7 +59,7 @@ const contactLinks: ContactLink[] = [
 const Contact = () => {
     return (
         <section
-            className="relative flex min-h-[78svh] flex-col items-center justify-center overflow-hidden border-t-[3px] border-bark bg-parchment py-20 sm:py-28"
+            className="relative flex min-h-[78svh] flex-col items-center justify-center border-t-[3px] border-bark bg-parchment py-20 sm:py-28"
             id="contact"
         >
             <div className="relative z-10 mx-auto w-full max-w-4xl px-4 text-center sm:px-6">

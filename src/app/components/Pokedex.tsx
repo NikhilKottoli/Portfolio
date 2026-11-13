@@ -335,7 +335,7 @@ export const Pokedex = () => {
 
     return (
         <section
-            className="relative overflow-hidden border-t-[3px] border-bark bg-cream py-16 sm:py-20"
+            className="relative border-t-[3px] border-bark bg-cream py-16 sm:py-20"
             id="pokedex"
         >
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6">

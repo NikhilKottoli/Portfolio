@@ -1,9 +1,9 @@
-import ExperienceComponent from '../components/Experience';
+import Journey from '../components/Journey';
 
 export default function Experience() {
     return (
         <main>
-            <ExperienceComponent />
+            <Journey />
         </main>
     );
 }

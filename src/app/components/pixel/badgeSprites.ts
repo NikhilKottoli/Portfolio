@@ -1,9 +1,8 @@
 /**
- * Original badge emblems for the Badge Case.
+ * Badge emblems — pixel art logos for each organization/award.
  *
- * Every emblem is drawn from scratch on the same 16×16 grid, using a shared
- * octagonal frame so the set reads as one collection while each badge keeps
- * its own silhouette and colour. No official gym badge artwork is used.
+ * Each emblem is drawn on a 16×16 grid using a shared octagonal frame.
+ * Colours are kept to the badge palette for consistency.
  */
 
 export type BadgePalette = Record<string, string>;
@@ -11,27 +10,29 @@ export type BadgePalette = Record<string, string>;
 /**
  * Shared badge palette.
  *
- * `K` is the hard outline, `B` the badge face, `W` the silver inner emblem,
- * `Y` the gold accent, and the remaining letters are badge-specific colours.
+ * `K` is the hard outline, `B` the badge face (blue), `W` white/silver,
+ * `Y` gold, `R` red, `G` green, `P` purple, `O` orange, `C` cyan,
+ * `M` magenta, `N` navy, `L` light blue, `D` dark gray.
  */
 export const badgePalette: BadgePalette = {
-    K: '#24382b',
-    B: '#3f6fb5',
-    b: '#2d4f80',
-    W: '#fffaf0',
-    w: '#d8ccab',
-    Y: '#f2be3c',
-    R: '#d8433b',
-    r: '#a52f2a',
-    G: '#33713f',
-    g: '#275630',
-    P: '#8a5fc4',
-    p: '#63419a',
-    O: '#ef6b3c',
-    o: '#c04a26',
-    S: '#7a4a25',
-    C: '#8ccddc',
-    T: '#f5efdc',
+    K: '#24382b', // bark - outline
+    B: '#0078d4', // Microsoft blue
+    W: '#ffffff', // white
+    Y: '#f2be3c', // gold
+    R: '#d8433b', // berry/red
+    G: '#33713f', // leaf/green
+    P: '#8a5fc4', // purple
+    O: '#ef6b3c', // orange
+    C: '#00bcf2', // cyan
+    M: '#e3008c', // magenta
+    N: '#002050', // navy
+    L: '#00b8d4', // light blue
+    D: '#333333', // dark gray
+    S: '#cc0000', // Rails red
+    T: '#7c3aed', // violet
+    V: '#00d4aa', // teal
+    F: '#f05032', // FreeBSD red
+    I: '#6b21a8', // IRIS purple
 };
 
 export type BadgeArt = {
@@ -39,186 +40,184 @@ export type BadgeArt = {
     title?: string;
 };
 
-/**
- * MS internship — a four-pane window emblem on a blue badge.
- */
+/** Microsoft — four-pane window logo on blue badge. */
 export const microsoftBadge: BadgeArt = {
-    title: 'Blue badge with a four-pane window emblem',
+    title: 'Blue badge with Microsoft four-pane window logo',
     rows: [
-        '...KKKKKKKKKK...',
+        '....KKKKKKKK....',
+        '...KBBBBBBBBBBK.',
+        '..KBBBBBBBBBBBBK',
+        '..KBBBBBBBBBBBBK',
+        '.KBBBBBBBBBBBBBBK',
+        'KBBBBKKKKKKBBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBKKKKKKBBBBBK',
+        '.KBBBBBBBBBBBBK.',
         '..KBBBBBBBBBBK..',
-        '.KBBBBBBBBBBBBK.',
-        '.KBBBBBBBBBBBBK.',
-        'KBBBBBBBBBBBBBBK',
-        'KBBBBBKKKKKBBBBK',
-        'KBBBBBKWKWKBBBBK',
-        'KBBBBBKWKWKBBBBK',
-        'KBBBBBKWKWKBBBBK',
-        'KBBBBBKWKWKBBBBK',
-        'KBBBBBKKKKKBBBBK',
-        'KBBBBBBBBBBBBBBK',
-        'KBBBBBBBBBBBBBBK',
-        '.KBBBBBBBBBBBBK.',
-        '..KBBBBBBBBBBK..',
-        '...KKKKKKKKKK...',
     ],
 };
 
-/** ETH Global — a gold star on a red badge. */
+/** ETH Global — diamond/logo on dark badge. */
 export const ethGlobalBadge: BadgeArt = {
-    title: 'Red badge with a gold star emblem',
+    title: 'Dark badge with ETH Global diamond logo',
     rows: [
         '....KKKKKKKK....',
-        '...KRRRRRRRRRRK.',
-        '..KRRRRRRRRRRRRK',
-        '..KRRRRRRRRRRRRK',
-        '.KRRRRRRRRRRRRRRK',
-        'KRRRRRKKKKKKRRRRK',
-        'KRRRRKYYYKKYYKRRK',
-        'KRRRKYYKKKKYYKRRK',
-        'KRRKYYKKKKKKYYKRR',
-        'KRRKYYKKKKKKYYKRR',
-        'KRRRKYYKKKKYYKRRK',
-        'KRRRRKYYYKKYYKRRK',
-        'KRRRRRKKKKKKRRRRK',
-        '.KRRRRRRRRRRRRK.',
-        '..KRRRRRRRRRRK..',
+        '...KDDDDDDDDDDK.',
+        '..KDDDDDDDDDDDDK',
+        '..KDDDDDDDDDDDDK',
+        '.KDDDDDKKKKKDDDK',
+        'KDDDDDKWWWWWWDDDK',
+        'KDDDDKWWWWWWWWDDK',
+        'KDDDKWWWWWWWWWDDK',
+        'KDDDKWWWWWWWWWDDK',
+        'KDDDDKWWWWWWWWDDK',
+        'KDDDDDKWWWWWWDDDK',
+        'KDDDDDDKKKKKDDDDK',
+        'KDDDDDDDDDDDDDDDK',
+        '.KDDDDDDDDDDDDDK.',
+        '..KDDDDDDDDDDDK..',
         '....KKKKKKKK....',
     ],
 };
 
-/** Polkadot — connected nodes on a violet badge. */
+/** Polkadot — multicolored dots on pink/purple badge. */
 export const polkadotBadge: BadgeArt = {
-    title: 'Violet badge with a connected node emblem',
+    title: 'Purple badge with Polkadot multicolored dots',
     rows: [
         '....KKKKKKKK....',
         '...KPPPPPPPPPPK.',
         '..KPPPPPPPPPPPPK',
         '..KPPPPPPPPPPPPK',
-        '.KPPPPPPPPPPPPPPK',
-        'KPPPPKKKKKKPPPPPK',
+        '.KPPPPPKKKKKPPPPK',
         'KPPPPKWWWWKWWWPPK',
         'KPPPKWWWWWWWWWPPK',
         'KPPPKWWWWWWWWWPPK',
+        'KPPPKWWWWWWWWWPPK',
+        'KPPPKWWWWWWWWWPPK',
         'KPPPPKWWWWKWWWPPK',
-        'KPPPPKKKKKKPPPPPK',
+        'KPPPPPKKKKKPPPPPK',
         'KPPPPPPPPPPPPPPPK',
-        'KPPPPPPPPPPPPPPPK',
-        '..KPPPPPPPPPPPK.',
-        '...KPPPPPPPPPPK.',
+        '.KPPPPPPPPPPPPPK.',
+        '..KPPPPPPPPPPPK..',
         '....KKKKKKKK....',
     ],
 };
 
-/** FreeBSD — a shield with a wave on a bay-blue badge. */
+/** FreeBSD — BSD daemon face on red badge. */
 export const freebsdBadge: BadgeArt = {
-    title: 'Blue badge with a shield and wave emblem',
+    title: 'Red badge with FreeBSD daemon',
     rows: [
-        '...KKKKKKKKKK...',
-        '..KCCCCCCCCCCK..',
-        '.KCCCCCCCCCCCCK.',
-        '.KCCCCCCCCCCCCK.',
-        'KCCCCCCCCCCCCCCK',
-        'KCCCCCKKKKKCCCCK',
-        'KCCCCKWWWKCCCCCK',
-        'KCCCKWWWWWKCCCCK',
-        'KCCKWWWWWWWWKCCK',
-        'KCCKWWWWWWWWKCCK',
-        'KCCKKWWWWWWKKCCK',
-        'KCCCKKKKKKKKCCCK',
-        'KCCCCCCCCCCCCCCK',
-        '.KCCCCCCCCCCCCK.',
-        '..KCCCCCCCCCCK..',
-        '...KKKKKKKKKK...',
+        '....KKKKKKKK....',
+        '...KFFFFFFFFFFFK.',
+        '..KFFFFFFFFFFFFFK',
+        '..KFFFFFFFFFFFFFK',
+        '.KFFFFFKKKKKFFFFFK',
+        'KFFFFFKWWWWKFFFFFK',
+        'KFFFFKWWWWWWWWFFFK',
+        'KFFFFKWWWWWWWWFFFK',
+        'KFFFFKWWWWWWWWFFFK',
+        'KFFFFKWWWWKWWWFFFK',
+        'KFFFFFKWWWWKFFFFFK',
+        'KFFFFFKKKKKFFFFFK',
+        'KFFFFFFFFFFFFFFFFK',
+        '.KFFFFFFFFFFFFFK.',
+        '..KFFFFFFFFFFFK..',
+        '....KKKKKKKK....',
     ],
 };
 
-/** IRIS maintainer — a gear emblem on a green badge. */
+/** IRIS — eye/iris flower on purple badge. */
 export const irisBadge: BadgeArt = {
-    title: 'Green badge with a gear emblem',
+    title: 'Purple badge with IRIS eye logo',
     rows: [
-        '...KKKKKKKKKK...',
-        '..KGGGGGGGGGGK..',
-        '.KGGGGGGGGGGGGK.',
-        '.KGGGGGGGGGGGGK.',
-        'KGGGGGGGGGGGGGGK',
-        'KGGGGGKKKKKGGGGK',
-        'KGGGGKWWWWWKGGGK',
-        'KGGGKWWWWWWWKGGK',
-        'KGGKWWWWWWWWWKGG',
-        'KGGKWWWWWWWWWKGG',
-        'KGGGGKWWWWWKGGGK',
-        'KGGGGGKKKKKGGGGK',
-        'KGGGGGGGGGGGGGGK',
-        '.KGGGGGGGGGGGGK.',
-        '..KGGGGGGGGGGK..',
-        '...KKKKKKKKKK...',
+        '....KKKKKKKK....',
+        '...KIIIIIIIIIIK.',
+        '..KIIIIIIIIIIIIK',
+        '..KIIIIIIIIIIIIK',
+        '.KIIIIIIKKKKIIIIK',
+        'KIIIIKWWWWKWWWIIK',
+        'KIIIIKWWWWWWWWIIK',
+        'KIIIKWWWWWWWWWKIK',
+        'KIIIKWWWWWWWWWKIK',
+        'KIIIIKWWWWKWWWIIK',
+        'KIIIIKWWWWWWWWIIK',
+        'KIIIIKKKKKKKIIIIK',
+        'KIIIIIIIIIIIIIIIIK',
+        '.KIIIIIIIIIIIIK.',
+        '..KIIIIIIIIIIK..',
+        '....KKKKKKKK....',
     ],
 };
 
-/** IEEE / leadership — a lightning bolt on an orange badge. */
-export const leadershipBadge: BadgeArt = {
-    title: 'Orange badge with a lightning bolt emblem',
-    rows: [
-        '...KKKKKKKKKK...',
-        '..KOOOOOOOOOOK..',
-        '.KOOOOOOOOOOOOK.',
-        '.KOOOOOOOOOOOOK.',
-        'KOOOOOOOOOOOOOOK',
-        'KOOOOOKKKKKOOOOOK',
-        'KOOOOOKWWWKOOOOOK',
-        'KOOOOOKWKWKOOOOOK',
-        'KOOOOOKWWWKOOOOOK',
-        'KOOOOOKWKOKOOOOOK',
-        'KOOOOOKWOKOOOOOOK',
-        'KOOOOOKKOOOOOOOOOK',
-        'KOOOOOOOOOOOOOOK',
-        '.KOOOOOOOOOOOOK.',
-        '..KOOOOOOOOOOOK..',
-        '...KKKKKKKKKK...',
-    ],
-};
-
-/** NEAR TEE — a padlock on a teal badge. */
+/** NEAR — NEAR logo on teal badge. */
 export const teeBadge: BadgeArt = {
-    title: 'Teal badge with a padlock emblem',
+    title: 'Teal badge with NEAR logo',
     rows: [
-        '...KKKKKKKKKK...',
-        '..KCCCCCCCCCCK..',
-        '.KCCCCCCCCCCCCK.',
-        '.KCCCCCCCCCCCCK.',
-        'KCCCCCCCCCCCCCCK',
-        'KCCCCCCKKKKCCCCK',
-        'KCCCCCKKKKKKCCCK',
-        'KCCCCKWWWWWKCCCK',
-        'KCCCKWWWWWWWKCCK',
-        'KCCKWKWWWWWWKWCCK',
-        'KCCKWKWWWWWWKWCCK',
-        'KCCKWKWWWWWWKWCCK',
-        'KCCCCKKKKKKKKCCK',
-        '.KCCCCCCCCCCCCK.',
-        '..KCCCCCCCCCCK..',
-        '...KKKKKKKKKK...',
+        '....KKKKKKKK....',
+        '...KVVVVVVVVVVK.',
+        '..KVVVVVVVVVVVVK',
+        '..KVVVVVVVVVVVVK',
+        '.KVVVVVKKKKKVVVVK',
+        'KVVVVKWWWWKWWVVVK',
+        'KVVVKWWWWWWWWWVVK',
+        'KVVKWWWWWWWWWWVVK',
+        'KVVKWWWWWWWWWWVVK',
+        'KVVVKWWWWWWWWWVVK',
+        'KVVVVKWWWWKWWVVVK',
+        'KVVVVVKKKKKVVVVVK',
+        'KVVVVVVVVVVVVVVVK',
+        '.KVVVVVVVVVVVVK.',
+        '..KVVVVVVVVVVK..',
+        '....KKKKKKKK....',
     ],
 };
 
-/** Rails — a faceted gem on a tan badge. */
+/** IEEE — kite/diamond with arrow on blue badge. */
+export const leadershipBadge: BadgeArt = {
+    title: 'Blue badge with IEEE kite logo',
+    rows: [
+        '....KKKKKKKK....',
+        '...KBBBBBBBBBBBK.',
+        '..KBBBBBBBBBBBBK',
+        '..KBBBBBBBBBBBBK',
+        '.KBBBBBKKKKKBBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBKWWWWWWWWBBBK',
+        'KBBKWWWWWWWWWWBBK',
+        'KBBKWWWWWWWWWWBBK',
+        'KBBBKWWWWWWWWBBBK',
+        'KBBBBKWWWWWWBBBBK',
+        'KBBBBBKKKKKBBBBK',
+        'KBBBBBBBBBBBBBBBK',
+        '.KBBBBBBBBBBBBK.',
+        '..KBBBBBBBBBBK..',
+        '....KKKKKKKK....',
+    ],
+};
+
+/** Rails — gem/logo on red badge. */
 export const railsBadge: BadgeArt = {
-    title: 'Tan badge with a cut-gem emblem',
+    title: 'Red badge with Rails gem logo',
     rows: [
         '....KKKKKKKK....',
         '...KSSSSSSSSSSK.',
         '..KSSSSSSSSSSSSK',
         '..KSSSSSSSSSSSSK',
-        '.KSSSSSSSSSSSSSSK',
+        '.KSSSSSKKKKKSSSSK',
+        'KSSSSKWWWWWWSSSSK',
+        'KSSSKWWWWWWWWSSSK',
+        'KSSKWWWWWWWWWWSSK',
+        'KSSKWWWWWWWWWWSSK',
+        'KSSSKWWWWWWWWSSSK',
+        'KSSSSKWWWWWWSSSSK',
         'KSSSSSKKKKKSSSSSK',
-        'KSSSSKWWWWWKSSSSK',
-        'KSSSKWWWWWWWKSSSK',
-        'KSSKWWWWWWWWWKSSK',
-        'KSSKWWWWWWWWWKSSK',
-        'KSSSKWWWWWWWKSSSK',
-        'KSSSSKWWWWWKSSSSK',
-        'KSSSSSKKKKKSSSSSK',
+        'KSSSSSSSSSSSSSSSK',
         '.KSSSSSSSSSSSSK.',
         '..KSSSSSSSSSSK..',
         '....KKKKKKKK....',
@@ -231,8 +230,8 @@ export const badgeSprites = {
     polkadot: polkadotBadge,
     freebsd: freebsdBadge,
     iris: irisBadge,
-    leadership: leadershipBadge,
     tee: teeBadge,
+    leadership: leadershipBadge,
     rails: railsBadge,
 };
 

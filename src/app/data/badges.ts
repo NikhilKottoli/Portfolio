@@ -7,7 +7,7 @@
  * inferred or inflated.
  */
 
-export type BadgeKind = 'Employment' | 'Award' | 'Upstream' | 'Leadership';
+export type BadgeKind = 'Employment' | 'Award' | 'Open Source' | 'Leadership';
 
 export type Badge = {
     /** Stable identifier. */
@@ -86,7 +86,7 @@ export const badges: Badge[] = [
         name: 'FreeBSD Upstream',
         organisation: 'FreeBSD Project',
         period: 'January 2025',
-        kind: 'Upstream',
+        kind: 'Open Source',
         summary: 'Merged kernel change aligning PRR with RFC 9937.',
         description:
             'A merged contribution to the FreeBSD kernel aligning the Proportional Rate Reduction implementation with RFC 9937, the current TCP loss recovery specification.',
@@ -145,7 +145,7 @@ export const badges: Badge[] = [
         name: 'Rails Upstream',
         organisation: 'Ruby on Rails',
         period: 'October – November 2025',
-        kind: 'Upstream',
+        kind: 'Open Source',
         summary: 'Merged documentation corrections in Rails and cssbundling-rails.',
         description:
             'Merged documentation corrections into Ruby on Rails and cssbundling-rails, including a release 8.0 documentation fix in rails/rails #55581.',
@@ -156,4 +156,4 @@ export const badges: Badge[] = [
 ];
 
 /** Badges grouped by kind, used by the filter tabs in the badge case. */
-export const badgeKinds: BadgeKind[] = ['Employment', 'Award', 'Upstream', 'Leadership'];
+export const badgeKinds: BadgeKind[] = ['Employment', 'Award', 'Open Source', 'Leadership'];

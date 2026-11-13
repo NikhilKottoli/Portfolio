@@ -48,8 +48,8 @@ const styles = `
 `;
 
 function Marquee({
-  className,
-  reverse,
+  className = '',
+  reverse = false,
   pauseOnHover = true,
   children,
   vertical = false,

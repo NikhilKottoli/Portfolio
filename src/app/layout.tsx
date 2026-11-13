@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import React from 'react';
 import './globals.css';
 import NavBar from './components/Navbar';
-import WorldBackdrop from './components/WorldBackdrop';
 import SiteFooter from './components/SiteFooter';
 
 export const metadata: Metadata = {
@@ -17,11 +16,10 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="min-h-screen w-full bg-void text-pale antialiased">
-                <WorldBackdrop />
-                <div className="App relative z-10 min-h-screen w-full">
+            <body className="min-h-screen w-full bg-parchment text-ink antialiased">
+                <div className="relative flex min-h-screen w-full flex-col">
                     <NavBar />
-                    <div className="relative">{children}</div>
+                    <div className="relative flex-1">{children}</div>
                     <SiteFooter />
                 </div>
             </body>

@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'motion/react';
-import { Code2, Layers, Database, Wrench, Table2, Network, Flame } from 'lucide-react';
+import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
+import PixelSprite from './pixel/PixelSprite';
+import Reveal from './pixel/Reveal';
 import SectionHeading from './SectionHeading';
-import Charm from './Charm';
+import { bushSprite, leaflingSprite } from './pixel/sprites';
 
 const DEVICON = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons';
 const SIMPLEICONS = 'https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons';
@@ -14,8 +15,8 @@ const ROMAN = ['I', 'II', 'III', 'IV'];
 type Skill = {
     name: string;
     logo?: string;
-    icon?: React.ElementType;
-    /** Use for black single-colour logos that need to be inverted on dark backgrounds. */
+    icon?: PixelIconName;
+    /** Use for black single-colour logos that need to be inverted. */
     mono?: boolean;
     /** Use for dark logos that need a lighter tile to stay legible. */
     light?: boolean;
@@ -24,7 +25,7 @@ type Skill = {
 type SkillCategory = {
     title: string;
     subtitle: string;
-    icon: React.ElementType;
+    icon: PixelIconName;
     skills: Skill[];
 };
 
@@ -32,167 +33,148 @@ const skillCategories: SkillCategory[] = [
     {
         title: 'Languages',
         subtitle: 'Core programming',
-        icon: Code2,
+        icon: 'chip',
         skills: [
             { name: 'Ruby', logo: `${DEVICON}/ruby/ruby-original.svg` },
             { name: 'Python', logo: `${DEVICON}/python/python-original.svg` },
             { name: 'C', logo: `${DEVICON}/c/c-original.svg` },
             { name: 'C++', logo: `${DEVICON}/cplusplus/cplusplus-original.svg` },
             { name: 'C#', logo: `${DEVICON}/csharp/csharp-original.svg` },
-            { name: 'SQL', icon: Table2 },
+            { name: 'SQL', icon: 'chart' },
             { name: 'JavaScript', logo: `${DEVICON}/javascript/javascript-original.svg` },
             { name: 'HTML', logo: `${DEVICON}/html5/html5-original.svg` },
-            { name: 'CSS', logo: `${DEVICON}/css3/css3-original.svg` }
-        ]
+            { name: 'CSS', logo: `${DEVICON}/css3/css3-original.svg` },
+        ],
     },
     {
         title: 'Frameworks',
         subtitle: 'Application stack',
-        icon: Layers,
+        icon: 'gear',
         skills: [
             { name: 'Ruby on Rails', logo: `${DEVICON}/rails/rails-plain.svg` },
             { name: 'React', logo: `${DEVICON}/react/react-original.svg` },
             { name: 'Node.js', logo: `${DEVICON}/nodejs/nodejs-original.svg` },
             { name: 'Django', logo: `${DEVICON}/django/django-plain.svg`, light: true },
             { name: '.NET', logo: `${DEVICON}/dotnetcore/dotnetcore-original.svg` },
-            { name: 'LangChain', logo: `${SIMPLEICONS}/langchain.svg`, mono: true }
-        ]
+            { name: 'LangChain', logo: `${SIMPLEICONS}/langchain.svg`, mono: true },
+        ],
     },
     {
         title: 'Databases',
         subtitle: 'Data & storage',
-        icon: Database,
+        icon: 'folder',
         skills: [
             { name: 'MariaDB', logo: `${DEVICON}/mariadb/mariadb-original.svg`, light: true },
             { name: 'Redis', logo: `${DEVICON}/redis/redis-original.svg` },
-            { name: 'Qdrant', logo: `${SIMPLEICONS}/qdrant.svg`, mono: true }
-        ]
+            { name: 'Qdrant', logo: `${SIMPLEICONS}/qdrant.svg`, mono: true },
+        ],
     },
     {
         title: 'Developer Tools',
         subtitle: 'Workflow & infrastructure',
-        icon: Wrench,
+        icon: 'book',
         skills: [
             { name: 'Git', logo: `${DEVICON}/git/git-original.svg` },
             { name: 'Docker', logo: `${DEVICON}/docker/docker-original.svg` },
-            { name: 'Packetdrill', icon: Network },
-            { name: 'Postman', logo: `${DEVICON}/postman/postman-original.svg` }
-        ]
-    }
+            { name: 'Packetdrill', icon: 'cloud' },
+            { name: 'Postman', logo: `${DEVICON}/postman/postman-original.svg` },
+        ],
+    },
 ];
 
 const totalSkills = skillCategories.reduce((count, category) => count + category.skills.length, 0);
 
-const SkillChip = ({ skill }: { skill: Skill }) => {
-    const Icon = skill.icon;
-
-    return (
-        <div className="group/chip hk-chip flex items-center gap-2.5 py-1.5 pl-1.5 pr-3">
-            <span
-                className={`flex h-6 w-6 shrink-0 items-center justify-center ${
-                    skill.light ? 'bg-pale/90' : 'bg-pale/[0.055]'
-                }`}
-            >
-                {skill.logo ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                        src={skill.logo}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        decoding="async"
-                        className={`h-4 w-4 object-contain transition-transform duration-300 group-hover/chip:scale-110 ${
-                            skill.mono ? 'invert' : ''
-                        }`}
-                    />
-                ) : Icon ? (
-                    <Icon className="h-4 w-4 text-mist/70 transition-colors duration-300 group-hover/chip:text-soul" />
-                ) : null}
-            </span>
-            <span className="whitespace-nowrap font-body text-[13px] font-medium leading-none text-mist/80 transition-colors duration-300 group-hover/chip:text-pale">
-                {skill.name}
-            </span>
-        </div>
-    );
-};
+const SkillChip = ({ skill }: { skill: Skill }) => (
+    <div className="pk-chip flex items-center gap-2.5 py-1.5 pl-1.5 pr-3">
+        <span
+            className={`flex h-6 w-6 shrink-0 items-center justify-center ${
+                skill.light ? 'bg-cream' : 'bg-sand'
+            }`}
+        >
+            {skill.logo ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src={skill.logo}
+                    alt=""
+                    aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
+                    className={`h-4 w-4 object-contain transition-transform duration-300 hover:scale-110 ${
+                        skill.mono ? 'invert' : ''
+                    }`}
+                />
+            ) : skill.icon ? (
+                <PixelIcon name={skill.icon} className="h-4 w-4 text-bark" />
+            ) : null}
+        </span>
+        <span className="whitespace-nowrap font-body text-[13px] font-medium leading-none text-ink">
+            {skill.name}
+        </span>
+    </div>
+);
 
 const Skills = () => {
     return (
-        <section className="relative overflow-hidden py-24 sm:py-28 lg:py-36" id="skills">
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-pale/10 to-transparent" />
-            <div className="pointer-events-none absolute -right-40 top-10 h-[480px] w-[480px] rounded-full bg-soul/[0.045] blur-[130px]" />
-            <div className="pointer-events-none absolute -left-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold/[0.03] blur-[130px]" />
-
-            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        <section className="relative overflow-hidden border-t-[3px] border-bark bg-cream py-16 sm:py-20" id="skills">
+            <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="The Wanderer's Arsenal"
+                    eyebrow="Move List"
                     title="Technical Arsenal"
                     description="The languages, frameworks, data stores, and tools I use to design and ship software."
-                    icon={Flame}
-                    className="mb-12 sm:mb-16 lg:mb-20"
+                    icon="chip"
                     action={
-                        <div className="hk-plaque flex items-center gap-3 self-start px-4 py-2.5 lg:self-auto">
-                            <span className="relative flex h-1.5 w-1.5">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-soul/40 opacity-75" />
-                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-soul/80" />
+                        <div className="pk-plaque flex items-center gap-3 self-start px-4 py-2.5 lg:self-auto">
+                            <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+                                <span className="absolute inline-flex h-full w-full animate-pulse-ring bg-honey" />
+                                <span className="relative inline-flex h-1.5 w-1.5 bg-honey" />
                             </span>
-                            <span className="font-display text-[8px] uppercase tracking-[0.28em] text-mist/65">
+                            <span className="font-pixel-ui text-[0.56rem] uppercase tracking-[0.2em] text-cream">
                                 {totalSkills} skills · IV disciplines
                             </span>
                         </div>
                     }
                 />
 
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:gap-6">
-                    {skillCategories.map((category, index) => {
-                        const CategoryIcon = category.icon;
-
-                        return (
-                            <motion.div
-                                key={category.title}
-                                initial={{ opacity: 0, y: 24, scale: 0.98 }}
-                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.08, type: 'spring', stiffness: 120, damping: 18 }}
-                                className="hk-panel-raised hk-frame group/card relative overflow-hidden p-5 sm:p-7"
-                            >
-                                {/* Depth glow behind card */}
-                                <div className="pointer-events-none absolute -right-24 -top-28 h-56 w-56 rounded-full bg-soul/[0.05] opacity-0 blur-3xl transition-opacity duration-500 group-hover/card:opacity-100" />
-                                {/* Inner highlight */}
-                                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-soul/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover/card:opacity-100" />
-
-                                <div className="relative mb-6 flex items-start justify-between gap-4">
+                <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:gap-5">
+                    {skillCategories.map((category, index) => (
+                        <Reveal key={category.title} delay={index * 70} className="h-full">
+                            <div className="pk-panel-raised flex h-full flex-col p-5 sm:p-6">
+                                <div className="mb-5 flex items-start justify-between gap-4">
                                     <div className="flex items-center gap-3.5">
-                                        <Charm
-                                            icon={CategoryIcon}
-                                            size="md"
-                                            tone="gold"
-                                            className="transition-colors duration-500 group-hover/card:shadow-[0_0_24px_-10px_rgba(214,181,109,0.6)]"
-                                        />
+                                        <span className="flex h-11 w-11 shrink-0 items-center justify-center border-2 border-bark bg-honey">
+                                            <PixelIcon name={category.icon} className="h-5 w-5 text-bark" />
+                                        </span>
                                         <div>
-                                            <h3 className="font-display text-base font-semibold tracking-wide text-pale sm:text-lg">
+                                            <h3 className="font-pixel-ui text-[0.95rem] uppercase tracking-[0.08em] text-bark">
                                                 {category.title}
                                             </h3>
-                                            <p className="mt-1 font-display text-[8px] uppercase tracking-[0.32em] text-mist/45 sm:text-[9px]">
+                                            <p className="mt-1 font-pixel-ui text-[0.52rem] uppercase tracking-[0.2em] text-stone">
                                                 {category.subtitle}
                                             </p>
                                         </div>
                                     </div>
 
-                                    <span className="font-display text-[10px] tracking-[0.3em] text-gold/35">
+                                    <span className="font-pixel-ui text-[0.7rem] tracking-[0.2em] text-leaf/60">
                                         {ROMAN[index]}
                                     </span>
                                 </div>
 
-                                <div className="relative flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2">
                                     {category.skills.map((skill) => (
                                         <SkillChip key={skill.name} skill={skill} />
                                     ))}
                                 </div>
-                            </motion.div>
-                        );
-                    })}
+                            </div>
+                        </Reveal>
+                    ))}
                 </div>
+
+                <Reveal delay={120}>
+                    <div className="mt-10 flex items-center justify-center gap-3 opacity-70">
+                        <PixelSprite art={bushSprite} className="h-8 w-40" />
+                        <PixelSprite art={leaflingSprite} className="h-9 w-9" />
+                    </div>
+                </Reveal>
             </div>
         </section>
     );

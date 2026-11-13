@@ -1,77 +1,67 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'motion/react';
-import KnightMark from './KnightMark';
-import Charm from './Charm';
-import NailDivider from './NailDivider';
+import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
+import PixelDivider from './pixel/PixelDivider';
+import Reveal from './pixel/Reveal';
 
 type SectionHeadingProps = {
+    /** Short label printed above the title, like a field note header. */
     eyebrow: string;
     title: React.ReactNode;
     description?: string;
     align?: 'left' | 'center';
     action?: React.ReactNode;
-    icon?: React.ElementType;
+    icon?: PixelIconName;
     className?: string;
 };
 
+/**
+ * The heading used at the top of every section: a small pixel label, a bold
+ * title, and a studded divider underneath.
+ */
 const SectionHeading = ({
     eyebrow,
     title,
     description,
     align = 'left',
     action,
-    icon,
+    icon = 'spark',
     className = '',
 }: SectionHeadingProps) => {
     const centered = align === 'center';
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className={`relative flex flex-col gap-6 ${centered ? 'items-center text-center' : 'lg:flex-row lg:items-end lg:justify-between'} ${className}`}
+        <Reveal
+            className={`flex flex-col gap-5 ${
+                centered ? 'items-center text-center' : 'lg:flex-row lg:items-end lg:justify-between'
+            } ${className}`}
         >
-            {/* Faint mask pressed into the stone behind the heading - 3D depth */}
-            <KnightMark
-                className={`pointer-events-none absolute -top-12 hidden h-36 w-36 text-pale/[0.035] sm:block ${centered ? 'left-1/2 -translate-x-1/2' : 'right-0 lg:right-28'}`}
-                style={{ filter: 'blur(0.5px)' }}
-            />
+            <div className={centered ? 'flex flex-col items-center' : ''}>
+                <span className="inline-flex items-center gap-2 font-pixel-ui text-[0.6rem] uppercase tracking-[0.24em] text-leaf">
+                    <PixelIcon name={icon} className="h-3.5 w-3.5 text-berry" />
+                    {eyebrow}
+                </span>
 
-            <div className="relative max-w-2xl">
-                <div className={`flex items-center gap-3 ${centered ? 'justify-center' : ''}`}>
-                    {icon ? (
-                        <div className="relative">
-                            <span className="absolute inset-0 rotate-45 border border-gold/20" />
-                            <Charm icon={icon} size="sm" tone="gold" />
-                        </div>
-                    ) : (
-                        <span className="relative flex h-9 w-9 items-center justify-center">
-                            <span className="absolute inset-0 rotate-45 border border-gold/25" />
-                            <span className="absolute inset-[7px] rotate-45 border border-pale/[0.06]" />
-                            <span className="relative h-1.5 w-1.5 rotate-45 border border-gold/60" />
-                        </span>
-                    )}
-                    <p className="font-display text-[9px] uppercase tracking-[0.42em] text-soul/70 sm:text-[10px]">
-                        {eyebrow}
-                    </p>
-                </div>
-
-                <h2 className="mt-4 font-display text-3xl font-semibold leading-tight tracking-wide text-pale sm:text-4xl md:text-5xl">
+                <h2 className="pk-text-shadow-soft mt-3 font-pixel-ui text-[clamp(1.35rem,3.6vw,2rem)] uppercase leading-tight tracking-[0.06em] text-bark">
                     {title}
                 </h2>
-                <NailDivider className={`mt-5 ${centered ? 'justify-center' : ''}`} />
 
-                {description && (
-                    <p className={`mt-5 max-w-xl text-base leading-relaxed text-mist/75 sm:text-lg ${centered ? 'mx-auto' : ''}`}>
+                {description ? (
+                    <p
+                        className={`mt-3 max-w-2xl font-body text-[1.02rem] leading-relaxed text-stone ${
+                            centered ? 'text-center' : ''
+                        }`}
+                    >
                         {description}
                     </p>
-                )}
+                ) : null}
+
+                <PixelDivider
+                    className={`mt-5 max-w-sm ${centered ? 'w-full' : ''}`}
+                />
             </div>
-            {action}
-        </motion.div>
+
+            {action ? <div className="shrink-0">{action}</div> : null}
+        </Reveal>
     );
 };
 

@@ -305,7 +305,7 @@ const BadgeCase = () => {
                     </Reveal>
 
                     {/* Detail panel. */}
-                    <Reveal delay={80} className="lg:h-full">
+                    <Reveal delay={80} className="lg:h-full min-h-0">
                         {effectiveSelected ? (
                             <BadgeDetail badge={effectiveSelected} />
                         ) : (

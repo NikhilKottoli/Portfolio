@@ -374,7 +374,7 @@ export const Pokedex = () => {
                     </Reveal>
 
                     {/* Detail Panel */ }
-                    <Reveal delay={80} className="h-full">
+                    <Reveal delay={80} className="h-full min-h-0">
                         {selectedEntry ? (
                             <PokedexDetail entry={selectedEntry} />
                         ) : (

@@ -355,7 +355,7 @@ const Inventory = () => {
                     </Reveal>
 
                     {/* Detail. */}
-                    <Reveal delay={80} className="lg:h-full">
+                    <Reveal delay={80} className="lg:h-full min-h-0">
                         {selected ? (
                             <ItemDetail item={selected} />
                         ) : (

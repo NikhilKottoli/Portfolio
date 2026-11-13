@@ -1,7 +1,7 @@
 /**
  * Badge emblems — pixel art logos for each organization/award.
  *
- * Each emblem is drawn on a 16×16 grid using a shared octagonal frame.
+ * Each emblem is drawn on a 16×16 or 32×32 grid using a shared octagonal frame.
  * Colours are kept to the badge palette for consistency.
  */
 
@@ -45,7 +45,45 @@ export type BadgeArt = {
     title?: string;
 };
 
-/** Microsoft — four-pane window logo (16×16). */
+/** Microsoft — modern 4-square logo (32×32). Four solid squares, no curves, no frame. */
+export const microsoftBadge32: BadgeArt = {
+    title: 'Badge with modern Microsoft 4-square logo',
+    rows: [
+        '................................',
+        '................................',
+        '................................',
+        '....KKKKKKKKKKKKKKKKKKKKKKKK....',
+        '...KMRMRMRMRMRMRKKKKKMGKMGKMGKMG.',
+        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
+        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
+        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
+        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        '................................',
+        '................................',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
+        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
+        '................................',
+        '................................',
+    ],
+};
+
+/** Microsoft — original 16×16 window logo. */
 export const microsoftBadge: BadgeArt = {
     title: 'Blue badge with Microsoft four-pane window logo',
     rows: [
@@ -65,46 +103,6 @@ export const microsoftBadge: BadgeArt = {
         'KBBBBKKKKKKBBBBBK',
         '.KBBBBBBBBBBBBK.',
         '..KBBBBBBBBBBK..',
-    ],
-};
-
-/** Microsoft — four-pane window logo (32×32) with authentic colors. */
-export const microsoftBadge32: BadgeArt = {
-    title: 'Badge with Microsoft 4-pane window logo (authentic colors)',
-    rows: [
-        '................................',
-        '................................',
-        '....KKKKKKKKKKKKKKKKKKKKKKKK....',
-        '...KMRMRMRMRMRMRKKKKKMGKMGKMGKMG.',
-        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
-        '..KMRMRMRMRMRMRKKKKKMGKMGKMGKMGK',
-        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
-        '.KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KMRMRMRMRMRMRKKKKKMGKMGKMGKMGKKK',
-        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
-        '................................',
-        '................................',
-        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMBMBMBMBMBKKKKKMMYMYMYMYMYKKKK',
-        'KMMYMYMYMYMYKKKKKMMBMBMBMBMBKKKK',
-        'KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK',
-        '................................',
-        '................................',
     ],
 };
 

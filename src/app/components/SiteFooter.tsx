@@ -85,7 +85,7 @@ const SiteFooter = () => {
                     </div>
 
                     <p className="font-mono text-[1.05rem] leading-none text-stone">
-                        © {year} {trainer.name} · {trainer.school}
+                        © {year} {trainer.name}
                     </p>
                 </div>
             </div>

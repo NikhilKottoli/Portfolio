@@ -67,22 +67,6 @@ const FeaturedInfo = () => {
                                         {currentStatus.organisation}
                                     </dd>
                                 </div>
-                                <div>
-                                    <dt className="font-pixel-ui text-[0.52rem] uppercase tracking-[0.16em] text-stone">
-                                        Focus
-                                    </dt>
-                                    <dd className="font-body text-[0.95rem] leading-relaxed text-ink">
-                                        {currentStatus.focus}
-                                    </dd>
-                                </div>
-                                <div>
-                                    <dt className="font-pixel-ui text-[0.52rem] uppercase tracking-[0.16em] text-stone">
-                                        Availability
-                                    </dt>
-                                    <dd className="font-body text-[0.95rem] leading-relaxed text-leaf">
-                                        {currentStatus.availability}
-                                    </dd>
-                                </div>
                             </dl>
 
                             <div className="mt-5 flex flex-wrap gap-2 border-t-2 border-dashed border-bark/25 pt-4">

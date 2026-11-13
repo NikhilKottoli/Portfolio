@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import NavBar from '../../src/app/components/Navbar';
+import { SoundProvider } from '../../src/app/components/SoundProvider';
 
 const { pathState } = vi.hoisted(() => ({ pathState: { current: '/' } }));
 
@@ -32,7 +33,7 @@ describe('NavBar', () => {
     });
 
     it('shows the maker of the site', () => {
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         expect(screen.getByText('Nikhil')).toBeInTheDocument();
         expect(screen.getByText('Kottoli')).toBeInTheDocument();
@@ -42,7 +43,7 @@ describe('NavBar', () => {
     });
 
     it('offers a destination for every section', () => {
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         for (const { name, path } of NAV_DESTINATIONS) {
             expect(screen.getByRole('link', { name })).toHaveAttribute('href', path);
@@ -58,7 +59,7 @@ describe('NavBar', () => {
     it('marks the destination of the current route', () => {
         pathState.current = '/Projects';
 
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         expect(screen.getByRole('link', { name: 'POKÉDEX' })).toHaveAttribute(
             'aria-current',
@@ -69,7 +70,7 @@ describe('NavBar', () => {
 
     it('opens and closes the mobile menu', async () => {
         const user = userEvent.setup();
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         const trigger = screen.getByRole('button', { name: /menu/i });
         expect(trigger).toHaveAttribute('aria-expanded', 'false');
@@ -83,7 +84,7 @@ describe('NavBar', () => {
 
     it('repeats the destinations inside the mobile menu', async () => {
         const user = userEvent.setup();
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         await user.click(screen.getByRole('button', { name: /menu/i }));
 
@@ -96,7 +97,7 @@ describe('NavBar', () => {
 
     it('closes the mobile menu when the route changes', async () => {
         const user = userEvent.setup();
-        const { rerender } = render(<NavBar />);
+        const { rerender } = render(<SoundProvider><NavBar /></SoundProvider>);
 
         await user.click(screen.getByRole('button', { name: /menu/i }));
         expect(screen.getByRole('button', { name: /menu/i })).toHaveAttribute(
@@ -105,7 +106,7 @@ describe('NavBar', () => {
         );
 
         pathState.current = '/Contact';
-        rerender(<NavBar />);
+        rerender(<SoundProvider><NavBar /></SoundProvider>);
 
         expect(screen.getByRole('button', { name: /menu/i })).toHaveAttribute(
             'aria-expanded',
@@ -115,7 +116,7 @@ describe('NavBar', () => {
 
     it('closes the mobile menu after navigating', async () => {
         const user = userEvent.setup();
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         await user.click(screen.getByRole('button', { name: /menu/i }));
 
@@ -129,7 +130,7 @@ describe('NavBar', () => {
     });
 
     it('offers a resume from the menu', () => {
-        render(<NavBar />);
+        render(<SoundProvider><NavBar /></SoundProvider>);
 
         expect(screen.getAllByRole('link', { name: /resume/i })[0]).toHaveAttribute(
             'href',
@@ -138,7 +139,7 @@ describe('NavBar', () => {
     });
 
     it('shows how far the page has been scrolled', async () => {
-        const { container } = render(<NavBar />);
+        const { container } = render(<SoundProvider><NavBar /></SoundProvider>);
 
         const progress = container.querySelector('[style*="width"]') as HTMLElement;
         expect(progress.style.width).toBe('0%');
@@ -150,7 +151,7 @@ describe('NavBar', () => {
     });
 
     it('never scrolls past the end of the page', async () => {
-        const { container } = render(<NavBar />);
+        const { container } = render(<SoundProvider><NavBar /></SoundProvider>);
 
         const progress = container.querySelector('[style*="width"]') as HTMLElement;
 

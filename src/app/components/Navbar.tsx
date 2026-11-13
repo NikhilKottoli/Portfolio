@@ -8,6 +8,7 @@ import PixelSprite from './pixel/PixelSprite';
 import MenuSelector from './pixel/MenuSelector';
 import { trainerAvatar } from './pixel/sprites';
 import { navItems, socials, trainer } from '../data/trainer';
+import { useSound } from './SoundProvider';
 
 const SOCIAL_ICONS: Record<string, 'code' | 'user' | 'mail'> = {
     GitHub: 'code',
@@ -26,6 +27,7 @@ const Navbar = () => {
     const pathname = usePathname();
     const [open, setOpen] = useState(false);
     const [progress, setProgress] = useState(0);
+    const { isBgmPlaying, toggleBgm } = useSound();
 
     useEffect(() => {
         setOpen(false);
@@ -141,6 +143,19 @@ const Navbar = () => {
                                 />
                             </a>
                         ))}
+                        {/* BGM Toggle */}
+                        <button
+                            type="button"
+                            onClick={toggleBgm}
+                            aria-label={isBgmPlaying ? 'Pause music' : 'Play music'}
+                            title={isBgmPlaying ? 'Pause music' : 'Play music'}
+                            className="flex h-8 w-8 items-center justify-center border-2 border-bark bg-cream text-bark transition-colors hover:bg-honey"
+                        >
+                            <PixelIcon
+                                name={isBgmPlaying ? 'speaker' : 'speakerOff'}
+                                className="h-3.5 w-3.5"
+                            />
+                        </button>
                         <Link
                             href="/resume"
                             className="pk-btn pk-btn-leaf ml-1 px-3 py-1.5 font-pixel-ui text-[0.56rem] uppercase tracking-[0.12em]"

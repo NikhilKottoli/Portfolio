@@ -11,6 +11,7 @@ import Reveal from './pixel/Reveal';
 import SectionHeading from './SectionHeading';
 import DialogueBox from './pixel/DialogueBox';
 import { pokedexEntries, type PokedexEntry } from '../data/pokedex';
+import { useSound } from './SoundProvider';
 
 const CATEGORY_ICONS: Record<string, PixelIconName> = {
     'Blockchain': 'coin',
@@ -305,6 +306,7 @@ const PokedexEmpty = () => (
 export const Pokedex = () => {
     const [selectedEntry, setSelectedEntry] = useState<PokedexEntry | null>(null);
     const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
+    const { playPokeball } = useSound();
 
     // Close mobile detail on escape
     useEffect(() => {
@@ -320,6 +322,7 @@ export const Pokedex = () => {
 
     const handleSelect = (entry: PokedexEntry) => {
         setSelectedEntry(entry);
+        playPokeball();
         if (window.innerWidth < 1024) {
             setMobileDetailOpen(true);
         }

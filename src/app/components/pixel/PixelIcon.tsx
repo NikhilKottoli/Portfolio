@@ -23,7 +23,9 @@ export type PixelIconName =
     | 'clock'
     | 'pin'
     | 'flag'
-    | 'bolt';
+    | 'bolt'
+    | 'speaker'
+    | 'speakerOff';
 
 /**
  * Eight by eight pixel icons.
@@ -262,6 +264,26 @@ export const pixelIcons: Record<PixelIconName, string[]> = {
         '..KKK...',
         '..KK....',
         '.KK.....',
+        '........',
+    ],
+    speaker: [
+        '...K....',
+        '..KK....',
+        '.KKKK...',
+        '.KKKK...',
+        '.KKKK...',
+        '..KK....',
+        '...K....',
+        '........',
+    ],
+    speakerOff: [
+        '...K....',
+        '..KK....',
+        '.KKKK...',
+        'K...K...',
+        'K...K...',
+        '..KK....',
+        '...K....',
         '........',
     ],
 };

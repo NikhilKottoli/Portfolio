@@ -2,10 +2,11 @@ import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Contact from '../../src/app/components/Contact';
 import { expectKnownExternalLinks, expectSafeExternalLinks } from '../helpers/assertions';
+import { SoundProvider } from '../../src/app/components/SoundProvider';
 
 describe('Contact', () => {
     it('links to every profile', () => {
-        render(<Contact />);
+        render(<SoundProvider><Contact /></SoundProvider>);
 
         expect(screen.getByRole('link', { name: /GitHub/i })).toHaveAttribute('href', 'https://github.com/NikhilKottoli');
         expect(screen.getByRole('link', { name: /LinkedIn/i })).toHaveAttribute(
@@ -23,7 +24,7 @@ describe('Contact', () => {
     });
 
     it('opens remote profiles in a new tab but not the mail client', () => {
-        render(<Contact />);
+        render(<SoundProvider><Contact /></SoundProvider>);
 
         const github = screen.getByRole('link', { name: /GitHub/i });
         expect(github).toHaveAttribute('target', '_blank');
@@ -33,13 +34,13 @@ describe('Contact', () => {
     });
 
     it('shows the email address', () => {
-        render(<Contact />);
+        render(<SoundProvider><Contact /></SoundProvider>);
 
         expect(screen.getByText('nikhilkottoli2005@gmail.com')).toBeInTheDocument();
     });
 
     it('keeps every external link safe', () => {
-        const { container } = render(<Contact />);
+        const { container } = render(<SoundProvider><Contact /></SoundProvider>);
 
         expectSafeExternalLinks(container);
         expectKnownExternalLinks(container);

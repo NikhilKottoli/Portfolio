@@ -90,8 +90,8 @@ const RouteStop = ({
  */
 const MilestoneDetail = ({ milestone }: { milestone: JourneyMilestone }) => {
     return (
-        <div className="pk-panel flex h-full flex-col overflow-hidden">
-            <div className="border-b-[3px] border-bark bg-sand p-4 sm:p-5">
+        <div className="pk-panel flex h-full flex-col">
+            <div className="border-b-[3px] border-bark bg-sand p-4 sm:p-5 flex-shrink-0">
                 <div className="flex flex-wrap items-center gap-2">
                     <PixelBadge icon={CATEGORY_ICONS[milestone.category]} tone={CATEGORY_TONES[milestone.category]}>
                         {milestone.category}
@@ -257,7 +257,7 @@ const Journey = () => {
                 </Reveal>
 
                 {/* Route body. */}
-                <div className="mt-6 grid gap-4 lg:h-[72vh] lg:grid-cols-[1fr_380px]">
+                <div className="mt-6 grid gap-4 lg:h-[72vh] lg:grid-cols-[1fr_380px] min-h-[calc(100vh-200px)]">
                     {/* Route list. */}
                     <Reveal className="lg:h-full">
                         <div className="pk-panel flex h-full flex-col overflow-hidden">
@@ -270,7 +270,7 @@ const Journey = () => {
                                 </span>
                             </div>
 
-                            <div className="flex-1 overflow-y-auto p-4 sm:p-5">
+                            <div className="flex-1 overflow-y-auto p-4 sm:p-5 max-h-[420px]">
                                 <ol className="relative space-y-3 before:absolute before:bottom-3 before:left-[2.25rem] before:top-3 before:w-0.5 before:bg-bark/30">
                                     {visible.map((milestone, index) => (
                                         <li key={milestone.id}>

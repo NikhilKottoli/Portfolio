@@ -105,8 +105,8 @@ const ItemDetail = ({ item }: { item: InventoryItem }) => {
         'technologies' in item ? (item as { technologies: string[] }).technologies : null;
 
     return (
-        <div className="pk-panel flex h-full flex-col overflow-hidden">
-            <div className="flex items-center gap-3 border-b-[3px] border-bark bg-sand p-4">
+        <div className="pk-panel flex h-full flex-col">
+            <div className="flex items-center gap-3 border-b-[3px] border-bark bg-sand p-4 flex-shrink-0">
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center border-2 border-bark bg-honey">
                     <PixelIcon name={item.icon} className="h-7 w-7 text-bark" />
                 </span>
@@ -329,7 +329,7 @@ const Inventory = () => {
                 </Reveal>
 
                 {/* Bag body. */}
-                <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[340px_1fr]">
+                <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[340px_1fr] min-h-[calc(100vh-200px)]">
                     {/* List. */}
                     <Reveal className="lg:h-full">
                         <div className="pk-panel flex h-full flex-col overflow-hidden">
@@ -341,7 +341,7 @@ const Inventory = () => {
                                     {pocketItems.length}
                                 </span>
                             </div>
-                            <div className="flex-1 overflow-y-auto">
+                            <div className="flex-1 overflow-y-auto max-h-[380px]">
                                 {pocketItems.map((item) => (
                                     <BagRow
                                         key={item.id}

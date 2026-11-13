@@ -96,9 +96,9 @@ const PokedexDetail = ({ entry }: { entry: PokedexEntry }) => {
     const categoryIcon = CATEGORY_ICONS[entry.category.split(' \u00B7 ')[0]] ?? 'coin';
 
     return (
-        <div className="pk-panel h-full flex flex-col overflow-hidden">
+        <div className="pk-panel h-full flex flex-col">
             {/* Header */ }
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b-[3px] border-bark bg-sand p-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b-[3px] border-bark bg-sand p-4 flex-shrink-0">
                 <div className="flex items-center gap-3">
                     <span className="flex h-14 w-14 shrink-0 items-center justify-center border-2 border-bark bg-honey">
                         <PixelIcon name={entry.icon} className="h-7 w-7 text-bark" />
@@ -347,7 +347,7 @@ export const Pokedex = () => {
                 />
 
                 {/* Desktop: two-pane layout */ }
-                <div className="mt-10 hidden lg:grid lg:grid-cols-[340px_1fr] lg:gap-4 lg:h-[70vh]">
+                <div className="mt-10 hidden lg:grid lg:grid-cols-[340px_1fr] lg:gap-4 lg:h-[70vh] min-h-[calc(100vh-200px)]">
                     {/* Project List */ }
                     <Reveal className="h-full">
                         <div className="pk-panel h-full flex flex-col overflow-hidden">
@@ -359,7 +359,7 @@ export const Pokedex = () => {
                                     {pokedexEntries.length}
                                 </span>
                             </div>
-                            <div className="flex-1 overflow-y-auto p-3 space-y-2">
+                            <div className="flex-1 overflow-y-auto p-3 space-y-2 max-h-[380px]">
                                 {pokedexEntries.map((entry) => (
                                     <Reveal key={entry.number} delay={(entry.number - 1) * 40}>
                                         <PokedexListItem

@@ -104,8 +104,8 @@ const BadgeTile = ({
  */
 const BadgeDetail = ({ badge }: { badge: Badge }) => {
     return (
-        <div className="pk-panel flex h-full flex-col overflow-hidden">
-            <div className="flex items-center gap-4 border-b-[3px] border-bark bg-sand p-4 sm:p-5">
+        <div className="pk-panel flex h-full flex-col">
+            <div className="flex items-center gap-4 border-b-[3px] border-bark bg-sand p-4 sm:p-5 flex-shrink-0">
                 <BadgeSprite art={badgeSprites[badge.sprite]} className="h-20 w-20 shrink-0" />
                 <div className="min-w-0">
                     <PixelBadge icon="badge" tone={badge.kind === 'Award' ? 'berry' : 'leaf'}>
@@ -278,7 +278,7 @@ const BadgeCase = () => {
                 </Reveal>
 
                 {/* Case body. */}
-                <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[1fr_380px]">
+                <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[1fr_380px] min-h-[calc(100vh-200px)]">
                     {/* Collection grid. */}
                     <Reveal className="lg:h-full">
                         <div className="pk-panel flex h-full flex-col overflow-hidden">
@@ -290,7 +290,7 @@ const BadgeCase = () => {
                                     {visible.length}
                                 </span>
                             </div>
-                            <div className="grid flex-1 content-start gap-3 overflow-y-auto p-4 sm:grid-cols-2 xl:grid-cols-3">
+                            <div className="grid flex-1 content-start gap-3 overflow-y-auto p-4 sm:grid-cols-2 xl:grid-cols-3 max-h-[380px]">
                                 {visible.map((badge, index) => (
                                     <Reveal key={badge.id} delay={(index % 3) * 60} className="h-full">
                                         <BadgeTile

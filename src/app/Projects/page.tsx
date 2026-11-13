@@ -1,9 +1,9 @@
-import ProjectsComponent from '../components/Projects';
+import Pokedex from '../components/Pokedex';
 
 export default function Projects() {
     return (
         <main>
-            <ProjectsComponent />
+            <Pokedex />
         </main>
     );
 }

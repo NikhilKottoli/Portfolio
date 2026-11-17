@@ -41,7 +41,7 @@ export const journey: JourneyMilestone[] = [
         title: 'Software Engineering Intern',
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',
-        role: 'Software Development Engineer Intern',
+        role: 'Software Engineering Intern',
         category: 'Experience',
         description:
             'Built cloud-scale security infrastructure for a catalogue of browser extensions, in the team responsible for keeping those extensions safe.',

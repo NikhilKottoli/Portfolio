@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
 import PixelBadge from './pixel/PixelBadge';
@@ -46,6 +46,10 @@ const POCKETS: PocketMeta[] = [
         icon: 'key',
     },
 ];
+
+const POCKET_TABS: Pocket[] = POCKETS.map((pocket) => pocket.id);
+
+const tabId = (id: Pocket) => `inventory-tab-${id}`;
 
 /**
  * One row in the bag list. Uses the GBA selection arrow when active.
@@ -170,7 +174,7 @@ const ItemDetail = ({ item }: { item: InventoryItem }) => {
                             {related.map((entry) => (
                                 <li key={entry.number}>
                                     <Link
-                                        href="/Projects"
+                                        href={`/Projects?entry=${encodeURIComponent(entry.name)}`}
                                         className="pk-panel-recessed flex items-center gap-3 p-3 transition-colors hover:bg-sand"
                                     >
                                         <span className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-bark bg-cream">
@@ -226,7 +230,7 @@ const BagEmpty = ({ pocket }: { pocket: PocketMeta }) => (
             <PixelIcon name={pocket.icon} className="h-8 w-8 text-bark/40" />
         </span>
         <h3 className="mt-4 font-pixel-ui text-[1rem] uppercase tracking-[0.1em] text-stone">
-            {pocket.label} selected
+            Nothing selected
         </h3>
         <p className="mt-2 max-w-xs font-body text-[0.95rem] leading-relaxed text-stone">
             Pick an entry from the {pocket.label} pocket to see what it covers and where it was used.
@@ -265,6 +269,32 @@ const Inventory = () => {
 
     const activePocket = POCKETS.find((entry) => entry.id === pocket) ?? POCKETS[0];
 
+    const tablistRef = useRef<HTMLDivElement>(null);
+
+    const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const { key } = event;
+        if (key !== 'ArrowLeft' && key !== 'ArrowRight' && key !== 'Home' && key !== 'End') {
+            return;
+        }
+        event.preventDefault();
+
+        const currentIndex = POCKET_TABS.indexOf(pocket);
+        let nextIndex = currentIndex;
+        if (key === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % POCKET_TABS.length;
+        } else if (key === 'ArrowLeft') {
+            nextIndex = (currentIndex - 1 + POCKET_TABS.length) % POCKET_TABS.length;
+        } else if (key === 'Home') {
+            nextIndex = 0;
+        } else if (key === 'End') {
+            nextIndex = POCKET_TABS.length - 1;
+        }
+
+        setPocket(POCKET_TABS[nextIndex]);
+        const buttons = tablistRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+        buttons?.[nextIndex]?.focus();
+    };
+
     return (
         <section
             className="relative border-t-[3px] border-bark bg-parchment py-16 sm:py-20"
@@ -283,6 +313,8 @@ const Inventory = () => {
                     <div
                         role="tablist"
                         aria-label="Inventory pockets"
+                        ref={tablistRef}
+                        onKeyDown={handleTabKeyDown}
                         className="flex flex-wrap gap-2"
                     >
                         {POCKETS.map((entry) => {
@@ -297,9 +329,12 @@ const Inventory = () => {
                             return (
                                 <button
                                     key={entry.id}
+                                    id={tabId(entry.id)}
                                     role="tab"
                                     type="button"
                                     aria-selected={isActive}
+                                    aria-controls="inventory-panel"
+                                    tabIndex={isActive ? 0 : -1}
                                     onClick={() => setPocket(entry.id)}
                                     className={`pk-panel-raised flex items-center gap-2.5 px-4 py-2.5 ${
                                         isActive ? 'bg-leaf text-cream' : 'bg-cream text-ink'
@@ -332,7 +367,12 @@ const Inventory = () => {
                 <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[340px_1fr] min-h-[calc(100vh-200px)]">
                     {/* List. */}
                     <Reveal className="lg:h-full">
-                        <div className="pk-panel flex h-full flex-col overflow-hidden">
+                        <div
+                            className="pk-panel flex h-full flex-col overflow-hidden"
+                            role="tabpanel"
+                            id="inventory-panel"
+                            aria-labelledby={tabId(pocket)}
+                        >
                             <div className="flex items-center justify-between border-b-[3px] border-bark bg-leaf px-4 py-2.5">
                                 <span className="font-pixel-ui text-[0.66rem] uppercase tracking-[0.2em] text-cream">
                                     {activePocket.label}

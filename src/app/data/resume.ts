@@ -44,7 +44,7 @@ export const resumeProfile = {
 
 export const resumeExperience: ResumeEntry[] = [
     {
-        role: 'Software Development Engineer Intern',
+        role: 'Software Engineering Intern',
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',
         location: 'Hyderabad, India',
@@ -59,13 +59,14 @@ export const resumeExperience: ResumeEntry[] = [
     {
         role: 'Head of Maintenance',
         organisation: "IRIS — NITK's Administrative System",
-        period: 'November 2024 – Present',
+        period: 'April 2026 – Present',
         location: 'NITK Surathkal',
         summary:
             "Maintainer of the official student-led ERP of NITK, used by more than 23,000 students and staff.",
         highlights: [
             'Review contributor code, manage Ruby, Rails and gem upgrades, and run code audits and security checks.',
             'Served as Web Lead from December 2025, managing a team of 8 and turning requirements into issues and sprints.',
+            'Web Developer from November 2024 to December 2025, then Web Lead from December 2025 to April 2026.',
             'Built features on the R&D module, including OTP login.',
         ],
         stack: ['Ruby on Rails', 'MySQL', 'Nginx'],
@@ -93,12 +94,12 @@ export const resumeAwards: ResumeAward[] = [
     {
         title: 'Build Resilient Apps with Polkadot Cloud',
         position: '1st place — Agora, a decentralised computation marketplace',
-        prize: '$3000',
+        prize: '$3,000',
     },
     {
         title: 'NEARCON Innovation Sandbox',
         position: 'NOVA SDK winner — Private RAG',
-        prize: '$1000',
+        prize: '$1,000',
     },
     {
         title: 'Polkadot AssetHub 2025',

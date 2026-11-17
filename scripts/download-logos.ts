@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Download official logos for badge conversion.
  *

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Convert logo images to 16×16 badge sprite format using sharp for SVG→PNG.
  *

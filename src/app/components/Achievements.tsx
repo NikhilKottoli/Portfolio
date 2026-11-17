@@ -30,7 +30,7 @@ const achievements: Achievement[] = [
         title: 'Build Resilient Apps with Polkadot Cloud',
         organizer: 'Polkadot',
         position: '1st Place',
-        prize: '$3000',
+        prize: '$3,000',
         desc: "Built 'Agora', a decentralized computation marketplace for the Polkadot ecosystem.",
         image: '/projects/Agora.png',
         link: 'https://devpost.com/software/agora-bkfo60',
@@ -39,7 +39,7 @@ const achievements: Achievement[] = [
         title: 'NEARCON Innovation Sandbox',
         organizer: 'NEAR AI',
         position: 'NOVA SDK winner',
-        prize: '$1000',
+        prize: '$1,000',
         desc: "Private RAG, a vectorless, e2e encrypted, fully client side RAG using NEAR AI's TEE and NOVA's secure file storage",
         image: '/projects/PrivateRag.png',
         link: 'https://devspot.app/projects/1094',
@@ -58,11 +58,41 @@ const achievements: Achievement[] = [
 const Achievements = () => {
     const [selectedAchievement, setSelectedAchievement] = React.useState<Achievement | null>(null);
 
+    const dialogRef = React.useRef<HTMLDivElement>(null);
+    const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+    const previouslyFocusedRef = React.useRef<HTMLElement | null>(null);
+
     React.useEffect(() => {
         if (!selectedAchievement) return;
 
+        // Remember the trigger and move focus into the dialog when it opens.
+        previouslyFocusedRef.current = document.activeElement as HTMLElement;
+        closeButtonRef.current?.focus();
+
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === 'Escape') setSelectedAchievement(null);
+            if (event.key === 'Escape') {
+                setSelectedAchievement(null);
+                return;
+            }
+
+            // Trap Tab within the dialog while it is open.
+            if (event.key === 'Tab' && dialogRef.current) {
+                const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+                    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                );
+                if (focusable.length === 0) return;
+
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus();
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus();
+                }
+            }
         };
 
         const previousOverflow = document.body.style.overflow;
@@ -72,6 +102,8 @@ const Achievements = () => {
         return () => {
             document.body.style.overflow = previousOverflow;
             document.removeEventListener('keydown', handleKeyDown);
+            // Restore focus to the element that opened the dialog.
+            previouslyFocusedRef.current?.focus();
         };
     }, [selectedAchievement]);
 
@@ -90,6 +122,17 @@ const Achievements = () => {
                         <Reveal key={item.title} delay={idx * 70} className="h-full">
                             <article
                                 onClick={() => setSelectedAchievement(item)}
+                                onKeyDown={(event) => {
+                                    // Ignore key events from the nested "View Project" link.
+                                    if (event.target !== event.currentTarget) return;
+                                    if (event.key === 'Enter' || event.key === ' ') {
+                                        if (event.key === ' ') event.preventDefault();
+                                        setSelectedAchievement(item);
+                                    }
+                                }}
+                                role="button"
+                                tabIndex={0}
+                                aria-label={`View details for ${item.title}`}
                                 className="pk-panel-raised group flex h-full cursor-pointer flex-col overflow-hidden"
                             >
                                 <div className="relative h-44 overflow-hidden border-b-[3px] border-bark bg-sand sm:h-52">
@@ -146,6 +189,7 @@ const Achievements = () => {
                     className="fixed inset-0 z-[70] flex items-center justify-center bg-bark/70 px-3 sm:px-4"
                 >
                     <div
+                        ref={dialogRef}
                         role="dialog"
                         aria-modal="true"
                         aria-label={selectedAchievement.title}
@@ -153,6 +197,7 @@ const Achievements = () => {
                         className="pk-panel relative max-h-[86dvh] w-full max-w-2xl overflow-y-auto"
                     >
                         <button
+                            ref={closeButtonRef}
                             onClick={() => setSelectedAchievement(null)}
                             aria-label="Close"
                             className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center border-2 border-bark bg-cream text-bark transition-colors hover:bg-honey"

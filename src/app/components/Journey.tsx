@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
 import PixelBadge from './pixel/PixelBadge';
 import PixelDivider from './pixel/PixelDivider';
@@ -24,6 +24,11 @@ const CATEGORY_TONES: Record<JourneyCategory, 'berry' | 'leaf' | 'honey' | 'sand
     Leadership: 'berry',
     Project: 'sand',
 };
+
+const JOURNEY_TABS: Array<JourneyCategory | 'All'> = ['All', ...journeyCategories];
+
+const tabId = (entry: JourneyCategory | 'All') =>
+    `journey-tab-${entry.toLowerCase().replace(/\s+/g, '-')}`;
 
 /**
  * One stop on the route. Clicking it opens the detail panel.
@@ -202,6 +207,32 @@ const Journey = () => {
         [visible, selectedId],
     );
 
+    const tablistRef = useRef<HTMLDivElement>(null);
+
+    const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const { key } = event;
+        if (key !== 'ArrowLeft' && key !== 'ArrowRight' && key !== 'Home' && key !== 'End') {
+            return;
+        }
+        event.preventDefault();
+
+        const currentIndex = JOURNEY_TABS.indexOf(category);
+        let nextIndex = currentIndex;
+        if (key === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % JOURNEY_TABS.length;
+        } else if (key === 'ArrowLeft') {
+            nextIndex = (currentIndex - 1 + JOURNEY_TABS.length) % JOURNEY_TABS.length;
+        } else if (key === 'Home') {
+            nextIndex = 0;
+        } else if (key === 'End') {
+            nextIndex = JOURNEY_TABS.length - 1;
+        }
+
+        setCategory(JOURNEY_TABS[nextIndex]);
+        const buttons = tablistRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+        buttons?.[nextIndex]?.focus();
+    };
+
     return (
         <section
             className="relative border-t-[3px] border-bark bg-parchment py-16 sm:py-20"
@@ -217,8 +248,14 @@ const Journey = () => {
 
                 {/* Category filter. */}
                 <Reveal className="mt-9">
-                    <div role="tablist" aria-label="Journey categories" className="flex flex-wrap gap-2">
-                        {(['All', ...journeyCategories] as const).map((entry) => {
+                    <div
+                        role="tablist"
+                        aria-label="Journey categories"
+                        ref={tablistRef}
+                        onKeyDown={handleTabKeyDown}
+                        className="flex flex-wrap gap-2"
+                    >
+                        {JOURNEY_TABS.map((entry) => {
                             const isActive = entry === category;
                             const count =
                                 entry === 'All'
@@ -228,9 +265,12 @@ const Journey = () => {
                             return (
                                 <button
                                     key={entry}
+                                    id={tabId(entry)}
                                     role="tab"
                                     type="button"
                                     aria-selected={isActive}
+                                    aria-controls="journey-panel"
+                                    tabIndex={isActive ? 0 : -1}
                                     onClick={() => setCategory(entry)}
                                     className={`pk-panel-raised flex items-center gap-2 px-3.5 py-2 ${
                                         isActive ? 'bg-leaf text-cream' : 'bg-cream text-ink'
@@ -260,7 +300,12 @@ const Journey = () => {
                 <div className="mt-6 grid gap-4 lg:h-[72vh] lg:grid-cols-[1fr_380px] min-h-[calc(100vh-200px)]">
                     {/* Route list. */}
                     <Reveal className="lg:h-full">
-                        <div className="pk-panel flex h-full flex-col overflow-hidden">
+                        <div
+                            className="pk-panel flex h-full flex-col overflow-hidden"
+                            role="tabpanel"
+                            id="journey-panel"
+                            aria-labelledby={tabId(category)}
+                        >
                             <div className="flex items-center justify-between border-b-[3px] border-bark bg-leaf px-4 py-2.5">
                                 <span className="font-pixel-ui text-[0.66rem] uppercase tracking-[0.2em] text-cream">
                                     Route

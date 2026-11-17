@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import PixelIcon from './pixel/PixelIcon';
 import PixelBadge from './pixel/PixelBadge';
@@ -10,6 +10,11 @@ import SectionHeading from './SectionHeading';
 import MenuSelector from './pixel/MenuSelector';
 import { badges, badgeKinds, type Badge, type BadgeKind } from '../data/badges';
 import { badgeSprites, badgePalette, type BadgeArt } from './pixel/badgeSprites';
+
+const BADGE_TABS: Array<BadgeKind | 'All'> = ['All', ...badgeKinds];
+
+const tabId = (entry: BadgeKind | 'All') =>
+    `badges-tab-${entry.toLowerCase().replace(/\s+/g, '-')}`;
 
 type BadgeSpriteProps = {
     art: BadgeArt;
@@ -227,6 +232,32 @@ const BadgeCase = () => {
     const effectiveSelected =
         selected && visible.some((badge) => badge.id === selected.id) ? selected : null;
 
+    const tablistRef = useRef<HTMLDivElement>(null);
+
+    const handleTabKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        const { key } = event;
+        if (key !== 'ArrowLeft' && key !== 'ArrowRight' && key !== 'Home' && key !== 'End') {
+            return;
+        }
+        event.preventDefault();
+
+        const currentIndex = BADGE_TABS.indexOf(kind);
+        let nextIndex = currentIndex;
+        if (key === 'ArrowRight') {
+            nextIndex = (currentIndex + 1) % BADGE_TABS.length;
+        } else if (key === 'ArrowLeft') {
+            nextIndex = (currentIndex - 1 + BADGE_TABS.length) % BADGE_TABS.length;
+        } else if (key === 'Home') {
+            nextIndex = 0;
+        } else if (key === 'End') {
+            nextIndex = BADGE_TABS.length - 1;
+        }
+
+        setKind(BADGE_TABS[nextIndex]);
+        const buttons = tablistRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+        buttons?.[nextIndex]?.focus();
+    };
+
     return (
         <section
             className="relative border-t-[3px] border-bark bg-cream py-16 sm:py-20"
@@ -242,8 +273,14 @@ const BadgeCase = () => {
 
                 {/* Filter tabs. */}
                 <Reveal className="mt-9">
-                    <div role="tablist" aria-label="Badge categories" className="flex flex-wrap gap-2">
-                        {(['All', ...badgeKinds] as const).map((entry) => {
+                    <div
+                        role="tablist"
+                        aria-label="Badge categories"
+                        ref={tablistRef}
+                        onKeyDown={handleTabKeyDown}
+                        className="flex flex-wrap gap-2"
+                    >
+                        {BADGE_TABS.map((entry) => {
                             const isActive = entry === kind;
                             const count =
                                 entry === 'All'
@@ -253,9 +290,12 @@ const BadgeCase = () => {
                             return (
                                 <button
                                     key={entry}
+                                    id={tabId(entry)}
                                     role="tab"
                                     type="button"
                                     aria-selected={isActive}
+                                    aria-controls="badges-panel"
+                                    tabIndex={isActive ? 0 : -1}
                                     onClick={() => setKind(entry)}
                                     className={`pk-panel-raised flex items-center gap-2 px-3.5 py-2 ${
                                         isActive ? 'bg-leaf text-cream' : 'bg-cream text-ink'
@@ -281,7 +321,12 @@ const BadgeCase = () => {
                 <div className="mt-6 grid gap-4 lg:h-[68vh] lg:grid-cols-[1fr_380px] min-h-[calc(100vh-200px)]">
                     {/* Collection grid. */}
                     <Reveal className="lg:h-full">
-                        <div className="pk-panel flex h-full flex-col overflow-hidden">
+                        <div
+                            className="pk-panel flex h-full flex-col overflow-hidden"
+                            role="tabpanel"
+                            id="badges-panel"
+                            aria-labelledby={tabId(kind)}
+                        >
                             <div className="flex items-center justify-between border-b-[3px] border-bark bg-leaf px-4 py-2.5">
                                 <span className="font-pixel-ui text-[0.66rem] uppercase tracking-[0.2em] text-cream">
                                     Collection

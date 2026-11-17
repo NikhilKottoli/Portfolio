@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
 import PixelSprite from './pixel/PixelSprite';
@@ -10,7 +10,7 @@ import PixelPanel from './pixel/PixelPanel';
 import Reveal from './pixel/Reveal';
 import SectionHeading from './SectionHeading';
 import DialogueBox from './pixel/DialogueBox';
-import { pokedexEntries, type PokedexEntry } from '../data/pokedex';
+import { pokedexEntries, getPokedexEntryByName, type PokedexEntry } from '../data/pokedex';
 import { useSound } from './SoundProvider';
 
 const CATEGORY_ICONS: Record<string, PixelIconName> = {
@@ -128,15 +128,17 @@ const PokedexDetail = ({ entry }: { entry: PokedexEntry }) => {
                 </div>
 
                 <div className="flex flex-wrap items-center gap-2">
-                    <a
-                        href={entry.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pk-btn pk-btn-primary px-3 py-2 font-pixel-ui text-[0.56rem] uppercase tracking-[0.12em]"
-                    >
-                        <PixelIcon name="code" className="h-3 w-3" />
-                        Repository
-                    </a>
+                    {entry.repoUrl && (
+                        <a
+                            href={entry.repoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pk-btn pk-btn-primary px-3 py-2 font-pixel-ui text-[0.56rem] uppercase tracking-[0.12em]"
+                        >
+                            <PixelIcon name="code" className="h-3 w-3" />
+                            Repository
+                        </a>
+                    )}
                     {entry.demoUrl && (
                         <a
                             href={entry.demoUrl}
@@ -254,15 +256,17 @@ const PokedexDetail = ({ entry }: { entry: PokedexEntry }) => {
                 {/* Footer actions */ }
                 <PixelDivider />
                 <div className="flex flex-wrap items-center gap-3 pt-2">
-                    <a
-                        href={entry.repoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="pk-btn pk-btn-primary px-4 py-2.5 font-pixel-ui text-[0.6rem] uppercase tracking-[0.14em]"
-                    >
-                        <PixelIcon name="code" className="h-3.5 w-3.5" />
-                        View on GitHub
-                    </a>
+                    {entry.repoUrl && (
+                        <a
+                            href={entry.repoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pk-btn pk-btn-primary px-4 py-2.5 font-pixel-ui text-[0.6rem] uppercase tracking-[0.14em]"
+                        >
+                            <PixelIcon name="code" className="h-3.5 w-3.5" />
+                            View on GitHub
+                        </a>
+                    )}
                     {entry.demoUrl && (
                         <a
                             href={entry.demoUrl}
@@ -290,7 +294,7 @@ const PokedexEmpty = () => (
             Select a Project
         </h3>
         <p className="mt-2 font-body text-[0.95rem] leading-relaxed text-stone max-w-xs">
-            Choose an entry from the Pok\u00E9dex to view its detailed information, architecture, and links.
+            Choose an entry from the Pokédex to view its detailed information, architecture, and links.
         </p>
         <PixelDivider className="mt-6 w-full max-w-xs" />
         <p className="mt-4 font-pixel-ui text-[0.55rem] uppercase tracking-[0.2em] text-stone/60">
@@ -300,13 +304,41 @@ const PokedexEmpty = () => (
 );
 
 /**
- * The main Pok\u00E9dex interface \u2014 a two-pane layout on desktop,
+ * The main Pokédex interface \u2014 a two-pane layout on desktop,
  * stacked on mobile with a bottom sheet style detail panel.
  */
 export const Pokedex = () => {
     const [selectedEntry, setSelectedEntry] = useState<PokedexEntry | null>(null);
     const [mobileDetailOpen, setMobileDetailOpen] = useState(false);
     const { playPokeball } = useSound();
+
+    const closeButtonRef = useRef<HTMLButtonElement>(null);
+    const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+
+    // Deep-link support: open the entry named in ?entry=<name> when arriving on
+    // the page. Unknown or missing values are ignored. Reading location.search
+    // here (rather than useSearchParams) keeps /Projects statically prerendered.
+    useEffect(() => {
+        const name = new URLSearchParams(window.location.search).get('entry');
+        if (!name) return;
+        const match = getPokedexEntryByName(name);
+        if (match) {
+            setSelectedEntry(match);
+        }
+    }, []);
+
+    // Move focus into the bottom-sheet dialog when it opens, and restore focus
+    // to the element that triggered it when the dialog closes.
+    useEffect(() => {
+        if (!mobileDetailOpen || !selectedEntry) return;
+
+        previouslyFocusedRef.current = document.activeElement as HTMLElement;
+        closeButtonRef.current?.focus();
+
+        return () => {
+            previouslyFocusedRef.current?.focus();
+        };
+    }, [mobileDetailOpen, selectedEntry]);
 
     // Close mobile detail on escape
     useEffect(() => {
@@ -445,6 +477,7 @@ export const Pokedex = () => {
                 {/* Mobile Bottom Sheet Detail */ }
                 {mobileDetailOpen && selectedEntry && (
                     <div
+                        onClick={handleCloseDetail}
                         className="fixed inset-0 z-[60] flex items-end sm:items-center sm:justify-center bg-bark/70 px-3 sm:px-4 pb-3"
                         role="dialog"
                         aria-modal="true"
@@ -459,6 +492,7 @@ export const Pokedex = () => {
                                     Entry Details
                                 </h3>
                                 <button
+                                    ref={closeButtonRef}
                                     onClick={handleCloseDetail}
                                     aria-label="Close details"
                                     className="flex h-9 w-9 items-center justify-center border-2 border-bark bg-cream text-bark transition-colors hover:bg-honey"

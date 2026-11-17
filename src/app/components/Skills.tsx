@@ -118,8 +118,8 @@ const Skills = () => {
         <section className="relative overflow-hidden border-t-[3px] border-bark bg-cream py-16 sm:py-20" id="skills">
             <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
                 <SectionHeading
-                    eyebrow="Move List"
-                    title="Technical Arsenal"
+                    eyebrow="TM Collection"
+                    title="Move Set"
                     description="The languages, frameworks, data stores, and tools I use to design and ship software."
                     icon="chip"
                     action={

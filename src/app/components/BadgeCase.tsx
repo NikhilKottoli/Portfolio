@@ -79,6 +79,7 @@ const BadgeTile = ({
             onClick={onSelect}
             aria-current={isSelected ? 'true' : 'false'}
             className={`pk-panel-raised flex h-full w-full flex-col items-center gap-3 p-4 text-center transition-all ${isSelected ? selectedStyle : idleStyle}`}
+            style={isSelected ? { backgroundColor: 'var(--leaf)', color: 'var(--cream)' } : undefined}
         >
             <BadgeSprite art={badgeSprites[badge.sprite]} className="h-20 w-20" />
             <span className="flex flex-col gap-1">

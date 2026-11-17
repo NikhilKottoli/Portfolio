@@ -13,8 +13,7 @@ describe('routes', () => {
 
         expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('Nikhil');
         expect(screen.getByRole('heading', { level: 2, name: 'Status Report' })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { level: 2, name: 'Technical Arsenal' })).toBeInTheDocument();
-        expect(screen.getByRole('heading', { level: 2, name: 'Honors & Awards' })).toBeInTheDocument();
+        expect(screen.getByRole('heading', { level: 2, name: 'Move Set' })).toBeInTheDocument();
     });
 
     it('renders the experience page', () => {

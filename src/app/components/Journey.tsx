@@ -51,6 +51,7 @@ const RouteStop = ({
             onClick={onSelect}
             aria-current={isSelected ? 'true' : 'false'}
             className={`pk-panel-raised flex w-full items-start gap-3 p-4 text-left transition-all ${isSelected ? selectedStyle : idleStyle}`}
+            style={isSelected ? { backgroundColor: 'var(--leaf)', color: 'var(--cream)' } : undefined}
         >
             {/* Route marker. */}
             <span className="relative flex h-11 w-11 shrink-0 items-center justify-center border-2 border-bark bg-sand">

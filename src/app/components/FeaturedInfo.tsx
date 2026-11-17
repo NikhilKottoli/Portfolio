@@ -73,9 +73,6 @@ const FeaturedInfo = () => {
                                 <PixelBadge icon="spark" tone="berry">
                                     Active
                                 </PixelBadge>
-                                <PixelBadge icon="shield" tone="leaf">
-                                    Open to offers
-                                </PixelBadge>
                             </div>
                         </div>
                     </Reveal>

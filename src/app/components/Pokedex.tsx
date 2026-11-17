@@ -53,6 +53,7 @@ const PokedexListItem = ({
             aria-current={isSelected ? 'true' : 'false'}
             aria-pressed={isSelected}
             className={`pk-panel-raised w-full flex items-center gap-3 p-3 text-left transition-all ${isSelected ? selectedStyle : unselectedStyle}`}
+            style={isSelected ? { backgroundColor: 'var(--leaf)', color: 'var(--cream)' } : undefined}
         >
             <span className="flex shrink-0 items-center justify-center w-10 h-10 border-2 border-bark bg-sand">
                 <PixelIcon name={entry.icon} className="h-5 w-5" />

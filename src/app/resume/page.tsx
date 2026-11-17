@@ -59,9 +59,7 @@ const ResumePage = () => {
                                                 : {})}
                                             className="font-mono text-[1.05rem] text-bark underline-offset-4 hover:text-berry hover:underline"
                                         >
-                                            {social.label === 'Phone'
-                                                ? '+91 9008465462'
-                                                : social.label}
+                                            {social.label}
                                         </a>
                                     </li>
                                 ))}

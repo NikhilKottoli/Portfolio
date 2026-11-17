@@ -46,7 +46,6 @@ export const socials: SocialLink[] = [
         external: true,
     },
     { label: 'Email', href: 'mailto:nikhilkottoli2005@gmail.com', external: false },
-    { label: 'Phone', href: 'tel:+919008465462', external: false },
 ];
 
 export type NavItem = {

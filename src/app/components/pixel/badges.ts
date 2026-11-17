@@ -46,7 +46,7 @@ export const badges: Badge[] = [
         description:
             'Worked as a Software Engineering Intern on the MAI Extensions Security team, building cloud-scale malware scanning infrastructure for a catalogue of browser extensions.',
         significance:
-            'The scanning platform reduced a full catalogue scan from six hours to two to five minutes, and the tooling was exposed to other teams through MCP. The work involved distributed execution on Azure Batch and a design that had to survive real scan volumes rather than a demo.',
+            'The scanning platform reduced a full catalogue scan from six hours to two to five minutes, and the tooling was exposed to other teams through MCP. The work involved distributed execution on Azure and a design that had to survive real scan volumes rather than a demo.',
         supporting: 'Extensions Security Scanner',
         href: 'https://github.com/NikhilKottoli',
     },
@@ -85,7 +85,7 @@ export const badges: Badge[] = [
         sprite: 'freebsd',
         name: 'FreeBSD Upstream',
         organisation: 'FreeBSD Project',
-        period: 'January 2025',
+        period: 'April 2026',
         kind: 'Open Source',
         summary: 'Merged kernel change aligning PRR with RFC 9937.',
         description:

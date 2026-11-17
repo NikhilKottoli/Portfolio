@@ -71,10 +71,10 @@ export const disciplines: Discipline[] = [
         description:
             'Distributed systems engineering is the discipline of assuming things will fail — networks drop packets, nodes restart, clocks drift — and building systems that still behave correctly.',
         usage:
-            'At Microsoft the work was a cloud-scale malware scanning pipeline built on Azure Batch, where a full scan of the extension catalogue was reduced from six hours to two to five minutes by distributing the scan across a pool of workers and coordinating the results.',
+            'At Microsoft the work was a cloud-scale malware scanning pipeline built on Azure, where a full scan of the extension catalogue was reduced from six hours to two to five minutes by distributing the scan across a pool of workers and coordinating the results.',
         icon: 'cloud',
         relatedProjects: ['Microsoft Extensions Security', 'Agora', 'RupeeRail'],
-        technologies: ['C#', '.NET', 'Azure Batch', 'MCP', 'Redis'],
+        technologies: ['C#', '.NET', 'Azure', 'MCP', 'Redis'],
     },
     {
         id: 'backend-engineering',
@@ -113,10 +113,10 @@ export const disciplines: Discipline[] = [
         description:
             'Cloud infrastructure work is about turning raw compute into a dependable pipeline: the right machines, the right scheduling, the right observability, and a failure story.',
         usage:
-            'The Azure Batch pipeline at Microsoft was a scheduling problem in miniature — partition the catalogue into batches, distribute them, collect the verdicts, and report back. Agora applies the same thinking to a decentralised compute marketplace.',
+            'The Azure pipeline at Microsoft was a scheduling problem in miniature — shard-based execution with consistent-hash affinity routing and node-local SSD caching reached 90% efficiency while partitioning the catalogue into shards, distributing them and collecting the verdicts. Agora applies the same thinking to a decentralised compute marketplace.',
         icon: 'cloud',
         relatedProjects: ['Microsoft Extensions Security', 'Agora'],
-        technologies: ['Azure', 'Azure Batch', 'MCP', 'Docker', 'Polkadot'],
+        technologies: ['Azure', 'MCP', 'Docker', 'Polkadot'],
     },
     {
         id: 'network-engineering',
@@ -161,7 +161,7 @@ export const technologies: Technology[] = [
         description:
             'Python is the default for the glue work: scripts, tooling around distributed jobs, and the language most AI frameworks assume.',
         usage:
-            'Used for automation around Azure Batch pipelines and for AI prototyping, including the RAG stack behind Private RAG.',
+            'Used for automation around Azure pipelines and for AI prototyping, including the RAG stack behind Private RAG.',
         icon: 'code',
         relatedProjects: ['Private RAG', 'Microsoft Extensions Security'],
     },
@@ -200,7 +200,7 @@ export const technologies: Technology[] = [
         description:
             'C# and .NET carried the extension-scanning platform: the batched scan jobs, the coordination logic, and the tooling exposed to other teams through MCP.',
         usage:
-            'The scanning pipeline that reduced a full catalogue scan from six hours to two to five minutes was written in C# on .NET, running on Azure Batch.',
+            'The scanning pipeline that reduced a full catalogue scan from six hours to two to five minutes was written in C# on .NET, running on Azure.',
         icon: 'code',
         relatedProjects: ['Microsoft Extensions Security'],
     },
@@ -333,7 +333,7 @@ export const technologies: Technology[] = [
         description:
             '.NET provided the managed runtime, async model and tooling that made the extension-scanning service maintainable.',
         usage:
-            'The Azure Batch scan workers and the MCP tooling exposed to other teams are .NET services.',
+            'The Azure scan workers and the MCP tooling exposed to other teams are .NET services.',
         icon: 'gear',
         relatedProjects: ['Microsoft Extensions Security'],
     },
@@ -361,7 +361,7 @@ export const technologies: Technology[] = [
         description:
             'Azure is where the extension-scanning work ran — managed compute, job scheduling and the storage to coordinate across a pool of workers.',
         usage:
-            'Azure Batch scheduled the scan jobs; the pipeline divided the extension catalogue into batches and reported results back to the platform.',
+            'Azure scheduled the scan jobs using shard-based execution with consistent-hash affinity routing and node-local SSD caching, reaching 90% efficiency as it partitioned the extension catalogue and reported the verdicts back to the platform.',
         icon: 'cloud',
         relatedProjects: ['Microsoft Extensions Security'],
     },
@@ -591,7 +591,7 @@ export const keyItems: KeyItem[] = [
         description:
             'Azure is not just infrastructure for this trainer — it is the substrate for the most demanding piece of engineering work so far.',
         usage:
-            'Azure Batch scheduled the distributed scan of the browser extension catalogue, taking a full pass from six hours down to two to five minutes.',
+            'Azure scheduled the distributed scan with shard-based execution, consistent-hash affinity routing and node-local SSD caching, reaching 90% efficiency and taking a full pass from six hours down to two to five minutes.',
         icon: 'cloud',
         relatedProjects: ['Microsoft Extensions Security'],
         href: 'https://azure.microsoft.com',

@@ -53,16 +53,17 @@ export const pokedexEntries: PokedexEntry[] = [
         problem:
             'A platform this size does not maintain itself. Dependency drift, security patches, contributor churn and feature requests all land on the same small group of maintainers, and any of them handled badly becomes an outage for thousands of students during registration.',
         approach:
-            'Took over as Head of Maintenance to put structure around the work: reviewing contributor pull requests, managing Ruby, Rails and gem upgrades on a deliberate schedule, and running regular code audits and security checks. Previously served as Web Lead, breaking requirements into issues and sprints for a team of eight.',
+            'Took over as Head of Maintenance to put structure around the work: reviewing contributor pull requests, managing Ruby, Rails and gem upgrades on a deliberate schedule, and running regular code audits and security checks. Also built an in-house staging platform with automated subdomain routing, async deployments, real-time logs, environment configuration and interactive container access. Previously served as Web Lead, breaking requirements into issues and sprints for a team of eight.',
         architecture:
-            '• Ruby on Rails monolith with service-oriented boundaries\n• MariaDB/MySQL for relational academic data\n• Nginx reverse proxy with TLS termination\n• Feature modules for Academics, R&D, Hostels and more\n• Contributed OTP login to the R&D module',
+            '• Ruby on Rails monolith with service-oriented boundaries\n• MariaDB/MySQL for relational academic data\n• Nginx reverse proxy with TLS termination\n• In-house staging platform: automated subdomain routing, async deployments, real-time logs, env config and interactive container access\n• Feature modules for Academics, R&D, Hostels and more\n• Contributed OTP login to the R&D module',
         highlights: [
             'Serves more than 23,000 students and staff',
             'Head of Maintenance since April 2026',
             'Web Lead from December 2025, managing a team of 8',
             'Contributing developer since November 2024',
+            'In-house staging platform with automated subdomain routing, async deployments, real-time logs and interactive container access',
         ],
-        context: 'Student-led open source project at NITK Surathkal.',
+        context: 'Student-led open source project at NITK Surathkal; Head of Maintenance since October 2024.',
     },
     {
         number: 2,
@@ -70,18 +71,18 @@ export const pokedexEntries: PokedexEntry[] = [
         summary: 'Distributed malware scanning pipeline that cut a full catalogue scan from 6 hours to 2–5 minutes.',
         icon: 'shield',
         category: 'Security · Cloud Infrastructure',
-        tech: ['C#', '.NET', 'Azure Batch', 'MCP'],
+        tech: ['C#', '.NET', 'Azure', 'MCP'],
         description:
-            'A cloud-scale malware scanning platform built for the MAI Extensions Security team at Microsoft. It distributes the scan of a browser extension catalogue across Azure Batch and exposes the resulting verdicts through MCP tooling.',
+            'A cloud-scale malware scanning platform built for the MAI Extensions Security team at Microsoft. It distributes the scan of a 30K+ extension catalogue across Azure and exposes the resulting verdicts through MCP tooling.',
         problem:
             'Scanning the extension catalogue serially took six hours for a complete pass. At that rate the catalogue is always behind reality — a malicious extension could sit unscanned for hours, and the security team had no way to query results programmatically.',
         approach:
-            'Designed a batched pipeline on Azure Batch: partition the catalogue into work units, schedule them across the compute pool, aggregate the verdicts centrally, and surface the results through an MCP server so other teams could query them directly from their tooling.',
+            'Designed a shard-based pipeline on Azure: partition the 30K+ extension catalogue into work units with consistent-hash affinity routing, schedule them across the compute pool with node-local SSD caching, aggregate the verdicts centrally, and surface the results through an MCP server so other teams could query them directly from their tooling.',
         architecture:
-            '• C# / .NET scan workers distributed via Azure Batch\n• Central coordinator for partitioning and aggregation\n• MCP server exposing scan tooling and verdicts\n• Failure-tolerant job retry and result caching\n• Reporting back into the extensions security pipeline',
+            '• C# / .NET scan workers distributed via Azure\n• Shard-based execution with consistent-hash affinity routing\n• Node-local SSD caching reaching 90% efficiency\n• Central coordinator for partitioning and aggregation\n• MCP server exposing scan tooling and verdicts\n• Failure-tolerant job retry and result caching\n• Reporting back into the extensions security pipeline',
         highlights: [
             'Reduced a full catalogue scan from 6 hours to 2–5 minutes',
-            'Distributed execution across Azure Batch compute pools',
+            'Distributed execution across Azure compute pools',
             'Tooling exposed to other teams through MCP',
             'Software Engineering Internship, Microsoft — May to July 2026',
         ],
@@ -110,7 +111,7 @@ export const pokedexEntries: PokedexEntry[] = [
             'Session key implementation for smooth UX',
             'Prize: $7,000 USDC',
         ],
-        context: 'Built during ETH Global Mumbai 2026 hackathon.',
+        context: 'Built during ETH Global Mumbai, November 2026 hackathon.',
     },
     {
         number: 4,
@@ -123,20 +124,20 @@ export const pokedexEntries: PokedexEntry[] = [
         demoUrl: 'https://devspot.app/projects/1094',
         award: 'NEARCON Innovation Sandbox — NOVA SDK Winner',
         description:
-            'Private RAG is a retrieval-augmented generation system that runs entirely client-side within a Trusted Execution Environment (TEE), ensuring user documents never leave their device unencrypted.',
+            'Private RAG is a PageIndex-based vectorless RAG system that uses AES-256-GCM wallet-derived client-side encryption, runs inside the NEAR AI TEE, and stores documents on Encrypted IPFS, ensuring user documents never leave their device unencrypted.',
         problem:
             'Standard RAG systems require uploading documents to a server for embedding and retrieval, exposing sensitive data. Local-only solutions lack the compute for quality embeddings.',
         approach:
-            'Leveraged NEAR AI\'s TEE infrastructure to run embedding models and vector search inside a hardware-enforced enclave. Documents are encrypted client-side, processed in the TEE, and results returned without the host ever accessing plaintext.',
+            'Leveraged PageIndex for vectorless RAG and NEAR AI\'s TEE to run embedding models inside a hardware-enforced enclave. Documents are encrypted client-side with AES-256-GCM keys derived from the user\'s wallet, stored on Encrypted IPFS, and processed in the NEAR AI TEE without the host ever accessing plaintext.',
         architecture:
-            '• Client-side encryption before upload\n• NEAR AI TEE for secure embedding generation\n• In-enclave vector similarity search\n• NOVA SDK for TEE communication\n• React frontend with encrypted file handling',
+            '• PageIndex vectorless RAG (no vector database)\n• AES-256-GCM wallet-derived client-side encryption\n• NEAR AI TEE for secure embedding generation\n• Encrypted IPFS for document storage\n• NOVA SDK for TEE communication\n• React frontend with encrypted file handling',
         highlights: [
             'Winner of NEARCON Innovation Sandbox (NOVA SDK track)',
             'Fully client-side — no server sees plaintext',
             'TEE-attested execution guarantees',
             'Prize: $1,000',
         ],
-        context: 'Built for NEARCON 2025 Innovation Sandbox.',
+        context: 'Built for NEARCON Innovation Sandbox, January 2026 – March 2026.',
     },
     {
         number: 5,
@@ -312,45 +313,47 @@ export const pokedexEntries: PokedexEntry[] = [
         category: 'Systems · Open Source',
         tech: ['C', 'FreeBSD', 'TCP'],
         repoUrl: 'https://reviews.freebsd.org/D56535',
-        award: 'Merged upstream — January 2025',
+        award: 'Merged upstream — April 2026',
         description:
-            'A merged contribution to the FreeBSD kernel aligning the Proportional Rate Reduction (PRR) implementation with RFC 9937, the current specification for TCP loss recovery.',
+            'A merged contribution to the FreeBSD kernel implementing the RFC 9937 SafeACK heuristic and PRR-CRB/PRR-SSRB rate-reduction bounds, correcting RecoverFS handling in TCP loss recovery, and validating the change with packetdrill.',
         problem:
             'The PRR implementation in the kernel had drifted from the specification. Behaviour that the RFC defines precisely — how much to reduce the congestion window, and when — was not what the code did, which affects how quickly a connection recovers after loss.',
         approach:
-            'Read RFC 9937 against the existing FreeBSD implementation, identified the divergence, and prepared a patch series that brought the code back in line with the specification. The change was reviewed on the FreeBSD review system and merged.',
+            'Read RFC 9937 against the existing FreeBSD implementation, identified the divergence, and prepared a patch series implementing the SafeACK heuristic and PRR-CRB/PRR-SSRB bounds and correcting RecoverFS. The change was validated with packetdrill, reviewed on the FreeBSD review system and merged.',
         architecture:
-            '• FreeBSD TCP stack, PRR congestion control module\n• RFC 9937 compliant rate reduction\n• Patch series prepared with git\n• Reviewed on reviews.freebsd.org\n• 45 lines changed, merged January 2025',
+            '• FreeBSD TCP stack, PRR congestion control module\n• RFC 9937 SafeACK heuristic and PRR-CRB/PRR-SSRB bounds\n• RecoverFS correction\n• Validated with packetdrill\n• Patch series prepared with git\n• Reviewed on reviews.freebsd.org\n• 45 lines changed, merged April 2026',
         highlights: [
             'Merged upstream into FreeBSD',
-            'Brings PRR behaviour in line with RFC 9937',
+            'Implements the RFC 9937 SafeACK heuristic and PRR-CRB/PRR-SSRB bounds',
+            'Corrects RecoverFS handling, validated with packetdrill',
             '45 lines changed',
             'Reviewed and accepted by the FreeBSD community',
         ],
-        context: 'Open source contribution to the FreeBSD kernel, merged January 2025.',
+        context: 'Open source contribution to the FreeBSD kernel, merged April 2026.',
     },
     {
         number: 13,
         name: 'ns-3 Contribution',
-        summary: 'Open change adding a recent RACK acknowledgement to the ns-3 simulator.',
+        summary: 'Open change adding RACK-TLP (RFC 8985) loss detection with Tail Loss Probe to the ns-3 simulator.',
         icon: 'cloud',
         category: 'Networking · Open Source',
         tech: ['C++', 'ns-3', 'TCP'],
         repoUrl: 'https://gitlab.com/nsnam/ns-3-dev/-/merge_requests/2744',
         description:
-            'A merge request to the ns-3 network simulator adding support for a recent RACK TCP acknowledgement, bringing the simulator in line with current protocol research.',
+            'A merge request to the ns-3 network simulator adding RACK-TLP (RFC 8985) loss detection including Tail Loss Probe, bringing the simulator in line with current protocol research.',
         problem:
             'ns-3 is used by researchers to study TCP behaviour before anything reaches a real network. When the simulator lags behind protocol developments, published results describe a protocol that is no longer current.',
         approach:
-            'Implemented the acknowledgement handling in the simulator\'s TCP model, matching the behaviour of the recent RACK specification, and submitted it as a merge request for review by the ns-3 development community.',
+            'Implemented RACK-TLP (RFC 8985) loss detection including Tail Loss Probe in the simulator\'s TCP model, added unit tests and examples covering the new behaviour, and submitted it as a merge request for review by the ns-3 development community.',
         architecture:
-            '• ns-3 TCP model implementation\n• RACK loss detection semantics\n• C++ with the ns-3 build system\n• Submitted to nsnam/ns-3-dev on GitLab\n• 3,001 lines changed, currently open for review',
+            '• ns-3 TCP model implementation\n• RACK-TLP (RFC 8985) loss detection with Tail Loss Probe\n• Unit tests and examples for the new behaviour\n• C++ with the ns-3 build system\n• Submitted to nsnam/ns-3-dev on GitLab\n• 3,001 lines changed, currently open for review',
         highlights: [
             '3,001 lines changed in the ns-3 TCP model',
-            'Adds recent RACK acknowledgement support',
+            'Adds RACK-TLP (RFC 8985) loss detection including Tail Loss Probe',
+            'Includes unit tests and examples',
             'Open for review in nsnam/ns-3-dev',
         ],
-        context: 'Open source contribution to the ns-3 network simulator.',
+        context: 'Open source contribution to the ns-3 network simulator, September 2025 – February 2026.',
     },
 ];
 

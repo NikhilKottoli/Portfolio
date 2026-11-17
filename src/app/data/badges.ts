@@ -42,11 +42,11 @@ export const badges: Badge[] = [
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',
         kind: 'Employment',
-        summary: 'Software Engineering Intern on the Extensions Security team.',
+        summary: 'SDE Intern on the Extensions Security team.',
         description:
-            'Worked as a Software Engineering Intern on the MAI Extensions Security team, building cloud-scale malware scanning infrastructure for a catalogue of browser extensions.',
+            'Worked as an SDE Intern on the MAI Extensions Security team, building cloud-scale malware scanning infrastructure for a 30K+ extension catalogue.',
         significance:
-            'The scanning platform reduced a full catalogue scan from six hours to two to five minutes, and the tooling was exposed to other teams through MCP. The work involved distributed execution on Azure Batch and a design that had to survive real scan volumes rather than a demo.',
+            'The scanning platform reduced a full catalogue scan of a 30K+ extension catalogue from six hours to two to five minutes at 90% efficiency, and the tooling was exposed to other teams through MCP. The work involved distributed execution on Azure and a design that had to survive real scan volumes rather than a demo.',
         supporting: 'Extensions Security Scanner',
         href: 'https://github.com/NikhilKottoli',
     },
@@ -55,13 +55,13 @@ export const badges: Badge[] = [
         sprite: 'ethglobal',
         name: 'ETH Global Finalist',
         organisation: 'ETH Global Mumbai 2026 — Arc Track',
-        period: '2026',
+        period: 'November 2026',
         kind: 'Award',
         summary: 'Finalist on the Arc track for Best Mobile Web Consumer Agent.',
         description:
             'Finalist at ETH Global Mumbai 2026 on the Arc track, which recognises the best mobile web consumer agent, with the cross-border payments project RupeeRail.',
         significance:
-            'Selected as a finalist out of the track entries at one of the largest Ethereum hackathons. The project tackled a genuine usability barrier — making cross-border stablecoin payments possible without the user holding ETH or managing a seed phrase — by using ERC-4337 account abstraction and a paymaster. Prize: $7,000 USDC.',
+            'Placed in the Top 8 of 622 projects from 1,402 hackers at a 36-hour hackathon, and selected as a finalist out of the track entries at one of the largest Ethereum hackathons. The project tackled a genuine usability barrier — making cross-border stablecoin payments possible without the user holding ETH or managing a seed phrase — by using ERC-4337 account abstraction and a paymaster. Prize: $7,000 USDC.',
         supporting: 'RupeeRail',
         href: 'https://github.com/NikhilKottoli/RupeeRail',
     },
@@ -85,13 +85,13 @@ export const badges: Badge[] = [
         sprite: 'freebsd',
         name: 'FreeBSD Upstream',
         organisation: 'FreeBSD Project',
-        period: 'January 2025',
+        period: 'April 2026',
         kind: 'Open Source',
-        summary: 'Merged kernel change aligning PRR with RFC 9937.',
+        summary: 'Merged kernel change: RFC 9937 SafeACK heuristic, PRR-CRB/PRR-SSRB, RecoverFS correction, packetdrill validation.',
         description:
-            'A merged contribution to the FreeBSD kernel aligning the Proportional Rate Reduction implementation with RFC 9937, the current TCP loss recovery specification.',
+            'A merged contribution to the FreeBSD kernel implementing the RFC 9937 SafeACK heuristic and PRR-CRB/PRR-SSRB rate-reduction bounds, correcting RecoverFS handling in TCP loss recovery, and validating the change with packetdrill.',
         significance:
-            'Merged upstream into a production operating system kernel after review on the FreeBSD review system. It required reading the RFC closely, comparing it against the existing implementation, and preparing a patch that reviewers would accept — 45 lines changed.',
+            'Merged upstream into a production operating system kernel after review on the FreeBSD review system and validated with packetdrill. It required reading RFC 9937 closely, implementing the SafeACK heuristic and PRR-CRB/PRR-SSRB bounds, correcting RecoverFS, and preparing a patch that reviewers would accept — 45 lines changed.',
         supporting: 'FreeBSD PRR',
         href: 'https://reviews.freebsd.org/D56535',
     },
@@ -115,11 +115,11 @@ export const badges: Badge[] = [
         sprite: 'tee',
         name: 'NOVA SDK Winner',
         organisation: 'NEARCON Innovation Sandbox',
-        period: '2025',
+        period: 'January 2026 – March 2026',
         kind: 'Award',
         summary: 'Winner for Private RAG, a TEE-backed client-side RAG.',
         description:
-            'Won the NOVA SDK track at the NEARCON Innovation Sandbox with Private RAG, a vectorless, fully client-side retrieval system running inside a Trusted Execution Environment.',
+            'Won the NOVA SDK track at the NEARCON Innovation Sandbox with Private RAG, a PageIndex-based vectorless RAG that uses AES-256-GCM wallet-derived client-side encryption, runs inside the NEAR AI TEE, and stores documents on Encrypted IPFS.',
         significance:
             'The winning approach solved a real constraint: standard RAG requires uploading documents to a server, exposing sensitive data. Running the embedding and similarity search inside a TEE means the host never sees plaintext, which is what makes a genuinely private RAG possible. Prize: $1,000.',
         supporting: 'Private RAG',

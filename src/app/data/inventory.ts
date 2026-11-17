@@ -534,7 +534,7 @@ export const technologies: Technology[] = [
         description:
             'Packetdrill tests network stack behaviour by scripting packet exchanges and asserting on the responses — precision at the protocol level.',
         usage:
-            'Used to exercise TCP protocol behaviour as part of systems and networking work.',
+            'Used to validate the FreeBSD PRR change — scripting packet exchanges to verify the RFC 9937 SafeACK heuristic, PRR-CRB/PRR-SSRB bounds and RecoverFS correction.',
         icon: 'bolt',
         relatedProjects: ['FreeBSD PRR', 'ns-3 Contribution'],
     },
@@ -578,7 +578,7 @@ export const keyItems: KeyItem[] = [
         description:
             'FreeBSD is a serious systems codebase — a production kernel written in C by people who care about correctness. Contributing to it is a genuine test of systems understanding.',
         usage:
-            'The merged change "Align PRR implementation with RFC 9937" (45 lines changed, January 2025) brought the PRR implementation in line with the current specification.',
+            'The merged change "Align PRR implementation with RFC 9937" (45 lines changed, April 2026) implemented the SafeACK heuristic and PRR-CRB/PRR-SSRB bounds, corrected RecoverFS handling, and validated the result with packetdrill.',
         icon: 'shield',
         relatedProjects: ['FreeBSD PRR'],
         href: 'https://reviews.freebsd.org/D56535',
@@ -604,7 +604,7 @@ export const keyItems: KeyItem[] = [
         description:
             'ns-3 is the standard tool for simulating network stacks before code reaches real hardware — it is where protocol behaviour gets tested in time.',
         usage:
-            'Contributed a change adding a recent RACK acknowledgement to the simulator (3,001 lines changed), currently open for review.',
+            'Contributed a change adding RACK-TLP (RFC 8985) loss detection with Tail Loss Probe to the simulator (3,001 lines changed, September 2025 – February 2026), currently open for review.',
         icon: 'cloud',
         relatedProjects: ['ns-3 Contribution'],
         href: 'https://gitlab.com/nsnam/ns-3-dev/-/merge_requests/2744',

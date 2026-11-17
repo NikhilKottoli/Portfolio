@@ -7,7 +7,7 @@ describe('resume', () => {
         render(<ResumePage />);
 
         expect(screen.getByRole('heading', { name: 'Nikhil Kottoli' })).toBeInTheDocument();
-        expect(screen.getByText('Software Engineer')).toBeInTheDocument();
+        expect(screen.getByText('Computer Science Student')).toBeInTheDocument();
     });
 
     it('lists every role', () => {
@@ -21,7 +21,7 @@ describe('resume', () => {
     it('offers a download', () => {
         render(<ResumePage />);
 
-        expect(screen.getByRole('button', { name: /download pdf/i })).toBeInTheDocument();
+        expect(screen.getByRole('link', { name: /download pdf/i })).toBeInTheDocument();
     });
 
     it('keeps the email address reachable', () => {

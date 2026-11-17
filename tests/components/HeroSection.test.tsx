@@ -16,7 +16,7 @@ describe('HeroSection', () => {
     it('states the role and the university', () => {
         render(<HeroSection />);
 
-        expect(screen.getByText('Software Engineering Intern at Microsoft')).toBeInTheDocument();
+        expect(screen.getByText('Computer Science student at NITK')).toBeInTheDocument();
         expect(screen.getAllByText(/NITK Surathkal/).length).toBeGreaterThan(0);
     });
 

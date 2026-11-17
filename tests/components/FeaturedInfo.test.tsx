@@ -8,7 +8,7 @@ describe('FeaturedInfo', () => {
         render(<FeaturedInfo />);
 
         expect(screen.getByRole('heading', { name: 'Current Status' })).toBeInTheDocument();
-        expect(screen.getByText('Software Engineering Intern')).toBeInTheDocument();
+        expect(screen.getByText('Computer Science Student')).toBeInTheDocument();
         expect(screen.getAllByText('Microsoft — Extensions Security').length).toBeGreaterThan(0);
     });
 

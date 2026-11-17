@@ -14,6 +14,7 @@ const SOCIAL_ICONS: Record<string, PixelIconName> = {
     GitHub: 'code',
     LinkedIn: 'user',
     Email: 'mail',
+    Phone: 'mail',
     CodeChef: 'chip',
 };
 
@@ -33,7 +34,9 @@ const contactLinks: ContactLink[] = [
                 ? 'Repositories, projects and upstream contributions.'
                 : social.label === 'LinkedIn'
                   ? 'Professional profile and work history.'
-                  : 'The fastest way to reach me directly.',
+                  : social.label === 'Phone'
+                    ? 'Call or message me directly.'
+                    : 'The fastest way to reach me directly.',
     })),
     {
         label: 'CodeChef',

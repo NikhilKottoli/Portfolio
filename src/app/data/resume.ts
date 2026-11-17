@@ -27,11 +27,11 @@ export type ResumeContribution = {
  */
 export const resumeProfile = {
     name: 'Nikhil Kottoli',
-    role: 'Software Engineer',
+    role: 'Computer Science Student',
     location: 'Surathkal, Karnataka, India',
     summary:
-        'Computer science student and software engineer at NITK Surathkal, working on distributed systems, backend infrastructure and applied AI. Currently a Software Engineering Intern at Microsoft on the Extensions Security team.',
-    education: 'B.Tech, Computer Science — NITK Surathkal',
+        'Computer science student and software engineer at NITK Surathkal, working on distributed systems, backend infrastructure and applied AI. Recently completed an SDE internship at Microsoft on the MAI – Extensions Security team (May–Jul 2026); currently a B.Tech Computer Science student at NITK Surathkal.',
+    education: 'B.Tech, Computer Science — NITK Surathkal · 8.65 CGPA · Aug 2023 – Present',
     interests: [
         'Systems programming',
         'Distributed systems',
@@ -44,30 +44,31 @@ export const resumeProfile = {
 
 export const resumeExperience: ResumeEntry[] = [
     {
-        role: 'Software Engineering Intern',
+        role: 'SDE Intern',
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',
         location: 'Hyderabad, India',
         summary:
-            'Worked on cloud-scale security infrastructure for a catalogue of browser extensions.',
+            'Interned on cloud-scale security infrastructure for a 30K+ browser-extension catalogue.',
         highlights: [
-            'Designed and deployed a cloud-scale malware-hunting platform that reduced the time to scan the extension catalogue from 6 hours to 2–5 minutes.',
-            'Built the scanning pipeline on Azure Batch and exposed tooling to teams through MCP.',
+            'Designed and deployed a cloud-scale malware-hunting platform that cut a full catalogue scan from 6 hours to 2–5 minutes.',
+            'Architected shard-based distributed execution with consistent-hash affinity routing and node-local SSD caching, reaching 90% efficiency across elastic worker pools.',
+            'Built MCP-powered tooling to enable agentic workflows for security researchers.',
         ],
-        stack: ['C#', '.NET', 'Azure Batch', 'MCP', 'Distributed systems', 'Security'],
+        stack: ['C#', '.NET', 'Azure', 'MCP', 'Distributed systems', 'Security'],
     },
     {
         role: 'Head of Maintenance',
         organisation: "IRIS — NITK's Administrative System",
-        period: 'April 2026 – Present',
+        period: 'October 2024 – Present',
         location: 'NITK Surathkal',
         summary:
             "Maintainer of the official student-led ERP of NITK, used by more than 23,000 students and staff.",
         highlights: [
             'Review contributor code, manage Ruby, Rails and gem upgrades, and run code audits and security checks.',
             'Served as Web Lead from December 2025, managing a team of 8 and turning requirements into issues and sprints.',
-            'Web Developer from November 2024 to December 2025, then Web Lead from December 2025 to April 2026.',
             'Built features on the R&D module, including OTP login.',
+            'Built an in-house staging platform with automated subdomain routing, async deployments, real-time logs, environment configuration and interactive container access.',
         ],
         stack: ['Ruby on Rails', 'MySQL', 'Nginx'],
     },
@@ -88,7 +89,7 @@ export const resumeExperience: ResumeEntry[] = [
 export const resumeAwards: ResumeAward[] = [
     {
         title: 'ETH Global Mumbai 2026',
-        position: 'Finalist, Arc Track — Best Mobile Web Consumer Agent',
+        position: 'Finalist (Top 8 of 622 projects) — RupeeRail, among 1,402 hackers at a 36-hour hackathon',
         prize: '$7,000 USDC',
     },
     {
@@ -112,7 +113,7 @@ export const resumeContributions: ResumeContribution[] = [
     {
         project: 'FreeBSD',
         detail:
-            'Merged "Align PRR implementation with RFC 9937" (45 lines changed), January 2025.',
+            "Updated PRR to match RFC 9937's SafeACK heuristic (PRR-CRB / PRR-SSRB), corrected RecoverFS, and validated with a packetdrill test — April 2026.",
     },
     {
         project: 'Ruby on Rails',
@@ -122,7 +123,7 @@ export const resumeContributions: ResumeContribution[] = [
     {
         project: 'ns-3',
         detail:
-            'Open merge request adding a recent RACK acknowledgement to the ns-3 network simulator (3001 lines changed).',
+            'RACK-TLP (RFC 8985) loss detection with Tail Loss Probe in the ns-3 TCP stack (3,001 lines), September 2025 – February 2026.',
     },
 ];
 

@@ -21,7 +21,7 @@ describe('TrainerCard', () => {
 
         expect(card).toHaveTextContent('Surathkal, Karnataka, India');
         expect(card).toHaveTextContent('Computer Science, NITK Surathkal');
-        expect(card).toHaveTextContent('Microsoft — MAI Extensions Security');
+        expect(card).toHaveTextContent('NITK Surathkal');
     });
 
     it('links to each profile', () => {

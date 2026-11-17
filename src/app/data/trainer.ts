@@ -16,9 +16,9 @@ export const trainer = {
     /** Playful identifier printed on the trainer card, like a Pokédex entry number. */
     id: '2048',
     handle: 'nikhil_k0tt0li',
-    role: 'Software Engineer',
-    currentRole: 'Software Engineering Intern at Microsoft',
-    currentOrg: 'Microsoft — MAI Extensions Security',
+    role: 'Computer Science Student',
+    currentRole: 'Computer Science student at NITK',
+    currentOrg: 'NITK Surathkal',
     location: 'Surathkal, Karnataka, India',
     school: 'NITK Surathkal',
     education: 'Computer Science',
@@ -46,6 +46,7 @@ export const socials: SocialLink[] = [
         external: true,
     },
     { label: 'Email', href: 'mailto:nikhilkottoli2005@gmail.com', external: false },
+    { label: 'Phone', href: 'tel:+919008465462', external: false },
 ];
 
 export type NavItem = {
@@ -82,8 +83,8 @@ export const recentAdventures: Highlight[] = [
     {
         title: 'Microsoft — Extensions Security',
         detail:
-            'Shipped a cloud-scale malware scanning pipeline for a catalogue of browser extensions, taking a full scan from 6 hours down to 2–5 minutes.',
-        tag: 'C# · Azure Batch · MCP',
+            'Shipped a cloud-scale malware scanning pipeline on Azure for a 30K+ extension catalogue, cutting a full scan from 6 hours to 2–5 minutes at 90% efficiency.',
+        tag: 'C# · Azure · MCP',
     },
     {
         title: 'ETH Global Mumbai 2026',
@@ -107,8 +108,8 @@ export type CurrentStatus = {
 };
 
 export const currentStatus: CurrentStatus = {
-    role: 'Software Engineering Intern',
-    organisation: 'Microsoft — Extensions Security',
-    focus: 'Distributed malware scanning infrastructure, Azure Batch pipelines and MCP tooling.',
+    role: 'Computer Science Student',
+    organisation: 'NITK Surathkal',
+    focus: 'B.Tech Computer Science coursework, systems and networking, and open-source contributions.',
     availability: trainer.availability,
 };

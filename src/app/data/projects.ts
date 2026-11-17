@@ -22,7 +22,7 @@ export const projects: Project[] = [
         image: '/projects/RupeeRail.png',
         title: 'RupeeRail',
         description:
-            'ETH Global 2026 Mumbai Finalist, Arc Track (Best Mobile Web Consumer Agent) - Cross-border payments on Ethereum using stablecoins and account abstraction.',
+            'ETHGlobal Mumbai, November 2026 Finalist, Arc Track (Best Mobile Web Consumer Agent) - Cross-border payments on Ethereum using stablecoins and account abstraction.',
         tech: ['Solidity', 'React', 'Account Abstraction', 'ERC-4337'],
         link: 'https://github.com/NikhilKottoli/RupeeRail',
         award: 'ETH Global Mumbai 2026 Finalist',
@@ -30,8 +30,8 @@ export const projects: Project[] = [
     {
         image: '/projects/PrivateRag.png',
         title: 'Private RAG',
-        description: 'A vectorless, fully client-side RAG leveraging TEE and secure file storage.',
-        tech: ['React', 'NEAR AI TEE', 'NOVA SDK'],
+        description: 'Vectorless RAG with client-side AES-256-GCM encryption, NEAR AI TEE and Encrypted IPFS.',
+        tech: ['TypeScript', 'Next.js', 'Web3', 'PageIndex', 'NEAR AI TEE'],
         link: 'https://devspot.app/projects/1094',
     },
     {

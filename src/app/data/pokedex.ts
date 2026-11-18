@@ -16,6 +16,8 @@ export type PokedexEntry = {
     summary: string;
     /** Pixel icon name for the list view. */
     icon: 'coin' | 'key' | 'flag' | 'star' | 'gear' | 'chip' | 'cloud' | 'bolt' | 'heart' | 'shield';
+    /** Normal project image for the list view (bounded thumbnail). */
+    image?: string;
     /** Category badge. */
     category: string;
     /** Technologies used. */
@@ -96,6 +98,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 3,
         name: 'RupeeRail',
         slug: 'rupeerail',
+        image: '/projects/RupeeRail.png',
         summary: 'Cross-border payments on Ethereum using stablecoins and account abstraction.',
         icon: 'star',
         category: 'Blockchain · Web3',
@@ -122,6 +125,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 4,
         name: 'Private RAG',
         slug: 'private-rag',
+        image: '/projects/PrivateRag.png',
         summary: 'Vectorless, fully client-side RAG leveraging TEE and secure file storage.',
         icon: 'chip',
         category: 'AI · Privacy',
@@ -149,6 +153,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 5,
         name: 'Agora',
         slug: 'agora',
+        image: '/projects/Agora.png',
         summary: 'A parachain-ready computation marketplace for Polkadot.',
         icon: 'cloud',
         category: 'Blockchain · Infrastructure',
@@ -175,6 +180,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 6,
         name: 'ImpactChain',
         slug: 'impactchain',
+        image: '/projects/ImpactChain.png',
         summary: 'Blockchain-backed social good initiatives platform.',
         icon: 'heart',
         category: 'Blockchain · Social Impact',
@@ -198,6 +204,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 7,
         name: 'Polkaflow',
         slug: 'polkaflow',
+        image: '/projects/Polkaflow.png',
         summary: 'Visual blockchain workflow builder for smart contracts.',
         icon: 'gear',
         category: 'Developer Tools · Blockchain',
@@ -224,6 +231,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 8,
         name: 'CodeMaster',
         slug: 'codemaster',
+        image: '/projects/codemaster.png',
         summary: 'Real-time interview platform with code collaboration.',
         icon: 'key',
         category: 'EdTech · Real-time',
@@ -248,6 +256,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 9,
         name: 'Synkerr',
         slug: 'synkerr',
+        image: '/projects/Synkerr.jpeg',
         summary: 'Social platform for professional collaboration.',
         icon: 'flag',
         category: 'Social · Full-stack',
@@ -271,6 +280,7 @@ export const pokedexEntries: PokedexEntry[] = [
         number: 10,
         name: 'Hamfest India 2026',
         slug: 'hamfest-india-2026',
+        image: '/projects/hamfest.png',
         summary: 'Official event platform for India\'s premier amateur radio gathering at NITK Surathkal.',
         icon: 'bolt',
         category: 'Event Tech · Full-stack',

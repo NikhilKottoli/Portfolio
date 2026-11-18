@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import PixelIcon, { type PixelIconName } from './pixel/PixelIcon';
 import PixelBadge from './pixel/PixelBadge';
 import PixelDivider from './pixel/PixelDivider';
@@ -32,8 +33,18 @@ const PokedexListItem = ({ entry }: { entry: PokedexEntry }) => {
             href={`/Projects/${entrySlug(entry)}`}
             className="pk-panel-raised w-full flex items-center gap-3 p-3 text-left transition-all border-transparent bg-cream text-ink hover:border-bark hover:bg-sand"
         >
-            <span className="flex shrink-0 items-center justify-center w-10 h-10 border-2 border-bark bg-sand">
-                <PixelIcon name={entry.icon} className="h-5 w-5" />
+            <span className="flex shrink-0 items-center justify-center w-24 h-24 border-2 border-bark bg-sand overflow-hidden">
+                {entry.image ? (
+                    <Image
+                        src={entry.image}
+                        alt={`${entry.name} project image`}
+                        width={96}
+                        height={96}
+                        className="h-full w-full object-contain"
+                    />
+                ) : (
+                    <PixelIcon name={entry.icon} className="h-5 w-5" />
+                )}
             </span>
 
             <div className="min-w-0 flex-1">

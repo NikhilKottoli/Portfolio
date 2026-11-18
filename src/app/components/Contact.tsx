@@ -7,6 +7,7 @@ import PixelSprite from './pixel/PixelSprite';
 import PixelDivider from './pixel/PixelDivider';
 import Reveal from './pixel/Reveal';
 import SectionHeading from './SectionHeading';
+import ContactForm from './ContactForm';
 import { emberlingSprite, leaflingSprite, trainerSprite } from './pixel/sprites';
 import { socials } from '../data/trainer';
 
@@ -53,8 +54,7 @@ const contactLinks: ContactLink[] = [
  * The Contact section — a Pokémon communication terminal.
  *
  * Every channel is a plain link with a visible address, so there is never a
- * question of how to get in touch. No form is included because there is no
- * working submission endpoint behind one.
+ * question of how to get in touch. The form now submits to /api/contact.
  */
 const Contact = () => {
     return (
@@ -126,6 +126,10 @@ const Contact = () => {
                         </ul>
                     </div>
                 </Reveal>
+
+                <div className="mt-8">
+                    <ContactForm />
+                </div>
 
                 {/* Direct address. */}
                 <Reveal delay={120}>

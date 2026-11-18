@@ -100,7 +100,7 @@ export const badges: Badge[] = [
         sprite: 'iris',
         name: 'IRIS Maintainer',
         organisation: "IRIS — NITK's Administrative System",
-        period: 'April 2026 – Present',
+        period: 'October 2024 – Present',
         kind: 'Leadership',
         summary: 'Head of Maintenance for a platform serving 23,000+ users.',
         description:

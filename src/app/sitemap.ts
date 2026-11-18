@@ -1,50 +1,32 @@
 import type { MetadataRoute } from 'next';
+import { getSiteUrl } from '../lib/site';
+import { entrySlug } from '../lib/slug';
+import { pokedexEntries } from './data/pokedex';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+const siteUrl = getSiteUrl();
+
+/**
+ * Every indexable route, relative to the site root.
+ *
+ * The home page is listed first and project deep links are derived from the
+ * Pokédex so the sitemap never drifts from the routes that are generated.
+ */
+const sitemapPaths = [
+    '/',
+    '/Projects',
+    '/Inventory',
+    '/Badges',
+    '/Experience',
+    '/Contact',
+    '/resume',
+    ...pokedexEntries.map((entry) => `/Projects/${entrySlug(entry)}`),
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    return [
-        {
-            url: siteUrl,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 1,
-        },
-        {
-            url: `${siteUrl}/Projects`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${siteUrl}/Inventory`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${siteUrl}/Badges`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${siteUrl}/Experience`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${siteUrl}/Contact`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${siteUrl}/resume`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-    ];
+    return Array.from(new Set(sitemapPaths)).map((path) => ({
+        url: path === '/' ? siteUrl : `${siteUrl}${path}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: path === '/' ? 1 : 0.8,
+    }));
 }

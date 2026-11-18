@@ -42,9 +42,9 @@ export const badges: Badge[] = [
         organisation: 'Microsoft — MAI Extensions Security',
         period: 'May 2026 – Jul 2026',
         kind: 'Employment',
-        summary: 'Software Engineering Intern on the Extensions Security team.',
+        summary: 'SDE Intern on the Extensions Security team.',
         description:
-            'Worked as a Software Engineering Intern on the MAI Extensions Security team, building cloud-scale malware scanning infrastructure for a catalogue of browser extensions.',
+            'Worked as an SDE Intern on the MAI Extensions Security team, building cloud-scale malware scanning infrastructure for a catalogue of browser extensions.',
         significance:
             'The scanning platform reduced a full catalogue scan from six hours to two to five minutes, and the tooling was exposed to other teams through MCP. The work involved distributed execution on Azure and a design that had to survive real scan volumes rather than a demo.',
         supporting: 'Extensions Security Scanner',
@@ -100,7 +100,7 @@ export const badges: Badge[] = [
         sprite: 'iris',
         name: 'IRIS Maintainer',
         organisation: "IRIS — NITK's Administrative System",
-        period: 'April 2026 – Present',
+        period: 'October 2024 – Present',
         kind: 'Leadership',
         summary: 'Head of Maintenance for a platform serving 23,000+ users.',
         description:

@@ -16,6 +16,7 @@ import {
     type Pocket,
 } from '../data/inventory';
 import { pokedexEntries } from '../data/pokedex';
+import { entrySlug } from '../../lib/slug';
 
 type PocketMeta = {
     id: Pocket;
@@ -174,7 +175,7 @@ const ItemDetail = ({ item }: { item: InventoryItem }) => {
                             {related.map((entry) => (
                                 <li key={entry.number}>
                                     <Link
-                                        href={`/Projects?entry=${encodeURIComponent(entry.name)}`}
+                                        href={`/Projects/${entrySlug(entry)}`}
                                         className="pk-panel-recessed flex items-center gap-3 p-3 transition-colors hover:bg-sand"
                                     >
                                         <span className="flex h-9 w-9 shrink-0 items-center justify-center border-2 border-bark bg-cream">

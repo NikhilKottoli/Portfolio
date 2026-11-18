@@ -10,6 +10,8 @@ export type PokedexEntry = {
     number: number;
     /** Project title. */
     name: string;
+    /** URL slug for deep links. */
+    slug: string;
     /** Short one-line summary for the list view. */
     summary: string;
     /** Pixel icon name for the list view. */
@@ -43,6 +45,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 1,
         name: 'IRIS ERP',
+        slug: 'iris-erp',
         summary: 'Maintainer of NITK\'s student administrative system, serving 23,000+ users.',
         icon: 'gear',
         category: 'Infrastructure · Open Source',
@@ -68,6 +71,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 2,
         name: 'Extensions Security Scanner',
+        slug: 'extensions-security-scanner',
         summary: 'Distributed malware scanning pipeline that cut a full catalogue scan from 6 hours to 2–5 minutes.',
         icon: 'shield',
         category: 'Security · Cloud Infrastructure',
@@ -84,13 +88,14 @@ export const pokedexEntries: PokedexEntry[] = [
             'Reduced a full catalogue scan from 6 hours to 2–5 minutes',
             'Distributed execution across Azure compute pools',
             'Tooling exposed to other teams through MCP',
-            'Software Engineering Internship, Microsoft — May to July 2026',
+            'SDE Internship, Microsoft — May to July 2026',
         ],
-        context: 'Work completed during the Software Engineering Internship at Microsoft, MAI Extensions Security.',
+        context: 'Work completed during the SDE Internship at Microsoft, MAI Extensions Security.',
     },
     {
         number: 3,
         name: 'RupeeRail',
+        slug: 'rupeerail',
         summary: 'Cross-border payments on Ethereum using stablecoins and account abstraction.',
         icon: 'star',
         category: 'Blockchain · Web3',
@@ -116,6 +121,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 4,
         name: 'Private RAG',
+        slug: 'private-rag',
         summary: 'Vectorless, fully client-side RAG leveraging TEE and secure file storage.',
         icon: 'chip',
         category: 'AI · Privacy',
@@ -142,6 +148,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 5,
         name: 'Agora',
+        slug: 'agora',
         summary: 'A parachain-ready computation marketplace for Polkadot.',
         icon: 'cloud',
         category: 'Blockchain · Infrastructure',
@@ -167,6 +174,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 6,
         name: 'ImpactChain',
+        slug: 'impactchain',
         summary: 'Blockchain-backed social good initiatives platform.',
         icon: 'heart',
         category: 'Blockchain · Social Impact',
@@ -189,6 +197,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 7,
         name: 'Polkaflow',
+        slug: 'polkaflow',
         summary: 'Visual blockchain workflow builder for smart contracts.',
         icon: 'gear',
         category: 'Developer Tools · Blockchain',
@@ -214,6 +223,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 8,
         name: 'CodeMaster',
+        slug: 'codemaster',
         summary: 'Real-time interview platform with code collaboration.',
         icon: 'key',
         category: 'EdTech · Real-time',
@@ -237,6 +247,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 9,
         name: 'Synkerr',
+        slug: 'synkerr',
         summary: 'Social platform for professional collaboration.',
         icon: 'flag',
         category: 'Social · Full-stack',
@@ -259,6 +270,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 10,
         name: 'Hamfest India 2026',
+        slug: 'hamfest-india-2026',
         summary: 'Official event platform for India\'s premier amateur radio gathering at NITK Surathkal.',
         icon: 'bolt',
         category: 'Event Tech · Full-stack',
@@ -284,6 +296,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 11,
         name: 'Matrix Multiplier',
+        slug: 'matrix-multiplier',
         summary: 'Hardware-efficient matrix operations using digital logic.',
         icon: 'chip',
         category: 'Hardware · Verilog',
@@ -308,6 +321,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 12,
         name: 'FreeBSD PRR',
+        slug: 'freebsd-prr',
         summary: 'Upstream change aligning the PRR implementation with RFC 9937.',
         icon: 'shield',
         category: 'Systems · Open Source',
@@ -334,6 +348,7 @@ export const pokedexEntries: PokedexEntry[] = [
     {
         number: 13,
         name: 'ns-3 Contribution',
+        slug: 'ns-3-contribution',
         summary: 'Open change adding RACK-TLP (RFC 8985) loss detection with Tail Loss Probe to the ns-3 simulator.',
         icon: 'cloud',
         category: 'Networking · Open Source',

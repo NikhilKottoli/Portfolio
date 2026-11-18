@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import RootLayout, { metadata } from '../../src/app/layout';
 import HeroSection from '../../src/app/components/HeroSection';
+import { getSiteUrl } from '../../src/lib/site';
 
 vi.mock('next/navigation', () => ({
     useRouter: () => ({ push: vi.fn() }),
@@ -10,8 +11,21 @@ vi.mock('next/navigation', () => ({
 
 describe('root layout', () => {
     it('describes the site for search engines', () => {
-        expect(metadata.title).toBe('Nikhil Kottoli — Portfolio');
+        expect(metadata.title).toEqual({
+            default: 'Nikhil Kottoli — Portfolio',
+            template: '%s — Nikhil Kottoli',
+        });
         expect(metadata.description).toContain('Software developer');
+    });
+
+    it('declares canonical, social card and author metadata', () => {
+        expect(metadata.alternates?.canonical).toBe('/');
+        expect(metadata.twitter?.images).toEqual([
+            { url: '/opengraph-image', alt: 'Nikhil Kottoli — Portfolio' },
+        ]);
+        expect(metadata.authors).toEqual([
+            { name: 'Nikhil Kottoli', url: getSiteUrl() },
+        ]);
     });
 
     it('renders the navigation, the page and the footer', () => {
@@ -37,5 +51,18 @@ describe('root layout', () => {
         );
 
         expect(html).toContain('aria-hidden="true"');
+    });
+
+    it('keeps the command palette out of the prerendered markup', () => {
+        // The palette is a client-only affordance: it must not add any markup
+        // to the statically rendered layout.
+        const html = renderToStaticMarkup(
+            <RootLayout>
+                <p>Page body</p>
+            </RootLayout>,
+        );
+
+        expect(html).not.toContain('aria-modal="true"');
+        expect(html).not.toContain('command-palette-search');
     });
 });

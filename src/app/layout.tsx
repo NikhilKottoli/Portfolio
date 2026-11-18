@@ -3,31 +3,59 @@ import React from 'react';
 import './globals.css';
 import NavBar from './components/Navbar';
 import SiteFooter from './components/SiteFooter';
+import CommandPalette from './components/CommandPalette';
 import { SoundProvider } from './components/SoundProvider';
+import { JsonLd } from '../lib/json-ld';
+import { personJsonLd, websiteJsonLd } from '../lib/structured-data';
+import { getSiteUrl, SITE_NAME, SITE_DESCRIPTION } from '../lib/site';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
-    title: 'Nikhil Kottoli — Portfolio',
-    description: 'Software developer. NITK Surathkal.',
+    title: {
+        default: SITE_NAME,
+        template: '%s — Nikhil Kottoli',
+    },
+    description: SITE_DESCRIPTION,
     manifest: '/manifest.json',
     metadataBase: new URL(siteUrl),
+    alternates: {
+        canonical: '/',
+    },
     openGraph: {
         type: 'website',
         locale: 'en_US',
         url: siteUrl,
-        siteName: 'Nikhil Kottoli — Portfolio',
-        title: 'Nikhil Kottoli — Portfolio',
-        description: 'Software developer. NITK Surathkal.',
+        siteName: SITE_NAME,
+        title: SITE_NAME,
+        description: SITE_DESCRIPTION,
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Nikhil Kottoli — Portfolio',
-        description: 'Software developer. NITK Surathkal.',
+        title: SITE_NAME,
+        description: SITE_DESCRIPTION,
+        images: [{ url: '/opengraph-image', alt: SITE_NAME }],
     },
     robots: {
         index: true,
         follow: true,
+    },
+    authors: [{ name: 'Nikhil Kottoli', url: siteUrl }],
+    creator: 'Nikhil Kottoli',
+    publisher: 'Nikhil Kottoli',
+    category: 'technology',
+    applicationName: SITE_NAME,
+    keywords: [
+        'software engineer',
+        'systems programming',
+        'distributed systems',
+        'backend',
+        'AI',
+        'NITK',
+        'portfolio',
+    ],
+    verification: {
+        google: process.env.GOOGLE_SITE_VERIFICATION || '',
     },
 };
 
@@ -46,6 +74,8 @@ export default function RootLayout({
                         <SiteFooter />
                     </div>
                 </SoundProvider>
+                <CommandPalette />
+                <JsonLd data={[personJsonLd(), websiteJsonLd()]} />
             </body>
         </html>
     );
